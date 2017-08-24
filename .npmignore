@@ -1,0 +1,7 @@
+.git*
+**/*.ts
+.npmrc
+.env*
+npm-debug.log*
+test/**/*.*
+!**/*.d.ts
