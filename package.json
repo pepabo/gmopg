@@ -1,0 +1,52 @@
+{
+  "name": "gmopg",
+  "description": "GMO PaymentGateway API Client",
+  "engines": {
+    "node": ">=8.4.0",
+    "npm": ">=5.4.2"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib/"
+  ],
+  "directories": {
+    "lib": "./lib",
+    "test": "./test"
+  },
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linyows/gmopg.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf src/**/*.js ./lib test/**/*.js npm-debug.log*",
+    "test": "npm run tslint && nsp check",
+    "tslint": "tslint --type-check --project tsconfig.json -c tslint.json --exclude \"**/*.spec.ts\" src/**/*.ts",
+    "preversion": "npm run clean && npm run build && npm test",
+    "postversion": "git push origin --tags",
+    "prepublishOnly": "npm run clean && npm run build && npm test && npm run doc"
+  },
+  "dependencies": {
+    "axios": "0.16.2",
+    "debug": "^3.1.0",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/debug": "0.0.30",
+    "@types/request": "^2.0.3",
+    "@types/request-promise-native": "^1.0.7",
+    "ava": "^0.22.0",
+    "ink-docstrap": "^1.3.0",
+    "nsp": "^2.8.1",
+    "rimraf": "^2.6.2",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0",
+    "tslint-microsoft-contrib": "^5.0.1",
+    "typescript": "^2.5.3"
+  }
+}
