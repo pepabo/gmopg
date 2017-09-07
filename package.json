@@ -25,7 +25,7 @@
     "build": "tsc",
     "clean": "rimraf src/**/*.js ./lib test/**/*.js npm-debug.log*",
     "test": "npm run tslint && nsp check",
-    "tslint": "tslint --type-check --project tsconfig.json -c tslint.json --exclude \"**/*.spec.ts\" src/**/*.ts",
+    "lint": "tslint --type-check --project tsconfig.json -c tslint.json --exclude \"**/*.test.ts\" src/**/*.ts",
     "preversion": "npm run clean && npm run build && npm test",
     "postversion": "git push origin --tags",
     "prepublishOnly": "npm run clean && npm run build && npm test && npm run doc"
