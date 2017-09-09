@@ -5,6 +5,9 @@
   ],
   "jsRules": {},
   "rules": {
+    "quotemark": [true, "single"],
+    "semicolon": [true, "never"],
+    "missing-jsdoc": false,
     "arrow-parens": [
       true
     ],
