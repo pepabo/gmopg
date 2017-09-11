@@ -1,15 +1,11 @@
-import * as createDebug from 'debug'
+import axios, { AxiosResponse } from 'axios'
 import * as querystring from 'querystring'
-import * as request from 'request-promise-native'
-import { BadRequestError } from '../error/badRequest'
-import * as util from '../utils/util'
-
-const debug = createDebug('gmo-service:services:card')
+import * as util from '../util'
 
 export interface ISaveCardArgs {
-  siteId: string
+  siteID: string
   sitePass: string
-  memberId: string
+  memberID: string
   seqMode?: util.SeqMode
   cardSeq?: number
   defaultFlag?: string
@@ -34,30 +30,22 @@ export interface ISaveCardResult {
 }
 
 export async function saveCard(args: ISaveCardArgs): Promise<ISaveCardResult> {
-  debug('requesting...', args)
-  const body = await request.post({
-    url: `${process.env.GMOPG_ENDPOINT}/payment/SaveCard.idPass`,
-    form: {
-      SiteID: args.siteId,
-      SitePass: args.sitePass,
-      MemberID: args.memberId,
-      SeqMode: args.seqMode,
-      CardSeq: args.cardSeq,
-      DefaultFlag: args.defaultFlag,
-      CardName: args.cardName,
-      CardNo: args.cardNo,
-      CardPass: args.cardPass,
-      Expire: args.expire,
-      HolderName: args.holderName,
-      Token: args.token
-    }
-  }).promise()
-  debug('request processed.', body)
+  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/SaveCard.idPass`, {
+    SiteID: args.siteID,
+    SitePass: args.sitePass,
+    MemberID: args.memberID,
+    SeqMode: args.seqMode,
+    CardSeq: args.cardSeq,
+    DefaultFlag: args.defaultFlag,
+    CardName: args.cardName,
+    CardNo: args.cardNo,
+    CardPass: args.cardPass,
+    Expire: args.expire,
+    HolderName: args.holderName,
+    Token: args.token
+  })
 
-  const result = querystring.parse(body)
-  if (result.ErrCode !== undefined) {
-      throw new BadRequestError(body)
-  }
+  const result = querystring.parse(res.data)
 
   return {
     cardSeq: result.CardSeq,
@@ -68,14 +56,14 @@ export async function saveCard(args: ISaveCardArgs): Promise<ISaveCardResult> {
     issuerCode: result.IssuerCode,
     debitPrepaidFlag: result.DebitPrepaidFlag,
     debitPrepaidIssuerName: result.DebitPrepaidIssuerName,
-    forwardFinal: result.ForwardFinal,
+    forwardFinal: result.ForwardFinal
   }
 }
 
 export interface IDeleteCardArgs {
-  siteId: string
+  siteID: string
   sitePass: string
-  memberId: string
+  memberID: string
   seqMode?: util.SeqMode
   cardSeq: string
 }
@@ -85,23 +73,15 @@ export interface IDeleteCardResult {
 }
 
 export async function deleteCard(args: IDeleteCardArgs): Promise<IDeleteCardResult> {
-  debug('requesting...', args)
-  const body = await request.post({
-    url: `${process.env.GMOPG_ENDPOINT}/payment/DeleteCard.idPass`,
-    form: {
-      SiteID: args.siteId,
-      SitePass: args.sitePass,
-      MemberID: args.memberId,
-      SeqMode: args.seqMode,
-      CardSeq: args.cardSeq
-    }
-  }).promise()
-  debug('request processed.', body)
+  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/DeleteCard.idPass`, {
+    SiteID: args.siteID,
+    SitePass: args.sitePass,
+    MemberID: args.memberID,
+    SeqMode: args.seqMode,
+    CardSeq: args.cardSeq
+  })
 
-  const result = querystring.parse(body)
-  if (result.ErrCode !== undefined) {
-    throw new BadRequestError(body)
-  }
+  const result = querystring.parse(res.data)
 
   return {
     cardSeq: result.CardSeq
@@ -109,9 +89,9 @@ export async function deleteCard(args: IDeleteCardArgs): Promise<IDeleteCardResu
 }
 
 export interface ISearchCardArgs {
-  siteId: string
+  siteID: string
   sitePass: string
-  memberId: string
+  memberID: string
   seqMode: util.SeqMode
   cardSeq?: string
 }
@@ -133,29 +113,15 @@ export interface ISearchCardResult {
 }
 
 export async function searchCard(args: ISearchCardArgs): Promise<ISearchCardResult[]> {
-  debug('requesting...', args)
-  const body = await request.post({
-    url: `${process.env.GMOPG_ENDPOINT}/payment/SearchCard.idPass`,
-    form: {
-      SiteID: args.siteId,
-      SitePass: args.sitePass,
-      MemberID: args.memberId,
-      SeqMode: args.seqMode,
-      CardSeq: args.cardSeq
-    }
-  }).promise()
-  debug('request processed.', body)
+  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/SearchCard.idPass`, {
+    SiteID: args.siteID,
+    SitePass: args.sitePass,
+    MemberID: args.memberID,
+    SeqMode: args.seqMode,
+    CardSeq: args.cardSeq
+  })
 
-  const result = querystring.parse(body)
-  if (result.ErrCode !== undefined) {
-    const error = new BadRequestError(body)
-
-    if (error.errors.length === 1 && error.errors[0].info === 'E01240002') {
-      return []
-    }
-
-    throw error
-  }
+  const result = querystring.parse(res.data)
 
   const cardSeqArry: string[] = result.CardSeq.split('|')
   const defaultFlagArry: string[] = result.DefaultFlag.split('|')

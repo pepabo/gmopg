@@ -1,8 +1,21 @@
-if (process.env.GMOPG_ENDPOINT === undefined) {
-  throw new Error('NPM warnings. The environment variable "GMOPG_ENDPOINT" is required.')
-}
+import * as m from './client/member'
+import * as c from './client/card'
+import * as t from './client/tran'
+import * as u from './util'
 
-import * from './client/tran'
-import * from './client/card'
-import * from './client/member'
-import * from './client/util'
+export import saveMember = m.saveMember
+export import updateMember = m.updateMember
+export import deleteMember = m.deleteMember
+export import searchMember = m.searchMember
+
+export import saveCard = c.saveCard
+export import deleteCard = c.deleteCard
+export import searchCard = c.searchCard
+
+export import entryTran = t.entryTran
+export import execTran = t.execTran
+export import alterTran = t.alterTran
+export import searchTrade = t.searchTrade
+export import changeTran = t.changeTran
+
+export import util = u

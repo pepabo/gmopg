@@ -1,53 +1,41 @@
-import * as createDebug from 'debug'
+import axios, { AxiosResponse } from 'axios'
 import * as querystring from 'querystring'
-import * as request from 'request-promise-native'
-import { BadRequestError } from '../error/badRequest'
-import * as util from '../utils/util'
-
-const debug = createDebug('gmo-service:credit')
+import * as util from '../util'
 
 export interface IEntryTranArgs {
-  shopId: string
+  shopID: string
   shopPass: string
-  orderId: string
+  orderID: string
   jobCd: util.JobCd
   amount: number
 }
 
 export interface IEntryTranResult {
-  accessId: string
+  accessID: string
   accessPass: string
 }
 
 export async function entryTran(args: IEntryTranArgs): Promise<IEntryTranResult> {
-  debug('requesting...', args)
-  const body = await request.post({
-  url: `${process.env.GMO_ENDPOINT}/payment/EntryTran.idPass`,
-  form: {
-    ShopID: args.shopId,
+  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/EntryTran.idPass`, {
+    ShopID: args.shopID,
     ShopPass: args.shopPass,
-    OrderID: args.orderId,
+    OrderID: args.orderID,
     JobCd: args.jobCd,
     Amount: args.amount
-  }
-  }).promise()
-  debug('request processed.', body)
+  })
 
-  const result = querystring.parse(body)
-  if (result.ErrCode !== undefined) {
-  throw new BadRequestError(body)
-  }
+  const result = querystring.parse(res.data)
 
   return {
-  accessId: result.AccessID,
-  accessPass: result.AccessPass
+    accessID: result.AccessID,
+    accessPass: result.AccessPass
   }
 }
 
 export interface IExecTranArgs {
-  accessId: string
+  accessID: string
   accessPass: string
-  orderId: string
+  orderID: string
   method?: util.Method
   payTimes?: number
   cardNo?: string
@@ -55,9 +43,9 @@ export interface IExecTranArgs {
   securityCode?: string
   token?: string
   pin?: string
-  siteId?: string
+  siteID?: string
   sitePass?: string
-  memberId?: string
+  memberID?: string
   seqMode?: util.SeqMode
   cardSeq?: number
   cardPass?: string
@@ -68,12 +56,12 @@ export interface IExecTranArgs {
 
 export interface IExecTranResult {
   acs: string
-  orderId: string
+  orderID: string
   forward: string
   method: util.Method
   payTimes: string
   approve: string
-  tranId: string
+  tranID: string
   tranDate: string
   checkString: string
   clientField1: string
@@ -82,13 +70,10 @@ export interface IExecTranResult {
 }
 
 export async function execTran(args: IExecTranArgs): Promise<IExecTranResult> {
-  debug('requesting...', args)
-  const body = await request.post({
-  url: `${process.env.GMO_ENDPOINT}/payment/ExecTran.idPass`,
-  form: {
-    AccessID: args.accessId,
+  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/ExecTran.idPass`, {
+    AccessID: args.accessID,
     AccessPass: args.accessPass,
-    OrderID: args.orderId,
+    OrderID: args.orderID,
     Method: args.method,
     PayTimes: args.payTimes,
     CardNo: args.cardNo,
@@ -96,210 +81,181 @@ export async function execTran(args: IExecTranArgs): Promise<IExecTranResult> {
     SecurityCode: args.securityCode,
     Token: args.token,
     PIN: args.pin,
-    SiteID: args.siteId,
+    SiteID: args.siteID,
     SitePass: args.sitePass,
-    MemberID: args.memberId,
+    MemberID: args.memberID,
     SeqMode: args.seqMode,
     CardSeq: args.cardSeq,
     CardPass: args.cardPass,
     ClientField1: args.clientField1,
     ClientField2: args.clientField2,
     ClientField3: args.clientField3
-  }
-  }).promise()
-  debug('request processed.', body)
+  })
 
-  const result = querystring.parse(body)
-  if (result.ErrCode !== undefined) {
-  throw new BadRequestError(body)
-  }
+  const result = querystring.parse(res.data)
 
   return {
-  acs: result.ACS,
-  orderId: result.OrderID,
-  forward: result.Forward,
-  method: result.Method,
-  payTimes: result.PayTimes,
-  approve: result.Approve,
-  tranId: result.TranID,
-  tranDate: result.TranDate,
-  checkString: result.CheckString,
-  clientField1: result.ClientField1,
-  clientField2: result.ClientField2,
-  clientField3: result.ClientField3
+    acs: result.ACS,
+    orderID: result.OrderID,
+    forward: result.Forward,
+    method: result.Method,
+    payTimes: result.PayTimes,
+    approve: result.Approve,
+    tranID: result.TranID,
+    tranDate: result.TranDate,
+    checkString: result.CheckString,
+    clientField1: result.ClientField1,
+    clientField2: result.ClientField2,
+    clientField3: result.ClientField3
   }
 }
 
 export interface IAlterTranArgs {
-  shopId: string
+  shopID: string
   shopPass: string
-  accessId: string
+  accessID: string
   accessPass: string
   jobCd: util.JobCd
   amount?: number
   method?: util.Method
 }
 export interface IAlterTranResult {
-  accessId: string
+  accessID: string
   accessPass: string
   forward: string
   approve: string
-  tranId: string
+  tranID: string
   tranDate: string
 }
 
 export async function alterTran(args: IAlterTranArgs): Promise<IAlterTranResult> {
-  debug('requesting...', args)
-  const body = await request.post({
-  url: `${process.env.GMO_ENDPOINT}/payment/AlterTran.idPass`,
-  form: {
-    ShopID: args.shopId,
+  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/AlterTran.idPass`, {
+    ShopID: args.shopID,
     ShopPass: args.shopPass,
-    AccessID: args.accessId,
+    AccessID: args.accessID,
     AccessPass: args.accessPass,
     JobCd: args.jobCd,
     Amount: args.amount,
     Method: args.method
-  }
-  }).promise()
-  debug('request processed.', body)
+  })
 
-  const result = querystring.parse(body)
-  if (result.ErrCode !== undefined) {
-  throw new BadRequestError(body)
-  }
+  const result = querystring.parse(res.data)
 
   return {
-  accessId: result.AccessID,
-  accessPass: result.AccessPass,
-  forward: result.Forward,
-  approve: result.Approve,
-  tranId: result.TranID,
-  tranDate: result.TranDate
+    accessID: result.AccessID,
+    accessPass: result.AccessPass,
+    forward: result.Forward,
+    approve: result.Approve,
+    tranID: result.TranID,
+    tranDate: result.TranDate
   }
 }
 
 export interface ISearchTradeArgs {
-      shopId: string
-      shopPass: string
-      orderId: string
+  shopID: string
+  shopPass: string
+  orderID: string
 }
 
 export interface ISearchTradeResult {
-      orderId: string
-      status: string
-      processDate: string
-      jobCd: util.JobCd
-      accessId: string
-      accessPass: string
-      itemCode: string
-      amount: string
-      tax: string
-      siteId: string
-      memberId: string
-      cardNo: string
-      expire: string
-      method: util.Method
-      payTimes: string
-      forward: string
-      tranId: string
-      approve: string
-      clientField1: string
-      clientField2: string
-      clientField3: string
-      errCode: string
-      errInfo: string
+  orderID: string
+  status: string
+  processDate: string
+  jobCd: util.JobCd
+  accessID: string
+  accessPass: string
+  itemCode: string
+  amount: string
+  tax: string
+  siteID: string
+  memberID: string
+  cardNo: string
+  expire: string
+  method: util.Method
+  payTimes: string
+  forward: string
+  tranID: string
+  approve: string
+  clientField1: string
+  clientField2: string
+  clientField3: string
+  errCode: string
+  errInfo: string
 }
 
 export async function searchTrade(args: ISearchTradeArgs): Promise<ISearchTradeResult> {
-  debug('requesting...', args)
-  const body = await request.post({
-  url: `${process.env.GMO_ENDPOINT}/payment/SearchTrade.idPass`,
-  form: {
-    ShopID: args.shopId,
+  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/SearchTrade.idPass`, {
+    ShopID: args.shopID,
     ShopPass: args.shopPass,
-    OrderID: args.orderId
-  }
-  }).promise()
-  debug('request processed.', body)
+    OrderID: args.orderID
+  })
 
-  const result = querystring.parse(body)
-  if (result.ErrCode !== undefined) {
-  throw new BadRequestError(body)
-  }
+  const result = querystring.parse(res.data)
 
   return {
-  orderId: result.OrderID,
-  status: result.Status,
-  processDate: result.ProcessDate,
-  jobCd: result.JobCd,
-  accessId: result.AccessID,
-  accessPass: result.AccessPass,
-  itemCode: result.ItemCode,
-  amount: result.Amount,
-  tax: result.Tax,
-  siteId: result.SiteID,
-  memberId: result.MemberID,
-  cardNo: result.CardNo,
-  expire: result.Expire,
-  method: result.Method,
-  payTimes: result.PayTimes,
-  forward: result.Forward,
-  tranId: result.TranID,
-  approve: result.Approve,
-  clientField1: result.ClientField1,
-  clientField2: result.ClientField2,
-  clientField3: result.ClientField3,
-  errCode: result.ErrCode,
-  errInfo: result.ErrInfo
+    orderID: result.OrderID,
+    status: result.Status,
+    processDate: result.ProcessDate,
+    jobCd: result.JobCd,
+    accessID: result.AccessID,
+    accessPass: result.AccessPass,
+    itemCode: result.ItemCode,
+    amount: result.Amount,
+    tax: result.Tax,
+    siteID: result.SiteID,
+    memberID: result.MemberID,
+    cardNo: result.CardNo,
+    expire: result.Expire,
+    method: result.Method,
+    payTimes: result.PayTimes,
+    forward: result.Forward,
+    tranID: result.TranID,
+    approve: result.Approve,
+    clientField1: result.ClientField1,
+    clientField2: result.ClientField2,
+    clientField3: result.ClientField3,
+    errCode: result.ErrCode,
+    errInfo: result.ErrInfo
   }
 }
 
 export interface IChangeTranArgs {
-  shopId: string
+  shopID: string
   shopPass: string
-  accessId: string
+  accessID: string
   accessPass: string
   jobCd: util.JobCd
   amount: number
   tax?: string
 }
 export interface IChangeTranResult {
-  accessId: string
+  accessID: string
   accessPass: string
   forward: string
   approve: string
-  tranId: string
+  tranID: string
   tranDate: string
 }
 
 export async function changeTran(args: IChangeTranArgs): Promise<IChangeTranResult> {
-  debug('requesting...', args)
-  const body = await request.post({
-  url: `${process.env.GMO_ENDPOINT}/payment/ChangeTran.idPass`,
-  form: {
-    ShopID: args.shopId,
+  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/ChangeTran.idPass`, {
+    ShopID: args.shopID,
     ShopPass: args.shopPass,
-    AccessID: args.accessId,
+    AccessID: args.accessID,
     AccessPass: args.accessPass,
     JobCd: args.jobCd,
     Amount: args.amount,
     Tax: args.tax
-  }
-  }).promise()
-  debug('request processed.', body)
+  })
 
-  const result = querystring.parse(body)
-  if (result.ErrCode !== undefined) {
-  throw new BadRequestError(body)
-  }
+  const result = querystring.parse(res.data)
 
   return {
-  accessId: result.AccessID,
-  accessPass: result.AccessPass,
-  forward: result.Forward,
-  approve: result.Approve,
-  tranId: result.TranID,
-  tranDate: result.TranDate
+    accessID: result.AccessID,
+    accessPass: result.AccessPass,
+    forward: result.Forward,
+    approve: result.Approve,
+    tranID: result.TranID,
+    tranDate: result.TranDate
   }
 }
