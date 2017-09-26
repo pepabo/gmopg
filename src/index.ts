@@ -19,3 +19,47 @@ export import searchTrade = t.searchTrade
 export import changeTran = t.changeTran
 
 export import util = u
+
+export interface IConfigArgs {
+  endpoint: string
+  siteID: string
+  sitePass: string
+  shopID: string
+}
+
+export interface IConfigResult {
+  endpoint: string
+  siteID: string
+  sitePass: string
+  shopID: string
+}
+
+var siteID: string
+var sitePass: string
+var shopID: string
+var endpoint: string = 'https://pt01.mul-pay.jp'
+
+export function config(): IConfigResult {
+  return {
+    endpoint: endpoint,
+    siteID: siteID,
+    sitePass: sitePass,
+    shopID: shopID,
+  }
+}
+
+export function setConfig(args: IConfigArgs): IConfigResult {
+  if (args.endpoint) {
+    endpoint = args.endpoint
+  }
+  if (args.siteID) {
+    siteID = args.siteID
+  }
+  if (args.sitePass) {
+    sitePass = args.sitePass
+  }
+  if (args.shopID) {
+    shopID = args.shopID
+  }
+  return config()
+}
