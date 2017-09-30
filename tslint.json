@@ -7,6 +7,7 @@
   "rules": {
     "quotemark": [true, "single"],
     "semicolon": [true, "never"],
+    "completed-docs": false,
     "missing-jsdoc": false,
     "arrow-parens": [
       true
