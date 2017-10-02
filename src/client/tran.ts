@@ -1,261 +1,148 @@
-import axios, { AxiosResponse } from 'axios'
-import * as querystring from 'querystring'
+import { AxiosResponse } from 'axios'
+import * as qs from 'querystring'
+import Client, { IShopArgs } from '../client'
 import * as util from '../util'
 
-export interface IEntryTranArgs {
-  shopID: string
-  shopPass: string
-  orderID: string
-  jobCd: util.JobCd
-  amount: number
+export interface IEntryTranArgs extends IShopArgs {
+  OrderID: string
+  JobCd: util.JobCd
+  Amount: number
 }
 
 export interface IEntryTranResult {
-  accessID: string
-  accessPass: string
-}
-
-export async function entryTran(args: IEntryTranArgs): Promise<IEntryTranResult> {
-  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/EntryTran.idPass`, {
-    ShopID: args.shopID,
-    ShopPass: args.shopPass,
-    OrderID: args.orderID,
-    JobCd: args.jobCd,
-    Amount: args.amount
-  })
-
-  const result = querystring.parse(res.data)
-
-  return {
-    accessID: result.AccessID,
-    accessPass: result.AccessPass
-  }
+  AccessID: string
+  AccessPass: string
 }
 
 export interface IExecTranArgs {
-  accessID: string
-  accessPass: string
-  orderID: string
-  method?: util.Method
-  payTimes?: number
-  cardNo?: string
-  expire?: string
-  securityCode?: string
-  token?: string
-  pin?: string
-  siteID?: string
-  sitePass?: string
-  memberID?: string
-  seqMode?: util.SeqMode
-  cardSeq?: number
-  cardPass?: string
-  clientField1?: string
-  clientField2?: string
-  clientField3?: string
+  AccessID: string
+  AccessPass: string
+  OrderID: string
+  Method?: util.Method
+  PayTimes?: number
+  CardNo?: string
+  Expire?: string
+  SecurityCode?: string
+  Token?: string
+  Pin?: string
+  SiteID?: string
+  SitePass?: string
+  MemberID?: string
+  SeqMode?: util.SeqMode
+  CardSeq?: number
+  CardPass?: string
+  ClientField1?: string
+  ClientField2?: string
+  ClientField3?: string
 }
 
 export interface IExecTranResult {
-  acs: string
-  orderID: string
-  forward: string
-  method: util.Method
-  payTimes: string
-  approve: string
-  tranID: string
-  tranDate: string
-  checkString: string
-  clientField1: string
-  clientField2: string
-  clientField3: string
+  Acs: string
+  OrderID: string
+  Forward: string
+  Method: util.Method
+  PayTimes: string
+  Approve: string
+  TranID: string
+  TranDate: string
+  CheckString: string
+  ClientField1: string
+  ClientField2: string
+  ClientField3: string
 }
 
-export async function execTran(args: IExecTranArgs): Promise<IExecTranResult> {
-  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/ExecTran.idPass`, {
-    AccessID: args.accessID,
-    AccessPass: args.accessPass,
-    OrderID: args.orderID,
-    Method: args.method,
-    PayTimes: args.payTimes,
-    CardNo: args.cardNo,
-    Expire: args.expire,
-    SecurityCode: args.securityCode,
-    Token: args.token,
-    PIN: args.pin,
-    SiteID: args.siteID,
-    SitePass: args.sitePass,
-    MemberID: args.memberID,
-    SeqMode: args.seqMode,
-    CardSeq: args.cardSeq,
-    CardPass: args.cardPass,
-    ClientField1: args.clientField1,
-    ClientField2: args.clientField2,
-    ClientField3: args.clientField3
-  })
-
-  const result = querystring.parse(res.data)
-
-  return {
-    acs: result.ACS,
-    orderID: result.OrderID,
-    forward: result.Forward,
-    method: result.Method,
-    payTimes: result.PayTimes,
-    approve: result.Approve,
-    tranID: result.TranID,
-    tranDate: result.TranDate,
-    checkString: result.CheckString,
-    clientField1: result.ClientField1,
-    clientField2: result.ClientField2,
-    clientField3: result.ClientField3
-  }
+export interface IAlterTranArgs extends IShopArgs {
+  AccessID: string
+  AccessPass: string
+  JobCd: util.JobCd
+  Amount?: number
+  Method?: util.Method
 }
 
-export interface IAlterTranArgs {
-  shopID: string
-  shopPass: string
-  accessID: string
-  accessPass: string
-  jobCd: util.JobCd
-  amount?: number
-  method?: util.Method
-}
 export interface IAlterTranResult {
-  accessID: string
-  accessPass: string
-  forward: string
-  approve: string
-  tranID: string
-  tranDate: string
+  AccessID: string
+  AccessPass: string
+  Forward: string
+  Approve: string
+  TranID: string
+  TranDate: string
 }
 
-export async function alterTran(args: IAlterTranArgs): Promise<IAlterTranResult> {
-  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/AlterTran.idPass`, {
-    ShopID: args.shopID,
-    ShopPass: args.shopPass,
-    AccessID: args.accessID,
-    AccessPass: args.accessPass,
-    JobCd: args.jobCd,
-    Amount: args.amount,
-    Method: args.method
-  })
-
-  const result = querystring.parse(res.data)
-
-  return {
-    accessID: result.AccessID,
-    accessPass: result.AccessPass,
-    forward: result.Forward,
-    approve: result.Approve,
-    tranID: result.TranID,
-    tranDate: result.TranDate
-  }
-}
-
-export interface ISearchTradeArgs {
-  shopID: string
-  shopPass: string
-  orderID: string
+export interface ISearchTradeArgs extends IShopArgs {
+  OrderID: string
 }
 
 export interface ISearchTradeResult {
-  orderID: string
-  status: string
-  processDate: string
-  jobCd: util.JobCd
-  accessID: string
-  accessPass: string
-  itemCode: string
-  amount: string
-  tax: string
-  siteID: string
-  memberID: string
-  cardNo: string
-  expire: string
-  method: util.Method
-  payTimes: string
-  forward: string
-  tranID: string
-  approve: string
-  clientField1: string
-  clientField2: string
-  clientField3: string
-  errCode: string
-  errInfo: string
+  OrderID: string
+  Status: string
+  ProcessDate: string
+  JobCd: util.JobCd
+  AccessID: string
+  AccessPass: string
+  ItemCode: string
+  Amount: string
+  Tax: string
+  SiteID: string
+  MemberID: string
+  CardNo: string
+  Expire: string
+  Method: util.Method
+  PayTimes: string
+  Forward: string
+  TranID: string
+  Approve: string
+  ClientField1: string
+  ClientField2: string
+  ClientField3: string
+  ErrCode: string
+  ErrInfo: string
 }
 
-export async function searchTrade(args: ISearchTradeArgs): Promise<ISearchTradeResult> {
-  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/SearchTrade.idPass`, {
-    ShopID: args.shopID,
-    ShopPass: args.shopPass,
-    OrderID: args.orderID
-  })
-
-  const result = querystring.parse(res.data)
-
-  return {
-    orderID: result.OrderID,
-    status: result.Status,
-    processDate: result.ProcessDate,
-    jobCd: result.JobCd,
-    accessID: result.AccessID,
-    accessPass: result.AccessPass,
-    itemCode: result.ItemCode,
-    amount: result.Amount,
-    tax: result.Tax,
-    siteID: result.SiteID,
-    memberID: result.MemberID,
-    cardNo: result.CardNo,
-    expire: result.Expire,
-    method: result.Method,
-    payTimes: result.PayTimes,
-    forward: result.Forward,
-    tranID: result.TranID,
-    approve: result.Approve,
-    clientField1: result.ClientField1,
-    clientField2: result.ClientField2,
-    clientField3: result.ClientField3,
-    errCode: result.ErrCode,
-    errInfo: result.ErrInfo
-  }
+export interface IChangeTranArgs extends IShopArgs {
+  AccessID: string
+  AccessPass: string
+  JobCd: util.JobCd
+  Amount: number
+  Tax?: string
 }
 
-export interface IChangeTranArgs {
-  shopID: string
-  shopPass: string
-  accessID: string
-  accessPass: string
-  jobCd: util.JobCd
-  amount: number
-  tax?: string
-}
 export interface IChangeTranResult {
-  accessID: string
-  accessPass: string
-  forward: string
-  approve: string
-  tranID: string
-  tranDate: string
+  AccessID: string
+  AccessPass: string
+  Forward: string
+  Approve: string
+  TranID: string
+  TranDate: string
 }
 
-export async function changeTran(args: IChangeTranArgs): Promise<IChangeTranResult> {
-  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/ChangeTran.idPass`, {
-    ShopID: args.shopID,
-    ShopPass: args.shopPass,
-    AccessID: args.accessID,
-    AccessPass: args.accessPass,
-    JobCd: args.jobCd,
-    Amount: args.amount,
-    Tax: args.tax
-  })
+export default class Tran extends Client {
+  public async entry(args: IEntryTranArgs): Promise<IEntryTranResult> {
+    const res: AxiosResponse = await this.client.post('/payment/EntryTran.idPass', args)
 
-  const result = querystring.parse(res.data)
+    return qs.parse(res.data)
+  }
 
-  return {
-    accessID: result.AccessID,
-    accessPass: result.AccessPass,
-    forward: result.Forward,
-    approve: result.Approve,
-    tranID: result.TranID,
-    tranDate: result.TranDate
+  public async exec(args: IExecTranArgs): Promise<IExecTranResult> {
+    const res: AxiosResponse = await this.client.post('/payment/ExecTran.idPass', args)
+
+    return qs.parse(res.data)
+  }
+
+  public async alter(args: IAlterTranArgs): Promise<IAlterTranResult> {
+    const res: AxiosResponse = await this.client.post('/payment/AlterTran.idPass', args)
+
+    return qs.parse(res.data)
+  }
+
+  public async search(args: ISearchTradeArgs): Promise<ISearchTradeResult> {
+    const res: AxiosResponse = await this.client.post('/payment/SearchTrade.idPass', args)
+
+    return qs.parse(res.data)
+  }
+
+  public async change(args: IChangeTranArgs): Promise<IChangeTranResult> {
+    const res: AxiosResponse = await this.client.post('/payment/ChangeTran.idPass', args)
+
+    return qs.parse(res.data)
   }
 }
