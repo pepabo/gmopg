@@ -1,106 +1,55 @@
-import axios, { AxiosResponse } from 'axios'
-import * as querystring from 'querystring'
+import { AxiosResponse } from 'axios'
+import * as qs from 'querystring'
+import Client, { ISiteArgs } from '../client'
 
-export interface ISaveMemberArgs {
-  siteID: string
-  sitePass: string
-  memberID: string
-  memberName?: string
+export interface ISaveMemberArgs extends ISiteArgs {
+  MemberName?: string
 }
 
 export interface ISaveMemberResult {
-  memberID: string
+  MemberID: string
 }
 
-export async function saveMember(args: ISaveMemberArgs): Promise<ISaveMemberResult> {
-  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/SaveMember.idPass`, {
-    SiteID: args.siteID,
-    SitePass: args.sitePass,
-    MemberID: args.memberID,
-    MemberName: args.memberName
-  })
-
-  const result = querystring.parse(res.data)
-
-  return {
-    memberID: result.MemberID
-  }
-}
-
-export interface IUpdateMemberArgs {
-  siteID: string
-  sitePass: string
-  memberID: string
-  memberName?: string
+export interface IUpdateMemberArgs extends ISiteArgs {
+  MemberName?: string
 }
 
 export interface IUpdateMemberResult {
-  memberID: string
-}
-
-export async function updateMember(args: IUpdateMemberArgs): Promise<IUpdateMemberResult> {
-  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/UpdateMember.idPass`, {
-    SiteID: args.siteID,
-    SitePass: args.sitePass,
-    MemberID: args.memberID,
-    MemberName: args.memberName
-  })
-
-  const result = querystring.parse(res.data)
-
-  return {
-      memberID: result.MemberID
-  }
-}
-
-export interface IDeleteMemberArgs {
-  siteID: string
-  sitePass: string
-  memberID: string
+  MemberID: string
 }
 
 export interface IDeleteMemberResult {
-  memberID: string
-}
-
-export async function deleteMember(args: IDeleteMemberArgs): Promise<IDeleteMemberResult> {
-  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/DeleteMember.idPass`, {
-    SiteID: args.siteID,
-    SitePass: args.sitePass,
-    MemberID: args.memberID
-  })
-
-  const result = querystring.parse(res.data)
-
-  return {
-    memberID: result.MemberID
-  }
-}
-
-export interface ISearchMemberArgs {
-  siteID: string
-  sitePass: string
-  memberID: string
+  MemberID: string
 }
 
 export interface ISearchMemberResult {
-  memberID: string
-  memberName: string
-  deleteFlag: string
+  MemberID: string
+  MemberName: string
+  DeleteFlag: string
 }
 
-export async function searchMember(args: ISearchMemberArgs): Promise<ISearchMemberResult | null> {
-  const res: AxiosResponse = await axios.post(`${process.env.GMOPG_ENDPOINT}/payment/SearchMember.idPass`, {
-    SiteID: args.siteID,
-    SitePass: args.sitePass,
-    MemberID: args.memberID
-  })
+export default class Member extends Client {
+  public async save(args: ISaveMemberArgs): Promise<ISaveMemberResult> {
+    const res: AxiosResponse = await this.client.post('/payment/SaveMember.idPass', args)
 
-  const result = querystring.parse(res.data)
+    return qs.parse(res.data)
+  }
 
-  return {
-    memberID: result.MemberID,
-    memberName: result.MemberName,
-    deleteFlag: result.DeleteFlag
+  public async update(args: IUpdateMemberArgs): Promise<IUpdateMemberResult> {
+    const res: AxiosResponse = await this.client.post('/payment/UpdateMember.idPass', args)
+
+    return qs.parse(res.data)
+  }
+
+  public async del(args: ISiteArgs): Promise<IDeleteMemberResult> {
+    const res: AxiosResponse = await this.client.post('/payment/DeleteMember.idPass', args)
+
+    return qs.parse(res.data)
+  }
+
+  public async search(args: ISiteArgs): Promise<ISearchMemberResult | null> {
+    const res: AxiosResponse = await this.client.post('/payment/SearchMember.idPass', args)
+
+    return qs.parse(res.data)
   }
 }
