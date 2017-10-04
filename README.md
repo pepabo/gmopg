@@ -1,7 +1,13 @@
-GMO PaymentGateway API Client: Unofficial
-=========================================
+GMO Payment Gateway API Client: Unofficial
+==========================================
 
-This package is API client for GMO PaymentGateway on NodeJS
+Simple Nodejs wrapper for [GMO Payment Gateway][gmopg] API.
+
+<a href="https://travis-ci.org/linyows/gmopg.js" title="travis"><img src="https://img.shields.io/travis/linyows/gmopg.js.svg?style=flat-square"></a>
+<a href="https://www.npmjs.com/package/gmopg" title="npm"><img src="http://img.shields.io/npm/v/gmopg.svg?style=flat-square"></a>
+<a href="https://github.com/linyows/gmopg.js/blob/master/MIT-LICENSE" title="MIT License"><img src="https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square"></a>
+
+[gmopg]: https://www.gmo-pg.com/
 
 Usage
 -----
