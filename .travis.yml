@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "8"
 script:
-  - npm install
+  - npm run ci
 notifications:
   slack: linyows:2oeZ2qcLnaMjbnEYodwEXKTr
   email: false
