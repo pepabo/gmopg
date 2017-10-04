@@ -23,11 +23,13 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "npm run tslint && nsp check",
+    "ci": "npm install && npm run test",
+    "test": "npm run lint && nsp check && npm run build && ava ./dist/test",
     "lint": "tslint --type-check --project tsconfig.json -c tslint.json --exclude \"**/*.test.ts\" src/**/*.ts",
+    "clean": "rm -rf dist",
     "preversion": "npm run clean && npm run build && npm test",
     "postversion": "git push origin --tags",
-    "prepublishOnly": "npm run clean && npm run build && npm test && npm run doc"
+    "prepublishOnly": "npm run clean && npm run build && npm test"
   },
   "dependencies": {
     "axios": "0.16.2",
