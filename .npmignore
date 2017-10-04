@@ -5,3 +5,4 @@
 npm-debug.log*
 test/**/*.*
 !**/*.d.ts
+/node_modules
