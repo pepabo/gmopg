@@ -41,12 +41,17 @@
   "engines": {
     "node": ">=8.4.0"
   },
+  "ava": {
+    "files": [
+      "./lib/**/*.test.js"
+    ]
+  },
   "scripts": {
     "build": "tsc",
-    "ci": "npm install && npm run test && nsp check",
-    "test": "npm run lint && npm run build && ava ./lib/**/*.test.js",
-    "lint": "tslint --type-check --project tsconfig.json -c tslint.json src/**/*.ts",
     "clean": "rm -rf lib",
+    "ci": "npm install && npm run lint && npm run test && nsp check",
+    "test": "npm run build && ava",
+    "lint": "tslint --type-check --project tsconfig.json -c tslint.json src/**/*.ts",
     "preversion": "npm run clean && npm run build && npm test",
     "postversion": "git push origin --tags",
     "prepublishOnly": "npm run clean && npm run build && npm test"
