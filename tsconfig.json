@@ -27,7 +27,7 @@
     "noResolve": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "./dist",
+    "outDir": "./lib",
     "preserveConstEnums": false,
     "pretty": false,
     "removeComments": true,
