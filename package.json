@@ -1,35 +1,27 @@
 {
   "name": "gmopg",
-  "description": "GMO PaymentGateway API Client",
-  "engines": {
-    "node": ">=8.4.0",
-    "npm": ">=5.4.2"
-  },
-  "keywords": [],
+  "description": "GMO PaymentGateway API client",
+  "version": "0.1.0",
+  "author": "linyows",
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "repository": "linyows/gmopg.js",
+  "homepage": "https://github.com/linyows/gmopg.js",
+  "keywords": [
+    "api",
+    "client",
+    "payment"
+  ],
+  "bugs": "https://github.com/linyows/gmopg.js/issues",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "files": [
-    "dist/"
+    "LICENSE",
+    "README.md",
+    "./lib"
   ],
   "directories": {
-    "dist": "./dist",
-    "test": "./test"
-  },
-  "version": "0.1.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/linyows/gmopg.js.git"
-  },
-  "scripts": {
-    "build": "tsc",
-    "ci": "npm install && npm run test && nsp check",
-    "test": "npm run lint && npm run build && ava ./dist/**/*.test.js",
-    "lint": "tslint --type-check --project tsconfig.json -c tslint.json src/**/*.ts",
-    "clean": "rm -rf dist",
-    "preversion": "npm run clean && npm run build && npm test",
-    "postversion": "git push origin --tags",
-    "prepublishOnly": "npm run clean && npm run build && npm test"
+    "lib": "./lib",
+    "src": "./src"
   },
   "dependencies": {
     "axios": "0.16.2",
@@ -45,5 +37,18 @@
     "tslint": "^5.7.0",
     "tslint-microsoft-contrib": "^5.0.1",
     "typescript": "^2.5.3"
+  }
+  "engines": {
+    "node": ">=8.4.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "ci": "npm install && npm run test && nsp check",
+    "test": "npm run lint && npm run build && ava ./dist/**/*.test.js",
+    "lint": "tslint --type-check --project tsconfig.json -c tslint.json src/**/*.ts",
+    "clean": "rm -rf dist",
+    "preversion": "npm run clean && npm run build && npm test",
+    "postversion": "git push origin --tags",
+    "prepublishOnly": "npm run clean && npm run build && npm test"
   }
 }
