@@ -23,9 +23,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "ci": "npm install && npm run test",
-    "test": "npm run lint && nsp check && npm run build && ava ./dist/test",
-    "lint": "tslint --type-check --project tsconfig.json -c tslint.json --exclude \"**/*.test.ts\" src/**/*.ts",
+    "ci": "npm install && npm run test && nsp check",
+    "test": "npm run lint && npm run build && ava ./dist/**/*.test.js",
+    "lint": "tslint --type-check --project tsconfig.json -c tslint.json src/**/*.ts",
     "clean": "rm -rf dist",
     "preversion": "npm run clean && npm run build && npm test",
     "postversion": "git push origin --tags",
