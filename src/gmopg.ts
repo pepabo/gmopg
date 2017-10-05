@@ -1,74 +1,42 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
+import axios, {AxiosInstance} from 'axios'
 
 import * as merge from 'deepmerge'
-import Member from './client/member'
-import Card from './client/card'
-import Tran from './client/tran'
-import Config, { TConfig } from './config'
-import { defaults } from './defaults'
+import Memberable from './client/memberable'
+import Cardable from './client/cardable'
+import Tranable  from './client/tranable'
+import Config, {TConfig, defaults} from './config'
+import {applyMixins} from './util'
 
-export default class GMOPG {
+export default class GMOPG implements Memberable, Cardable, Tranable {
   public config: TConfig
-  private axiosConfig: AxiosRequestConfig = {}
-  private client: AxiosInstance
+  public client: AxiosInstance
 
   constructor(config: TConfig) {
-    this.config = config
+    this.config = merge(defaults, config)
     const configByEnv: TConfig = Config.buildByEnv()
-
     if (configByEnv !== {}) {
-      this.config = merge(config, configByEnv)
+      this.config = merge(this.config, configByEnv)
     }
-
-    this.axiosConfig.baseURL = this.config.endpoint || defaults.endpoint
-    this.axiosConfig.timeout = this.config.timeout || defaults.timeout
-    this.axiosConfig.headers = this.config.headers || defaults.headers
-    this.client = axios.create(this.axiosConfig)
+    this.client = axios.create(this.config.axios)
   }
 
-  set endpoint(arg: string) {
-    this.client.defaults.baseURL = arg
-    this.refleshClient()
-  }
+  saveMember: (args: any) => any
+  updateMember: (args: any) => any
+  deleteMember: (args: any) => any
+  searchMember: (args: any) => any
 
-  set headers(arg: object) {
-    this.client.defaults.headers = arg
-    this.refleshClient()
-  }
+  saveCard: (args: any) => any
+  updateCard: (args: any) => any
+  deleteCard: (args: any) => any
+  searchCard: (args: any) => any
 
-  set timeout(arg: number) {
-    this.client.defaults.timeout = arg
-    this.refleshClient()
-  }
-
-  private memberIns: Member
-  private cardIns: Card
-  private tranIns: Tran
-
-  get member(): Member {
-    if (this.memberIns) {
-      this.memberIns = new Member(this.client)
-    }
-    return this.memberIns
-  }
-
-  get card(): Card {
-    if (this.cardIns) {
-      this.cardIns = new Card(this.client)
-    }
-    return this.cardIns
-  }
-
-  get tran(): Tran {
-    if (this.tranIns) {
-      this.tranIns = new Tran(this.client)
-    }
-    return this.tranIns
-  }
-
-  private refleshClient() {
-    this.memberIns.client = this.client
-    this.cardIns.client = this.client
-    this.tranIns.client = this.client
-  }
+  entryTran: (args: any) => any
+  execTran: (args: any) => any
+  alterTran: (args: any) => any
+  updateTran: (args: any) => any
+  deleteTran: (args: any) => any
+  searchTrade: (args: any) => any
+  changeTran: (args: any) => any
 }
+
+applyMixins(GMOPG, [Memberable, Cardable, Tranable])
