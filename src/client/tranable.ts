@@ -1,7 +1,7 @@
 import {AxiosInstance, AxiosResponse} from 'axios'
 import * as qs from 'querystring'
-import {TConfig} from '../config'
 import {IShopArgs} from '../client'
+import {TConfig} from '../config'
 import * as util from '../util'
 
 export interface IEntryTranArgs extends IShopArgs {

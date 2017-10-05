@@ -1,7 +1,7 @@
 import {AxiosInstance, AxiosResponse} from 'axios'
 import * as qs from 'querystring'
-import {TConfig} from '../config'
 import {ISiteArgs} from '../client'
+import {TConfig} from '../config'
 
 export interface ISaveMemberArgs extends ISiteArgs {
   MemberName?: string
