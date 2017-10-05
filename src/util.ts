@@ -68,3 +68,11 @@ export function createShopPassString(args: ICreateShopPassStringArgs) {
   md5hash.update(`${args.shopId}${args.orderId}${args.amount.toString()}${args.shopPass}${args.dateTime}`, 'utf8')
   return md5hash.digest('hex')
 }
+
+export function applyMixins(derivedCtor: any, baseCtors: any[]) {
+  baseCtors.forEach(baseCtor => {
+    Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+      derivedCtor.prototype[name] = baseCtor.prototype[name]
+    })
+  })
+}

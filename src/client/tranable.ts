@@ -1,6 +1,7 @@
-import { AxiosResponse } from 'axios'
+import {AxiosInstance, AxiosResponse} from 'axios'
 import * as qs from 'querystring'
-import Client, { IShopArgs } from '../client'
+import {TConfig} from '../config'
+import {IShopArgs} from '../client'
 import * as util from '../util'
 
 export interface IEntryTranArgs extends IShopArgs {
@@ -115,32 +116,35 @@ export interface IChangeTranResult {
   TranDate: string
 }
 
-export default class Tran extends Client {
-  public async entry(args: IEntryTranArgs): Promise<IEntryTranResult> {
+export default class Tranable {
+  public config: TConfig
+  public client: AxiosInstance
+
+  public async entryTran(args: IEntryTranArgs): Promise<IEntryTranResult> {
     const res: AxiosResponse = await this.client.post('/payment/EntryTran.idPass', args)
 
     return qs.parse(res.data)
   }
 
-  public async exec(args: IExecTranArgs): Promise<IExecTranResult> {
+  public async execTran(args: IExecTranArgs): Promise<IExecTranResult> {
     const res: AxiosResponse = await this.client.post('/payment/ExecTran.idPass', args)
 
     return qs.parse(res.data)
   }
 
-  public async alter(args: IAlterTranArgs): Promise<IAlterTranResult> {
+  public async alterTran(args: IAlterTranArgs): Promise<IAlterTranResult> {
     const res: AxiosResponse = await this.client.post('/payment/AlterTran.idPass', args)
 
     return qs.parse(res.data)
   }
 
-  public async search(args: ISearchTradeArgs): Promise<ISearchTradeResult> {
+  public async searchTrade(args: ISearchTradeArgs): Promise<ISearchTradeResult> {
     const res: AxiosResponse = await this.client.post('/payment/SearchTrade.idPass', args)
 
     return qs.parse(res.data)
   }
 
-  public async change(args: IChangeTranArgs): Promise<IChangeTranResult> {
+  public async changeTran(args: IChangeTranArgs): Promise<IChangeTranResult> {
     const res: AxiosResponse = await this.client.post('/payment/ChangeTran.idPass', args)
 
     return qs.parse(res.data)

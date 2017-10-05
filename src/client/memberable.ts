@@ -1,6 +1,7 @@
-import { AxiosResponse } from 'axios'
+import {AxiosInstance, AxiosResponse} from 'axios'
 import * as qs from 'querystring'
-import Client, { ISiteArgs } from '../client'
+import {TConfig} from '../config'
+import {ISiteArgs} from '../client'
 
 export interface ISaveMemberArgs extends ISiteArgs {
   MemberName?: string
@@ -28,26 +29,29 @@ export interface ISearchMemberResult {
   DeleteFlag: string
 }
 
-export default class Member extends Client {
-  public async save(args: ISaveMemberArgs): Promise<ISaveMemberResult> {
+export default class Memberable {
+  public config: TConfig
+  public client: AxiosInstance
+
+  public async saveMember(args: ISaveMemberArgs): Promise<ISaveMemberResult> {
     const res: AxiosResponse = await this.client.post('/payment/SaveMember.idPass', args)
 
     return qs.parse(res.data)
   }
 
-  public async update(args: IUpdateMemberArgs): Promise<IUpdateMemberResult> {
+  public async updateMember(args: IUpdateMemberArgs): Promise<IUpdateMemberResult> {
     const res: AxiosResponse = await this.client.post('/payment/UpdateMember.idPass', args)
 
     return qs.parse(res.data)
   }
 
-  public async del(args: ISiteArgs): Promise<IDeleteMemberResult> {
+  public async deleteMember(args: ISiteArgs): Promise<IDeleteMemberResult> {
     const res: AxiosResponse = await this.client.post('/payment/DeleteMember.idPass', args)
 
     return qs.parse(res.data)
   }
 
-  public async search(args: ISiteArgs): Promise<ISearchMemberResult | null> {
+  public async searchMember(args: ISiteArgs): Promise<ISearchMemberResult | null> {
     const res: AxiosResponse = await this.client.post('/payment/SearchMember.idPass', args)
 
     return qs.parse(res.data)

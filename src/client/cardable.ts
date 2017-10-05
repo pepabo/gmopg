@@ -1,6 +1,7 @@
-import { AxiosResponse } from 'axios'
+import {AxiosInstance, AxiosResponse} from 'axios'
 import * as qs from 'querystring'
-import Client, { ISiteArgs } from '../client'
+import {TConfig} from '../config'
+import {ISiteArgs} from '../client'
 import * as util from '../util'
 
 export interface ISaveCardArgs extends ISiteArgs {
@@ -57,20 +58,23 @@ export interface ISearchCardResult {
   ForwardFinal?: string
 }
 
-export default class Card extends Client {
-  public async save(args: ISaveCardArgs): Promise<ISaveCardResult> {
+export default class Cardable {
+  public config: TConfig
+  public client: AxiosInstance
+
+  public async saveCard(args: ISaveCardArgs): Promise<ISaveCardResult> {
     const res: AxiosResponse = await this.client.post('/payment/SaveCard.idPass', args)
 
     return qs.parse(res.data)
   }
 
-  public async del(args: IDeleteCardArgs): Promise<IDeleteCardResult> {
+  public async deleteCard(args: IDeleteCardArgs): Promise<IDeleteCardResult> {
     const res: AxiosResponse = await this.client.post('/payment/DeleteCard.idPass', args)
 
     return qs.parse(res.data)
   }
 
-  public async search(args: ISearchCardArgs): Promise<ISearchCardResult[]> {
+  public async searchCard(args: ISearchCardArgs): Promise<ISearchCardResult[]> {
     const res: AxiosResponse = await this.client.post('/payment/SearchCard.idPass', args)
     const result = qs.parse(res.data)
 
