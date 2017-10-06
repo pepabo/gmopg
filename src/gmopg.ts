@@ -1,6 +1,7 @@
 import axios, {AxiosInstance} from 'axios'
 
 import * as merge from 'deepmerge'
+import * as enums from './client'
 import Memberable from './client/memberable'
 import Cardable from './client/cardable'
 import Tranable  from './client/tranable'
@@ -37,6 +38,10 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
   deleteTran: (args: any) => any
   searchTrade: (args: any) => any
   changeTran: (args: any) => any
+
+  get enums() {
+    return enums
+  }
 }
 
 applyMixins(GMOPG, [Memberable, Cardable, Tranable])
