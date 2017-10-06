@@ -21,7 +21,7 @@ Usage
 
 Purchase Example:
 
-``` js
+```js
 const GMOPG = require('gmopg')
 
 const orderID ='Order ID'
