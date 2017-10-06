@@ -70,3 +70,18 @@ SiteID        | PG site id          | GMOPG_SITEID   | undefined
 SitePass      | PG site pass        | GMOPG_SITEPASS | undefined
 ShopID        | PG shop id          | GMOPG_SHOPID   | undefined
 ShopPass      | PG shop pass        | GMOPG_SHOPPASS | undefined
+
+Contribution
+------------
+
+1. Fork (https://github.com/linyows/gmopg.js/fork)
+1. Create a feature branch
+1. Commit your changes
+1. Rebase your local changes against the master branch
+1. Run test suite with the `npm ci` command and confirm that it passes
+1. Create a new Pull Request
+
+Author
+------
+
+[linyows](https://github.com/linyows)
