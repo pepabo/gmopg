@@ -56,7 +56,17 @@ const alterRes = await GMOPG.alterTran({
 })
 ```
 
-License
--------
+Config
+------
 
-MIT
+`GMOPG.config`:
+
+name          | description         | environ        | default
+---           | ---                 | ---            | ---
+axios.baseURL | baseurl for request | GMOPG_ENDPOINT | https://pt01.mul-pay.jp
+axios.timeout | timeout for request | GMOPG_TIMEOUT  | 180000 (ms)
+axios.headers | headers for request | -              | see code :eyes:
+SiteID        | PG site id          | GMOPG_SITEID   | undefined
+SitePass      | PG site pass        | GMOPG_SITEPASS | undefined
+ShopID        | PG shop id          | GMOPG_SHOPID   | undefined
+ShopPass      | PG shop pass        | GMOPG_SHOPPASS | undefined
