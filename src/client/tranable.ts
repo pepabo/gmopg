@@ -121,13 +121,15 @@ export default class Tranable {
   public client: AxiosInstance
 
   public async entryTran(args: IEntryTranArgs): Promise<IEntryTranResult> {
-    const data: IEntryTranArgs = merge({
+    const data: IEntryTranArgs = merge(
+    {
       ShopID: this.config.ShopID,
       ShopPass: this.config.ShopPass,
       OrderID: undefined,
       JobCd: undefined,
       Amount: undefined
-    }, args)
+    },
+    args)
     const res: AxiosResponse = await this.client.post('/payment/EntryTran.idPass', data)
 
     return qs.parse(res.data)
@@ -140,38 +142,44 @@ export default class Tranable {
   }
 
   public async alterTran(args: IAlterTranArgs): Promise<IAlterTranResult> {
-    const data: IAlterTranArgs = merge({
+    const data: IAlterTranArgs = merge(
+    {
       ShopID: this.config.ShopID,
       ShopPass: this.config.ShopPass,
       AccessID: undefined,
       AccessPass: undefined,
       JobCd: undefined
-    }, args)
+    },
+    args)
     const res: AxiosResponse = await this.client.post('/payment/AlterTran.idPass', data)
 
     return qs.parse(res.data)
   }
 
   public async searchTrade(args: ISearchTradeArgs): Promise<ISearchTradeResult> {
-    const data: ISearchTradeArgs = merge({
+    const data: ISearchTradeArgs = merge(
+    {
       ShopID: this.config.ShopID,
       ShopPass: this.config.ShopPass,
       OrderID: undefined
-    }, args)
+    },
+    args)
     const res: AxiosResponse = await this.client.post('/payment/SearchTrade.idPass', data)
 
     return qs.parse(res.data)
   }
 
   public async changeTran(args: IChangeTranArgs): Promise<IChangeTranResult> {
-    const data: IChangeTranArgs = merge({
+    const data: IChangeTranArgs = merge(
+    {
       ShopID: this.config.ShopID,
       ShopPass: this.config.ShopPass,
       AccessID: undefined,
       AccessPass: undefined,
       JobCd: undefined,
       Amount: undefined
-    }, args)
+    },
+    args)
     const res: AxiosResponse = await this.client.post('/payment/ChangeTran.idPass', data)
 
     return qs.parse(res.data)

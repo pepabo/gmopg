@@ -63,33 +63,39 @@ export default class Cardable {
   public client: AxiosInstance
 
   public async saveCard(args: ISaveCardArgs): Promise<ISaveCardResult> {
-    const data: ISaveCardArgs = merge({
+    const data: ISaveCardArgs = merge(
+    {
       SiteID: this.config.SiteID,
       SitePass: this.config.SiteID,
       MemberID: undefined
-    }, args)
+    },
+    args)
     const res: AxiosResponse = await this.client.post('/payment/SaveCard.idPass', data)
 
     return qs.parse(res.data)
   }
 
   public async deleteCard(args: IDeleteCardArgs): Promise<IDeleteCardResult> {
-    const data: IDeleteCardArgs = merge({
+    const data: IDeleteCardArgs = merge(
+    {
       SiteID: this.config.SiteID,
       SitePass: this.config.SiteID,
       MemberID: undefined
-    }, args)
+    },
+    args)
     const res: AxiosResponse = await this.client.post('/payment/DeleteCard.idPass', data)
 
     return qs.parse(res.data)
   }
 
   public async searchCard(args: ISearchCardArgs): Promise<ISearchCardResult[]> {
-    const data: ISearchCardArgs = merge({
+    const data: ISearchCardArgs = merge(
+    {
       SiteID: this.config.SiteID,
       SitePass: this.config.SiteID,
       MemberID: undefined
-    }, args)
+    },
+    args)
     const res: AxiosResponse = await this.client.post('/payment/SearchCard.idPass', data)
     const result = qs.parse(res.data)
 
