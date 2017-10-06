@@ -1,5 +1,4 @@
 import {AxiosInstance, AxiosResponse} from 'axios'
-import {createHash} from 'crypto'
 import * as merge from 'deepmerge'
 import * as qs from 'querystring'
 import {ISiteArgs} from '../client'
@@ -85,10 +84,5 @@ export default class Memberable {
     const res: AxiosResponse = await this.client.post('/payment/SearchMember.idPass', data)
 
     return qs.parse(res.data)
-  }
-
-  public generateMemberID(key: string): string {
-    const suffix: string = createHash('md5').update(`${key}-${new Date().toISOString()}`).digest('hex')
-    return `${key}-${suffix}`
   }
 }

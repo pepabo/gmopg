@@ -6,7 +6,7 @@ import Memberable from './client/memberable'
 import Cardable from './client/cardable'
 import Tranable  from './client/tranable'
 import Config, {TConfig, defaults} from './config'
-import {applyMixins} from './util'
+import {applyMixins, generateID} from './util'
 
 export default class GMOPG implements Memberable, Cardable, Tranable {
   public config: TConfig
@@ -42,6 +42,10 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
 
   get enums() {
     return enums
+  }
+
+  static generateMemberID(key: string): string {
+    return generateID(key)
   }
 }
 
