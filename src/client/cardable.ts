@@ -63,19 +63,34 @@ export default class Cardable {
   public client: AxiosInstance
 
   public async saveCard(args: ISaveCardArgs): Promise<ISaveCardResult> {
-    const res: AxiosResponse = await this.client.post('/payment/SaveCard.idPass', args)
+    const data: ISaveCardArgs = merge({
+      SiteID: this.config.SiteID,
+      SitePass: this.config.SiteID,
+      MemberID: undefined
+    }, args)
+    const res: AxiosResponse = await this.client.post('/payment/SaveCard.idPass', data)
 
     return qs.parse(res.data)
   }
 
   public async deleteCard(args: IDeleteCardArgs): Promise<IDeleteCardResult> {
-    const res: AxiosResponse = await this.client.post('/payment/DeleteCard.idPass', args)
+    const data: IDeleteCardArgs = merge({
+      SiteID: this.config.SiteID,
+      SitePass: this.config.SiteID,
+      MemberID: undefined
+    }, args)
+    const res: AxiosResponse = await this.client.post('/payment/DeleteCard.idPass', data)
 
     return qs.parse(res.data)
   }
 
   public async searchCard(args: ISearchCardArgs): Promise<ISearchCardResult[]> {
-    const res: AxiosResponse = await this.client.post('/payment/SearchCard.idPass', args)
+    const data: ISearchCardArgs = merge({
+      SiteID: this.config.SiteID,
+      SitePass: this.config.SiteID,
+      MemberID: undefined
+    }, args)
+    const res: AxiosResponse = await this.client.post('/payment/SearchCard.idPass', data)
     const result = qs.parse(res.data)
 
     const cardSeqArry: string[] = result.CardSeq.split('|')

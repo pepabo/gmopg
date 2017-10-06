@@ -1,6 +1,7 @@
 import {AxiosInstance, AxiosResponse} from 'axios'
+import * as merge from 'deepmerge'
 import * as qs from 'querystring'
-import {IShopArgs} from '../client'
+import {IShopArgs, JobCd, Method, SeqMode} from '../client'
 import {TConfig} from '../config'
 
 export interface IEntryTranArgs extends IShopArgs {
@@ -120,7 +121,14 @@ export default class Tranable {
   public client: AxiosInstance
 
   public async entryTran(args: IEntryTranArgs): Promise<IEntryTranResult> {
-    const res: AxiosResponse = await this.client.post('/payment/EntryTran.idPass', args)
+    const data: IEntryTranArgs = merge({
+      ShopID: this.config.ShopID,
+      ShopPass: this.config.ShopPass,
+      OrderID: undefined,
+      JobCd: undefined,
+      Amount: undefined
+    }, args)
+    const res: AxiosResponse = await this.client.post('/payment/EntryTran.idPass', data)
 
     return qs.parse(res.data)
   }
@@ -132,19 +140,39 @@ export default class Tranable {
   }
 
   public async alterTran(args: IAlterTranArgs): Promise<IAlterTranResult> {
-    const res: AxiosResponse = await this.client.post('/payment/AlterTran.idPass', args)
+    const data: IAlterTranArgs = merge({
+      ShopID: this.config.ShopID,
+      ShopPass: this.config.ShopPass,
+      AccessID: undefined,
+      AccessPass: undefined,
+      JobCd: undefined
+    }, args)
+    const res: AxiosResponse = await this.client.post('/payment/AlterTran.idPass', data)
 
     return qs.parse(res.data)
   }
 
   public async searchTrade(args: ISearchTradeArgs): Promise<ISearchTradeResult> {
-    const res: AxiosResponse = await this.client.post('/payment/SearchTrade.idPass', args)
+    const data: ISearchTradeArgs = merge({
+      ShopID: this.config.ShopID,
+      ShopPass: this.config.ShopPass,
+      OrderID: undefined
+    }, args)
+    const res: AxiosResponse = await this.client.post('/payment/SearchTrade.idPass', data)
 
     return qs.parse(res.data)
   }
 
   public async changeTran(args: IChangeTranArgs): Promise<IChangeTranResult> {
-    const res: AxiosResponse = await this.client.post('/payment/ChangeTran.idPass', args)
+    const data: IChangeTranArgs = merge({
+      ShopID: this.config.ShopID,
+      ShopPass: this.config.ShopPass,
+      AccessID: undefined,
+      AccessPass: undefined,
+      JobCd: undefined,
+      Amount: undefined
+    }, args)
+    const res: AxiosResponse = await this.client.post('/payment/ChangeTran.idPass', data)
 
     return qs.parse(res.data)
   }
