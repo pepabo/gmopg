@@ -9,6 +9,13 @@ Simple Nodejs wrapper for [GMO Payment Gateway][gmopg] API.
 
 [gmopg]: https://www.gmo-pg.com/
 
+Installation
+------------
+
+```sh
+$ npm install gmopg
+```
+
 Usage
 -----
 
