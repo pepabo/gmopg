@@ -3,10 +3,10 @@ import * as process from 'process'
 
 export type TConfig = {
   axios?: AxiosRequestConfig
-  siteID?: string
-  sitePass?: string
-  shopID?: string
-  shopPass?: string
+  SiteID?: string
+  SitePass?: string
+  ShopID?: string
+  ShopPass?: string
 }
 
 export const defaults: TConfig = {
@@ -32,16 +32,16 @@ export default class Config {
       c.axios.timeout = +`${process.env.GMOPG_TIMEOUT}`
     }
     if (process.env.GMOPG_SITEID) {
-      c.siteID = process.env.GMOPG_SITEID
+      c.SiteID = process.env.GMOPG_SITEID
     }
     if (process.env.GMOPG_SITEPASS) {
-      c.sitePass = process.env.GMOPG_SITEPASS
+      c.SitePass = process.env.GMOPG_SITEPASS
     }
     if (process.env.GMOPG_SHOPID) {
-      c.shopID = process.env.GMOPG_SHOPID
+      c.ShopID = process.env.GMOPG_SHOPID
     }
     if (process.env.GMOPG_SHOPPASS) {
-      c.shopPass = process.env.GMOPG_SHOPPASS
+      c.ShopPass = process.env.GMOPG_SHOPPASS
     }
 
     return c
