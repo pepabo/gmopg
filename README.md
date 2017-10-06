@@ -24,32 +24,34 @@ Purchase Example:
 ```js
 const GMOPG = require('gmopg')
 
-const orderID ='Order ID'
+GMOPG.config.SiteID = 'Your SiteID'
+GMOPG.config.SitePass = 'Your SitePass'
+GMOPG.config.ShopID = 'Your ShopID'
+GMOPG.config.ShopPass = 'Your SitePass'
+
+const orderID = 'Order ID'
+const amount = 1234
 
 const entryRes = await GMOPG.entryTran({
-  ShopID: 'Your shopID',
-  ShopPass: 'Your shopPass',
   OrderID: orderID,
-  JobCd: GMOPG.enum.JobCd.Auth,
-  Amount: 1234
+  JobCd: GMOPG.enums.JobCd.Auth,
+  Amount: amount
 })
 
 const execRes = await GMOPG.execTran({
   AccessID: entryRes.accessId,
   AccessPass: entryRes.accessPass,
   OrderID: orderID,
-  Method: GMOPG.enum.Method.Lump,
+  Method: GMOPG.enums.Method.Lump,
   CardNo: '1234123412341234',
   Expire: '2024',
   SecurityCode: '123'
 })
 
-const alterRes = GMOPG.alterTran({
-  ShopID: 'Your shopID',
-  ShopPass: 'Your shopPass',
+const alterRes = await GMOPG.alterTran({
   AccessID: entryRes.accessId,
   AccessPass: entryRes.accessPass,
-  JobCd: GMOPG.JobCd.Sales,
+  JobCd: GMOPG.enums.JobCd.Sales,
   amount: amount
 })
 ```
