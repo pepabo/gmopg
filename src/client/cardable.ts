@@ -1,11 +1,11 @@
 import {AxiosInstance, AxiosResponse} from 'axios'
+import * as merge from 'deepmerge'
 import * as qs from 'querystring'
-import {ISiteArgs} from '../client'
+import {ISiteArgs, SeqMode} from '../client'
 import {TConfig} from '../config'
-import * as util from '../util'
 
 export interface ISaveCardArgs extends ISiteArgs {
-  SeqMode?: util.SeqMode
+  SeqMode?: SeqMode
   CardSeq?: number
   DefaultFlag?: string
   CardName?: string
@@ -29,7 +29,7 @@ export interface ISaveCardResult {
 }
 
 export interface IDeleteCardArgs extends ISiteArgs {
-  SeqMode?: util.SeqMode
+  SeqMode?: SeqMode
   CardSeq: string
 }
 
@@ -38,7 +38,7 @@ export interface IDeleteCardResult {
 }
 
 export interface ISearchCardArgs extends ISiteArgs {
-  SeqMode: util.SeqMode
+  SeqMode: SeqMode
   CardSeq?: string
 }
 

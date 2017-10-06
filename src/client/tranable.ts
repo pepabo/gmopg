@@ -2,11 +2,10 @@ import {AxiosInstance, AxiosResponse} from 'axios'
 import * as qs from 'querystring'
 import {IShopArgs} from '../client'
 import {TConfig} from '../config'
-import * as util from '../util'
 
 export interface IEntryTranArgs extends IShopArgs {
   OrderID: string
-  JobCd: util.JobCd
+  JobCd: JobCd
   Amount: number
 }
 
@@ -19,7 +18,7 @@ export interface IExecTranArgs {
   AccessID: string
   AccessPass: string
   OrderID: string
-  Method?: util.Method
+  Method?: Method
   PayTimes?: number
   CardNo?: string
   Expire?: string
@@ -29,7 +28,7 @@ export interface IExecTranArgs {
   SiteID?: string
   SitePass?: string
   MemberID?: string
-  SeqMode?: util.SeqMode
+  SeqMode?: SeqMode
   CardSeq?: number
   CardPass?: string
   ClientField1?: string
@@ -41,7 +40,7 @@ export interface IExecTranResult {
   Acs: string
   OrderID: string
   Forward: string
-  Method: util.Method
+  Method: Method
   PayTimes: string
   Approve: string
   TranID: string
@@ -55,9 +54,9 @@ export interface IExecTranResult {
 export interface IAlterTranArgs extends IShopArgs {
   AccessID: string
   AccessPass: string
-  JobCd: util.JobCd
+  JobCd: JobCd
   Amount?: number
-  Method?: util.Method
+  Method?: Method
 }
 
 export interface IAlterTranResult {
@@ -77,7 +76,7 @@ export interface ISearchTradeResult {
   OrderID: string
   Status: string
   ProcessDate: string
-  JobCd: util.JobCd
+  JobCd: JobCd
   AccessID: string
   AccessPass: string
   ItemCode: string
@@ -87,7 +86,7 @@ export interface ISearchTradeResult {
   MemberID: string
   CardNo: string
   Expire: string
-  Method: util.Method
+  Method: Method
   PayTimes: string
   Forward: string
   TranID: string
@@ -102,7 +101,7 @@ export interface ISearchTradeResult {
 export interface IChangeTranArgs extends IShopArgs {
   AccessID: string
   AccessPass: string
-  JobCd: util.JobCd
+  JobCd: JobCd
   Amount: number
   Tax?: string
 }
