@@ -16,7 +16,7 @@ test('GMOPG.generateMemberID returns generated memberID', (t) => {
   t.regex(ID, /key-\w{32}/)
 })
 
-test('GMOPG.config returns instance', (t) => {
+test('GMOPG.config returns TConfig', (t) => {
   const pg = new GMOPG({})
   const expect = {
     axios: {
@@ -29,4 +29,29 @@ test('GMOPG.config returns instance', (t) => {
     }
   }
   t.deepEqual(pg.config, expect)
+})
+
+test('GMOPG.client returns AxiosInstance', (t) => {
+  const pg = new GMOPG({})
+  t.is(typeof pg.client, 'function')
+})
+
+test('.saveMember is function', (t) => {
+  const pg = new GMOPG({})
+  t.is(typeof pg.saveMember, 'function')
+})
+
+test('.updateMember is function', (t) => {
+  const pg = new GMOPG({})
+  t.is(typeof pg.updateMember, 'function')
+})
+
+test('.deleteMember is function', (t) => {
+  const pg = new GMOPG({})
+  t.is(typeof pg.deleteMember, 'function')
+})
+
+test('.searchMember is function', (t) => {
+  const pg = new GMOPG({})
+  t.is(typeof pg.searchMember, 'function')
 })
