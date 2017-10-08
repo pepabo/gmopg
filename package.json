@@ -50,7 +50,7 @@
     "build": "tsc",
     "clean": "rm -rf lib",
     "ci": "npm install && npm run lint && npm run test && nsp check",
-    "test": "npm run build && ava",
+    "test": "npm run build && ava -v",
     "lint": "tslint --type-check --project tsconfig.json -c tslint.json src/**/*.ts",
     "preversion": "npm run clean && npm run build && npm test",
     "postversion": "git push origin --tags",
