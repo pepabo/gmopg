@@ -72,14 +72,8 @@ export default class Cardable {
   }
 
   public async saveCard(args: ISaveCardArgs): Promise<ISaveCardResult> {
-    const data: ISaveCardArgs = merge(
-    {
-      SiteID: this.config.SiteID,
-      SitePass: this.config.SiteID,
-      MemberID: undefined
-    },
-    args)
-    const res: AxiosResponse = await this.client.post('/payment/SaveCard.idPass', data)
+    const data: ISaveCardArgs = merge(this.defaultCardData, args)
+    const res: AxiosResponse = await this.client.post('/payment/SaveCard.idPass', data, this.options)
 
     return qs.parse(res.data)
   }
