@@ -1,6 +1,6 @@
 import test from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
-import Cardable, {ISaveCardResult, IDeleteCardResult, ISearchCardResult} from './cardable'
+import Cardable, {IDeleteCardResult, ISaveCardResult, ISearchCardResult} from './cardable'
 
 test.beforeEach((t) => {
   const card = new Cardable()
