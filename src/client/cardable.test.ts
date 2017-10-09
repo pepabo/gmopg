@@ -1,19 +1,16 @@
 import test from 'ava'
-import axios, {AxiosRequestConfig,AxiosResponse} from 'axios'
+import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
 import Cardable, {ISaveCardResult} from './cardable'
 
 test.beforeEach((t) => {
-  const card = new Cardable
-  card.client = axios.create({
-    baseURL: 'http://localhost:3000',
-    timeout: 1000
-  })
+  const card = new Cardable()
+  card.client = Axios.create({})
   t.context.card = card
 })
 
 test('.saveCard calls API and returns response', async (t) => {
   t.context.card.options = {
-    adapter: (config: AxiosRequestConfig) => {
+    adapter: async (config: AxiosRequestConfig) => {
       const response: AxiosResponse = {
         data: 'CardSeq=cardseq&CardNo=cardno&Forward=forward&Brand=brand',
         status: 200,
@@ -21,6 +18,7 @@ test('.saveCard calls API and returns response', async (t) => {
         headers: {},
         config
       }
+
       return Promise.resolve(response)
     }
   }
