@@ -25,13 +25,13 @@ Purchase Example:
 ```js
 const GMOPG = require('gmopg')
 
-GMOPG.config.SiteID = 'Your SiteID'
+GMOPG.config.SiteID   = 'Your SiteID'
 GMOPG.config.SitePass = 'Your SitePass'
-GMOPG.config.ShopID = 'Your ShopID'
+GMOPG.config.ShopID   = 'Your ShopID'
 GMOPG.config.ShopPass = 'Your SitePass'
 
 const orderID = 'Order ID'
-const amount = 1234
+const amount  = 1234
 
 const entryRes = await GMOPG.entryTran({
   OrderID: orderID,
