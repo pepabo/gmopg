@@ -11,6 +11,7 @@ import {applyMixins, generateID} from './util'
 export default class GMOPG implements Memberable, Cardable, Tranable {
   public config: TConfig
   public client: AxiosInstance
+  public options: object
 
   constructor(config: TConfig) {
     this.config = merge(defaults, config)

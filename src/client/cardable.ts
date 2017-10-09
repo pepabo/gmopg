@@ -61,6 +61,7 @@ export interface ISearchCardResult {
 export default class Cardable {
   public config: TConfig
   public client: AxiosInstance
+  public options: object = {}
 
   public async saveCard(args: ISaveCardArgs): Promise<ISaveCardResult> {
     const data: ISaveCardArgs = merge(

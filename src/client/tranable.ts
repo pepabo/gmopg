@@ -119,6 +119,7 @@ export interface IChangeTranResult {
 export default class Tranable {
   public config: TConfig
   public client: AxiosInstance
+  public options: object = {}
 
   public async entryTran(args: IEntryTranArgs): Promise<IEntryTranResult> {
     const data: IEntryTranArgs = merge(

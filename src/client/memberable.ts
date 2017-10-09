@@ -33,6 +33,7 @@ export interface ISearchMemberResult {
 export default class Memberable {
   public config: TConfig
   public client: AxiosInstance
+  public options: object = {}
 
   public async saveMember(args: ISaveMemberArgs): Promise<ISaveMemberResult> {
     const data: ISaveMemberArgs = merge(
