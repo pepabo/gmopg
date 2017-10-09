@@ -63,6 +63,14 @@ export default class Cardable {
   public client: AxiosInstance
   public options: object = {}
 
+  public defaultCardData(): any {
+    return {
+      SiteID: this.config && this.config.SiteID ? this.config.SiteID : undefined,
+      SitePass: this.config && this.config.SitePass ? this.config.SitePass : undefined,
+      MemberID: undefined
+    }
+  }
+
   public async saveCard(args: ISaveCardArgs): Promise<ISaveCardResult> {
     const data: ISaveCardArgs = merge(
     {
