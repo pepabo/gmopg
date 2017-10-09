@@ -64,9 +64,17 @@ export default class Cardable {
   public options: object = {}
 
   public defaultCardData(): any {
+    let siteID
+    let sitePass
+
+    if (this.config !== undefined) {
+      siteID = this.config.SiteID
+      sitePass = this.config.SiteID
+    }
+
     return {
-      SiteID: this.config && this.config.SiteID ? this.config.SiteID : undefined,
-      SitePass: this.config && this.config.SitePass ? this.config.SitePass : undefined,
+      SiteID: siteID,
+      SitePass: sitePass,
       MemberID: undefined
     }
   }
