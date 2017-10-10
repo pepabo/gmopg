@@ -141,3 +141,78 @@ test('.alterTran calls API and returns response', async (t) => {
   }
   t.deepEqual(res, expect)
 })
+
+test('.searchTrade calls API and returns response', async (t) => {
+  t.context.tran.options = {
+    adapter: async (config: AxiosRequestConfig) => {
+      const text = [
+        'OrderID=orderid',
+        'Status=status',
+        'ProcessDate=processdate',
+        'JobCd=CHECK',
+        'AccessID=accessid',
+        'AccessPass=accesspass',
+        'ItemCode=itemcode',
+        'Amount=1234',
+        'Tax=10',
+        'SiteID=siteid',
+        'MemberID=memberid',
+        'CardNo=cardno',
+        'Expire=expire',
+        'Method=1',
+        'PayTimes=1',
+        'Forward=forward',
+        'TranID=tranid',
+        'Approve=approve',
+        'ClientField1=clientfield1',
+        'ClientField2=clientfield2',
+        'ClientField3=clientfield3',
+        'ErrCode=errcode',
+        'ErrInfo=errinfo'
+      ].join('&')
+      const response: AxiosResponse = {
+        data: text,
+        status: 200,
+        statusText: 'OK',
+        headers: {},
+        config
+      }
+
+      return Promise.resolve(response)
+    }
+  }
+
+  const args = {
+    ShopID: 'shopid',
+    ShopPass: 'shoppass',
+    OrderID: 'orderid'
+  }
+  const res = await t.context.tran.searchTrade(args)
+
+  const expect: ISearchTradeResult = {
+    OrderID: 'orderid',
+    Status: 'status',
+    ProcessDate: 'processdate',
+    JobCd: JobCd.Check,
+    AccessID: 'accessid',
+    AccessPass: 'accesspass',
+    ItemCode: 'itemcode',
+    Amount: '1234',
+    Tax: '10',
+    SiteID: 'siteid',
+    MemberID: 'memberid',
+    CardNo: 'cardno',
+    Expire: 'expire',
+    Method: Method.Lump,
+    PayTimes: '1',
+    Forward: 'forward',
+    TranID: 'tranid',
+    Approve: 'approve',
+    ClientField1: 'clientfield1',
+    ClientField2: 'clientfield2',
+    ClientField3: 'clientfield3',
+    ErrCode: 'errcode',
+    ErrInfo: 'errinfo'
+  }
+  t.deepEqual(res, expect)
+})
