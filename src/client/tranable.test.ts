@@ -106,3 +106,38 @@ test('.execTran calls API and returns response', async (t) => {
   }
   t.deepEqual(res, expect)
 })
+
+test('.alterTran calls API and returns response', async (t) => {
+  t.context.tran.options = {
+    adapter: async (config: AxiosRequestConfig) => {
+      const response: AxiosResponse = {
+        data: 'AccessID=accessid&AccessPass=accesspass&Forward=forward&Approve=approve&TranID=tranid&TranDate=trandate',
+        status: 200,
+        statusText: 'OK',
+        headers: {},
+        config
+      }
+
+      return Promise.resolve(response)
+    }
+  }
+
+  const args = {
+    ShopID: 'shopid',
+    ShopPass: 'shoppass',
+    AccessID: 'accessid',
+    AccessPass: 'accesspass',
+    JobCd: 'jobcd'
+  }
+  const res = await t.context.tran.alterTran(args)
+
+  const expect: IAlterTranResult = {
+    AccessID: 'accessid',
+    AccessPass: 'accesspass',
+    Forward: 'forward',
+    Approve: 'approve',
+    TranID: 'tranid',
+    TranDate: 'trandate'
+  }
+  t.deepEqual(res, expect)
+})
