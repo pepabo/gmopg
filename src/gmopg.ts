@@ -26,6 +26,7 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
   updateMember: (args: any) => any
   deleteMember: (args: any) => any
   searchMember: (args: any) => any
+  defaultMemberData: () => any
 
   saveCard: (args: any) => any
   updateCard: (args: any) => any
