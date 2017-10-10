@@ -130,13 +130,13 @@ export default class Tranable {
       Amount: undefined
     }
     const data: IEntryTranArgs = merge(defaultData, args)
-    const res: AxiosResponse = await this.client.post('/payment/EntryTran.idPass', data)
+    const res: AxiosResponse = await this.client.post('/payment/EntryTran.idPass', data, this.options)
 
     return qs.parse(res.data)
   }
 
   public async execTran(args: IExecTranArgs): Promise<IExecTranResult> {
-    const res: AxiosResponse = await this.client.post('/payment/ExecTran.idPass', args)
+    const res: AxiosResponse = await this.client.post('/payment/ExecTran.idPass', args, this.options)
 
     return qs.parse(res.data)
   }
@@ -150,7 +150,7 @@ export default class Tranable {
       JobCd: undefined
     }
     const data: IAlterTranArgs = merge(defaultData, args)
-    const res: AxiosResponse = await this.client.post('/payment/AlterTran.idPass', data)
+    const res: AxiosResponse = await this.client.post('/payment/AlterTran.idPass', data, this.options)
 
     return qs.parse(res.data)
   }
@@ -162,7 +162,7 @@ export default class Tranable {
       OrderID: undefined
     }
     const data: ISearchTradeArgs = merge(defaultData, args)
-    const res: AxiosResponse = await this.client.post('/payment/SearchTrade.idPass', data)
+    const res: AxiosResponse = await this.client.post('/payment/SearchTrade.idPass', data, this.options)
 
     return qs.parse(res.data)
   }
@@ -177,7 +177,7 @@ export default class Tranable {
       Amount: undefined
     }
     const data: IChangeTranArgs = merge(defaultData, args)
-    const res: AxiosResponse = await this.client.post('/payment/ChangeTran.idPass', data)
+    const res: AxiosResponse = await this.client.post('/payment/ChangeTran.idPass', data, this.options)
 
     return qs.parse(res.data)
   }
