@@ -59,7 +59,7 @@ export default class Memberable {
       MemberID: undefined
     },
     args)
-    const res: AxiosResponse = await this.client.post('/payment/SaveMember.idPass', data)
+    const res: AxiosResponse = await this.client.post('/payment/SaveMember.idPass', data, this.options)
 
     return qs.parse(res.data)
   }
@@ -72,7 +72,7 @@ export default class Memberable {
       MemberID: undefined
     },
     args)
-    const res: AxiosResponse = await this.client.post('/payment/UpdateMember.idPass', data)
+    const res: AxiosResponse = await this.client.post('/payment/UpdateMember.idPass', data, this.options)
 
     return qs.parse(res.data)
   }
@@ -85,7 +85,7 @@ export default class Memberable {
       MemberID: undefined
     },
     args)
-    const res: AxiosResponse = await this.client.post('/payment/DeleteMember.idPass', data)
+    const res: AxiosResponse = await this.client.post('/payment/DeleteMember.idPass', data, this.options)
 
     return qs.parse(res.data)
   }
@@ -98,7 +98,7 @@ export default class Memberable {
       MemberID: undefined
     },
     args)
-    const res: AxiosResponse = await this.client.post('/payment/SearchMember.idPass', data)
+    const res: AxiosResponse = await this.client.post('/payment/SearchMember.idPass', data, this.options)
 
     return qs.parse(res.data)
   }
