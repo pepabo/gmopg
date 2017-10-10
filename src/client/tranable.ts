@@ -122,15 +122,14 @@ export default class Tranable {
   public options: object = {}
 
   public async entryTran(args: IEntryTranArgs): Promise<IEntryTranResult> {
-    const data: IEntryTranArgs = merge(
-    {
-      ShopID: this.config.ShopID,
-      ShopPass: this.config.ShopPass,
+    const defaultData = {
+      ShopID: this.config !== undefined ? this.config.ShopID : undefined,
+      ShopPass: this.config !== undefined ? this.config.ShopPass : undefined,
       OrderID: undefined,
       JobCd: undefined,
       Amount: undefined
-    },
-    args)
+    }
+    const data: IEntryTranArgs = merge(defaultData, args)
     const res: AxiosResponse = await this.client.post('/payment/EntryTran.idPass', data)
 
     return qs.parse(res.data)
@@ -143,44 +142,41 @@ export default class Tranable {
   }
 
   public async alterTran(args: IAlterTranArgs): Promise<IAlterTranResult> {
-    const data: IAlterTranArgs = merge(
-    {
-      ShopID: this.config.ShopID,
-      ShopPass: this.config.ShopPass,
+    const defaultData =  {
+      ShopID: this.config !== undefined ? this.config.ShopID : undefined,
+      ShopPass: this.config !== undefined ? this.config.ShopPass : undefined,
       AccessID: undefined,
       AccessPass: undefined,
       JobCd: undefined
-    },
-    args)
+    }
+    const data: IAlterTranArgs = merge(defaultData, args)
     const res: AxiosResponse = await this.client.post('/payment/AlterTran.idPass', data)
 
     return qs.parse(res.data)
   }
 
   public async searchTrade(args: ISearchTradeArgs): Promise<ISearchTradeResult> {
-    const data: ISearchTradeArgs = merge(
-    {
-      ShopID: this.config.ShopID,
-      ShopPass: this.config.ShopPass,
+    const defaultData = {
+      ShopID: this.config !== undefined ? this.config.ShopID : undefined,
+      ShopPass: this.config !== undefined ? this.config.ShopPass : undefined,
       OrderID: undefined
-    },
-    args)
+    }
+    const data: ISearchTradeArgs = merge(defaultData, args)
     const res: AxiosResponse = await this.client.post('/payment/SearchTrade.idPass', data)
 
     return qs.parse(res.data)
   }
 
   public async changeTran(args: IChangeTranArgs): Promise<IChangeTranResult> {
-    const data: IChangeTranArgs = merge(
-    {
-      ShopID: this.config.ShopID,
-      ShopPass: this.config.ShopPass,
+    const defaultData = {
+      ShopID: this.config !== undefined ? this.config.ShopID : undefined,
+      ShopPass: this.config !== undefined ? this.config.ShopPass : undefined,
       AccessID: undefined,
       AccessPass: undefined,
       JobCd: undefined,
       Amount: undefined
-    },
-    args)
+    }
+    const data: IChangeTranArgs = merge(defaultData, args)
     const res: AxiosResponse = await this.client.post('/payment/ChangeTran.idPass', data)
 
     return qs.parse(res.data)
