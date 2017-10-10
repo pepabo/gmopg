@@ -35,6 +35,22 @@ export default class Memberable {
   public client: AxiosInstance
   public options: object = {}
 
+  public defaultMemberData(): any {
+    let siteID
+    let sitePass
+
+    if (this.config !== undefined) {
+      siteID = this.config.SiteID
+      sitePass = this.config.SiteID
+    }
+
+    return {
+      SiteID: siteID,
+      SitePass: sitePass,
+      MemberID: undefined
+    }
+  }
+
   public async saveMember(args: ISaveMemberArgs): Promise<ISaveMemberResult> {
     const data: ISaveMemberArgs = merge(
     {
