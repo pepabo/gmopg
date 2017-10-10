@@ -216,3 +216,47 @@ test('.searchTrade calls API and returns response', async (t) => {
   }
   t.deepEqual(res, expect)
 })
+
+test('.changeTran calls API and returns response', async (t) => {
+  t.context.tran.options = {
+    adapter: async (config: AxiosRequestConfig) => {
+      const text = [
+        'AccessID=accessid',
+        'AccessPass=accesspass',
+        'Forward=forward',
+        'Approve=approve',
+        'TranID=tranid',
+        'TranDate=trandate'
+      ].join('&')
+      const response: AxiosResponse = {
+        data: text,
+        status: 200,
+        statusText: 'OK',
+        headers: {},
+        config
+      }
+
+      return Promise.resolve(response)
+    }
+  }
+
+  const args = {
+    ShopID: 'shopid',
+    ShopPass: 'shoppass',
+    AccessID: 'accessid',
+    AccessPass: 'accesspass',
+    JobCd: JobCd.Check,
+    Amount: 1234
+  }
+  const res = await t.context.tran.changeTran(args)
+
+  const expect: IChangeTranResult = {
+    AccessID: 'accessid',
+    AccessPass: 'accesspass',
+    Forward: 'forward',
+    Approve: 'approve',
+    TranID: 'tranid',
+    TranDate: 'trandate'
+  }
+  t.deepEqual(res, expect)
+})
