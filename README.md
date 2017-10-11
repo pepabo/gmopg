@@ -5,7 +5,7 @@ Simple Nodejs wrapper for [GMO Payment Gateway][gmopg] API.
 
 <a href="https://www.npmjs.com/package/gmopg" title="npm"><img src="http://img.shields.io/npm/v/gmopg.svg?style=flat-square"></a>
 <a href="https://travis-ci.org/linyows/gmopg.js" title="travis"><img src="https://img.shields.io/travis/linyows/gmopg.js.svg?style=flat-square"></a>
-<a href="https://coveralls.io/github/linyows/gmopg.js" title="coveralls"><img src="https://img.shields.io/coveralls/jekyll/jekyll.svg?style=flat-square"></a>
+<a href="https://coveralls.io/github/linyows/gmopg.js" title="coveralls"><img src="https://img.shields.io/coveralls/linyows/gmopg.js.svg?style=flat-square"></a>
 <a href="https://github.com/linyows/gmopg.js/blob/master/MIT-LICENSE" title="MIT License"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square"></a>
 
 [gmopg]: https://www.gmo-pg.com/
