@@ -16,6 +16,12 @@ test('GMOPG.generateMemberID returns generated memberID', (t) => {
   t.regex(ID, /key-\w{32}/)
 })
 
+test('.generateMemberID returns generated memberID', (t) => {
+  const pg = new GMOPG({})
+  const ID = pg.generateMemberID('key')
+  t.regex(ID, /key-\w{32}/)
+})
+
 test('GMOPG.config returns TConfig', (t) => {
   const pg = new GMOPG({})
   const expect = {
