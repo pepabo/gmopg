@@ -1,5 +1,5 @@
 import test from 'ava'
-import * as Client from './client'
+import * as client from './client.enum'
 
 test('exports PayType as enum', (t) => {
   const expect = {
@@ -9,7 +9,7 @@ test('exports PayType as enum', (t) => {
     Edy: '2',
     Cvs: '3'
   }
-  t.deepEqual(Client.PayType, expect)
+  t.deepEqual(client.PayType, expect)
 })
 
 test('exports Method as enum', (t) => {
@@ -20,7 +20,7 @@ test('exports Method as enum', (t) => {
     Revolving: '4',
     BonusInstallment: '5',
   }
-  t.deepEqual(Client.Method, expect)
+  t.deepEqual(client.Method, expect)
 })
 
 test('exports Status as enum', (t) => {
@@ -41,7 +41,7 @@ test('exports Status as enum', (t) => {
     Expired: 'EXPIRED',
     Cancel: 'CANCEL',
   }
-  t.deepEqual(Client.Status, expect)
+  t.deepEqual(client.Status, expect)
 })
 
 test('exports JobCd as enum', (t) => {
@@ -55,7 +55,7 @@ test('exports JobCd as enum', (t) => {
     Returnx: 'RETURNX',
     Sauth: 'SAUTH',
   }
-  t.deepEqual(Client.JobCd, expect)
+  t.deepEqual(client.JobCd, expect)
 })
 
 test('exports SeqMode as enum', (t) => {
@@ -63,7 +63,7 @@ test('exports SeqMode as enum', (t) => {
     Logic: '0',
     Physics: '1',
   }
-  t.deepEqual(Client.SeqMode, expect)
+  t.deepEqual(client.SeqMode, expect)
 })
 
 test('exports DefaultFlag as enum', (t) => {
@@ -71,5 +71,5 @@ test('exports DefaultFlag as enum', (t) => {
     BillingObject: '0',
     NotSubjectToCharge: '1',
   }
-  t.deepEqual(Client.DefaultFlag, expect)
+  t.deepEqual(client.DefaultFlag, expect)
 })
