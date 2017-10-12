@@ -67,3 +67,35 @@ test('.deleteMember is function', (t) => {
 test('.searchMember is function', (t) => {
   t.is(typeof t.context.gmopg.searchMember, 'function')
 })
+
+test('.saveCard is function', (t) => {
+  t.is(typeof t.context.gmopg.saveCard, 'function')
+})
+
+test('.deleteCard is function', (t) => {
+  t.is(typeof t.context.gmopg.deleteCard, 'function')
+})
+
+test('.searchCard is function', (t) => {
+  t.is(typeof t.context.gmopg.searchCard, 'function')
+})
+
+test('.entryTran is function', (t) => {
+  t.is(typeof t.context.gmopg.entryTran, 'function')
+})
+
+test('.execTran is function', (t) => {
+  t.is(typeof t.context.gmopg.execTran, 'function')
+})
+
+test('.alterTran is function', (t) => {
+  t.is(typeof t.context.gmopg.alterTran, 'function')
+})
+
+test('.searchTrade is function', (t) => {
+  t.is(typeof t.context.gmopg.searchTrade, 'function')
+})
+
+test('.changeTran is function', (t) => {
+  t.is(typeof t.context.gmopg.changeTran, 'function')
+})
