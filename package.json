@@ -12,8 +12,8 @@
     "payment"
   ],
   "bugs": "https://github.com/linyows/gmopg.js/issues",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./index.js",
+  "types": "./lib/gmopg.d.ts",
   "files": [
     "MIT-LICENSE",
     "README.md",
