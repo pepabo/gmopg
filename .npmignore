@@ -1,7 +1,8 @@
 .git*
+**/*.test.js
+**/*.test.ts
+**/*.test.d.ts
 **/*.ts
-**/*.test.*
-**/*.test.d.*
 .npmrc
 .env*
 npm-debug.log*
