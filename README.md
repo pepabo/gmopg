@@ -20,7 +20,9 @@ $ npm install gmopg
 Usage
 -----
 
-Purchase Example:
+Purchase example
+
+### Node.js
 
 ```js
 const GMOPG = require('gmopg')
@@ -33,26 +35,69 @@ GMOPG.config.ShopPass = 'Your SitePass'
 const orderID = 'Order ID'
 const amount  = 1234
 
-const entryRes = await GMOPG.entryTran({
+GMOPG.entryTran({
   OrderID: orderID,
   JobCd: GMOPG.enums.JobCd.Auth,
   Amount: amount
+}).then((entryRes) => {
+  GMOPG.execTran({
+    AccessID: entryRes.accessId,
+    AccessPass: entryRes.accessPass,
+    OrderID: orderID,
+    Method: GMOPG.enums.Method.Lump,
+    CardNo: '1234123412341234',
+    Expire: '2024',
+    SecurityCode: '123'
+  }).then((execRes) => {
+    GMOPG.alterTran({
+      AccessID: entryRes.accessId,
+      AccessPass: entryRes.accessPass,
+      JobCd: GMOPG.enums.JobCd.Sales,
+      amount: amount
+    }).then((alterRes) => {
+      console.log(alterRes)
+    })
+  })
+})
+```
+
+### TypeScript
+
+```ts
+import GMOPG, {TConfig} from 'gmopg'
+
+const config: TConfig = {
+  axios: {},
+  SiteID: 'Your SiteID',
+  SitePass: 'Your SitePass',
+  ShopID: 'Your ShopID',
+  ShopPass: 'Your ShopPass'
+}
+const gmopg = new GMOPG(config)
+
+const orderID = 'Order ID'
+const amount  = 1234
+
+const entryRes = await gmopg.entryTran({
+  OrderID: orderID,
+  JobCd: gmopg.enums.JobCd.Auth,
+  Amount: amount
 })
 
-const execRes = await GMOPG.execTran({
+const execRes = await gmopg.execTran({
   AccessID: entryRes.accessId,
   AccessPass: entryRes.accessPass,
   OrderID: orderID,
-  Method: GMOPG.enums.Method.Lump,
+  Method: gmopg.enums.Method.Lump,
   CardNo: '1234123412341234',
   Expire: '2024',
   SecurityCode: '123'
 })
 
-const alterRes = await GMOPG.alterTran({
+const alterRes = await gmopg.alterTran({
   AccessID: entryRes.accessId,
   AccessPass: entryRes.accessPass,
-  JobCd: GMOPG.enums.JobCd.Sales,
+  JobCd: gmopg.enums.JobCd.Sales,
   amount: amount
 })
 ```
