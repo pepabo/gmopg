@@ -12,6 +12,7 @@ export interface IGMOPG {
   config: TConfig
   client: AxiosInstance
   options: object
+  enums: object
 
   saveMember: (args: any) => any
   updateMember: (args: any) => any
