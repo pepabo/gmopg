@@ -1,5 +1,5 @@
-import {AxiosInstance} from 'axios'
 import GMOPG from './gmopg'
+import * as gmopg from './gmopg'
 import * as client from './client'
 import * as member from './client/memberable'
 import * as card from './client/cardable'
@@ -40,47 +40,9 @@ export import ISearchTradeResult = tran.ISearchTradeResult
 export import IChangeTranArgs = tran.IChangeTranArgs
 export import IChangeTranResult = tran.IChangeTranResult
 
-export import TConfig = config.TConfig
+export import TGMOPGConfig = config.TConfig
+export import IGMOPG = gmopg.IGMOPG
+export import IGMOPGStatic = gmopg.IGMOPGStatic
 
-export interface GMOPGInstance {
-  config: TConfig
-  client: AxiosInstance
-  options: object
-
-  saveMember: (args: any) => any
-  updateMember: (args: any) => any
-  deleteMember: (args: any) => any
-  searchMember: (args: any) => any
-  defaultMemberData: () => any
-
-  saveCard: (args: any) => any
-  updateCard: (args: any) => any
-  deleteCard: (args: any) => any
-  searchCard: (args: any) => any
-  defaultCardData: () => any
-
-  entryTran: (args: any) => any
-  execTran: (args: any) => any
-  alterTran: (args: any) => any
-  updateTran: (args: any) => any
-  deleteTran: (args: any) => any
-  searchTrade: (args: any) => any
-  changeTran: (args: any) => any
-}
-
-export interface GMOPGStatic extends GMOPGInstance {
-  generateMemberID: (key: string) => string
-}
-
-declare const gmopg: GMOPGStatic
-export default gmopg
-
-
-function createInstance() {
-  var instance = new GMOPG({})
-
-  return instance
-}
-
-const gmopgInstance = createInstance()
-module.exports = gmopgInstance
+export default GMOPG
+module.exports = GMOPG.createInstance({})
