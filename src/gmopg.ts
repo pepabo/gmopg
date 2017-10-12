@@ -33,10 +33,13 @@ export interface IGMOPG {
   deleteTran: (args: any) => any
   searchTrade: (args: any) => any
   changeTran: (args: any) => any
+
+  create: (config: TConfig) => IGMOPG
+  generateMemberID: (key: string) => string
 }
 
 export interface IGMOPGStatic extends IGMOPG {
-  create: (config: TConfig) => IGMOPG
+  createInstance: (config: TConfig) => IGMOPG
   generateMemberID: (key: string) => string
 }
 
