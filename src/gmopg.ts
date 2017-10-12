@@ -46,6 +46,14 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
     return enums
   }
 
+  public create(config: TConfig): IGMOPG {
+    return GMOPG.createInstance(config)
+  }
+
+  static createInstance(config: TConfig): IGMOPG {
+    return new GMOPG(config)
+  }
+
   public generateMemberID(key: string): string {
     return GMOPG.generateMemberID(key)
   }
