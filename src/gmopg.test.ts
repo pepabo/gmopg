@@ -1,8 +1,17 @@
 import test from 'ava'
 import GMOPG from './gmopg'
+import * as gmopg from './gmopg'
 
 test.beforeEach((t) => {
   t.context.gmopg = new GMOPG({})
+})
+
+test('export GMOPG instance as module', (t) => {
+  t.true(gmopg instanceof GMOPG)
+})
+
+test('constructor.name returns GMOPG', (t) => {
+  t.is(gmopg.constructor.name, 'GMOPG')
 })
 
 test('new returns GMOPG instance', (t) => {

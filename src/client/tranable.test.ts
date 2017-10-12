@@ -1,13 +1,14 @@
 import test from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
-import {JobCd, Method} from '../client'
-import Tranable, {
+import {JobCd, Method} from '../client.enum'
+import Tranable from './tranable'
+import {
   IAlterTranResult,
   IChangeTranResult,
   IEntryTranResult,
   IExecTranResult,
   ISearchTradeResult
-} from './tranable'
+} from './tranable.interface'
 
 test.beforeEach((t) => {
   const tran = new Tranable()

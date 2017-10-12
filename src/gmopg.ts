@@ -1,47 +1,12 @@
 import axios, {AxiosInstance} from 'axios'
 
 import * as merge from 'deepmerge'
-import * as enums from './client'
+import * as enums from './client.enum'
 import Memberable from './client/memberable'
 import Cardable from './client/cardable'
 import Tranable  from './client/tranable'
 import Config, {TConfig, defaults} from './config'
 import {applyMixins, generateID} from './util'
-
-export interface IGMOPG {
-  config: TConfig
-  client: AxiosInstance
-  options: object
-  enums: object
-
-  saveMember: (args: any) => any
-  updateMember: (args: any) => any
-  deleteMember: (args: any) => any
-  searchMember: (args: any) => any
-  defaultMemberData: () => any
-
-  saveCard: (args: any) => any
-  updateCard: (args: any) => any
-  deleteCard: (args: any) => any
-  searchCard: (args: any) => any
-  defaultCardData: () => any
-
-  entryTran: (args: any) => any
-  execTran: (args: any) => any
-  alterTran: (args: any) => any
-  updateTran: (args: any) => any
-  deleteTran: (args: any) => any
-  searchTrade: (args: any) => any
-  changeTran: (args: any) => any
-
-  create: (config: TConfig) => IGMOPG
-  generateMemberID: (key: string) => string
-}
-
-export interface IGMOPGStatic extends IGMOPG {
-  createInstance: (config: TConfig) => IGMOPG
-  generateMemberID: (key: string) => string
-}
 
 export default class GMOPG implements Memberable, Cardable, Tranable {
   public config: TConfig
@@ -81,11 +46,11 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
     return enums
   }
 
-  public create(config: TConfig): IGMOPG {
+  public create(config: TConfig): GMOPG {
     return GMOPG.createInstance(config)
   }
 
-  static createInstance(config: TConfig): IGMOPG {
+  static createInstance(config: TConfig): GMOPG {
     return new GMOPG(config)
   }
 
@@ -99,3 +64,13 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
 }
 
 applyMixins(GMOPG, [Memberable, Cardable, Tranable])
+
+export * from './client/memberable.interface'
+export * from './client/cardable.interface'
+export * from './client/tranable.interface'
+export * from './client.interface'
+export * from './client.enum'
+export * from './config'
+
+module.exports = GMOPG.createInstance({})
+module.exports.default = GMOPG

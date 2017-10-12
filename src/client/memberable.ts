@@ -1,34 +1,16 @@
 import {AxiosInstance, AxiosResponse} from 'axios'
 import * as merge from 'deepmerge'
 import * as qs from 'querystring'
-import {ISiteArgs} from '../client'
+import {ISiteArgs} from '../client.interface'
 import {TConfig} from '../config'
-
-export interface ISaveMemberArgs extends ISiteArgs {
-  MemberName?: string
-}
-
-export interface ISaveMemberResult {
-  MemberID: string
-}
-
-export interface IUpdateMemberArgs extends ISiteArgs {
-  MemberName?: string
-}
-
-export interface IUpdateMemberResult {
-  MemberID: string
-}
-
-export interface IDeleteMemberResult {
-  MemberID: string
-}
-
-export interface ISearchMemberResult {
-  MemberID: string
-  MemberName: string
-  DeleteFlag: string
-}
+import {
+  IDeleteMemberResult,
+  ISaveMemberArgs,
+  ISaveMemberResult,
+  ISearchMemberResult,
+  IUpdateMemberArgs,
+  IUpdateMemberResult
+} from './memberable.interface'
 
 export default class Memberable {
   public config: TConfig
