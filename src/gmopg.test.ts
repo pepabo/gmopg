@@ -11,6 +11,18 @@ test('GMOPG.enums returns enum object', (t) => {
   t.is(typeof pg.enums, 'object')
 })
 
+test('constructor.createInstance returns new GMOPG instance', (t) => {
+  const instance = GMOPG.createInstance({})
+  t.true(instance instanceof GMOPG)
+})
+
+test('.create returns new GMOPG instance', (t) => {
+  const instance = new GMOPG({})
+  const otherInstance = instance.create({})
+  t.true(otherInstance instanceof GMOPG)
+  t.notDeepEqual(instance, otherInstance)
+})
+
 test('GMOPG.generateMemberID returns generated memberID', (t) => {
   const ID = GMOPG.generateMemberID('key')
   t.regex(ID, /key-\w{32}/)
