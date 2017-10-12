@@ -44,5 +44,5 @@ export import TGMOPGConfig = config.TConfig
 export import IGMOPG = gmopg.IGMOPG
 export import IGMOPGStatic = gmopg.IGMOPGStatic
 
-export default GMOPG
 module.exports = GMOPG.createInstance({})
+module.exports.default = GMOPG
