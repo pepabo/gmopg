@@ -17,6 +17,7 @@
   "files": [
     "MIT-LICENSE",
     "README.md",
+    "index.js",
     "lib/"
   ],
   "directories": {
