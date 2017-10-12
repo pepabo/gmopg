@@ -1,14 +1,16 @@
 import test from 'ava'
 import GMOPG from './gmopg'
 
-test('new GMOPG returns instance', (t) => {
-  const pg = new GMOPG({})
-  t.is(typeof pg, 'object')
+test.beforeEach((t) => {
+  t.context.gmopg = new GMOPG({})
 })
 
-test('GMOPG.enums returns enum object', (t) => {
-  const pg = new GMOPG({})
-  t.is(typeof pg.enums, 'object')
+test('new returns GMOPG instance', (t) => {
+  t.true(t.context.gmopg instanceof GMOPG)
+})
+
+test('.enums returns enum object', (t) => {
+  t.is(typeof t.context.gmopg.enums, 'object')
 })
 
 test('constructor.createInstance returns new GMOPG instance', (t) => {
@@ -17,25 +19,22 @@ test('constructor.createInstance returns new GMOPG instance', (t) => {
 })
 
 test('.create returns new GMOPG instance', (t) => {
-  const instance = new GMOPG({})
-  const otherInstance = instance.create({})
-  t.true(otherInstance instanceof GMOPG)
-  t.notDeepEqual(instance, otherInstance)
+  const instance = t.context.gmopg.create({})
+  t.true(instance instanceof GMOPG)
+  t.notDeepEqual(t.context.gmopg, instance)
 })
 
-test('GMOPG.generateMemberID returns generated memberID', (t) => {
+test('constructor.generateMemberID returns generated memberID', (t) => {
   const ID = GMOPG.generateMemberID('key')
   t.regex(ID, /key-\w{32}/)
 })
 
 test('.generateMemberID returns generated memberID', (t) => {
-  const pg = new GMOPG({})
-  const ID = pg.generateMemberID('key')
+  const ID = t.context.gmopg.generateMemberID('key')
   t.regex(ID, /key-\w{32}/)
 })
 
-test('GMOPG.config returns TConfig', (t) => {
-  const pg = new GMOPG({})
+test('.config returns TConfig', (t) => {
   const expect = {
     axios: {
       baseURL: 'https://pt01.mul-pay.jp',
@@ -46,30 +45,25 @@ test('GMOPG.config returns TConfig', (t) => {
       }
     }
   }
-  t.deepEqual(pg.config, expect)
+  t.deepEqual(t.context.gmopg.config, expect)
 })
 
-test('GMOPG.client returns AxiosInstance', (t) => {
-  const pg = new GMOPG({})
-  t.is(typeof pg.client, 'function')
+test('.client returns AxiosInstance', (t) => {
+  t.is(typeof t.context.gmopg.client, 'function')
 })
 
 test('.saveMember is function', (t) => {
-  const pg = new GMOPG({})
-  t.is(typeof pg.saveMember, 'function')
+  t.is(typeof t.context.gmopg.saveMember, 'function')
 })
 
 test('.updateMember is function', (t) => {
-  const pg = new GMOPG({})
-  t.is(typeof pg.updateMember, 'function')
+  t.is(typeof t.context.gmopg.updateMember, 'function')
 })
 
 test('.deleteMember is function', (t) => {
-  const pg = new GMOPG({})
-  t.is(typeof pg.deleteMember, 'function')
+  t.is(typeof t.context.gmopg.deleteMember, 'function')
 })
 
 test('.searchMember is function', (t) => {
-  const pg = new GMOPG({})
-  t.is(typeof pg.searchMember, 'function')
+  t.is(typeof t.context.gmopg.searchMember, 'function')
 })
