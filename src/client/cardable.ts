@@ -22,7 +22,7 @@ export default class Cardable {
 
     if (this.config !== undefined) {
       siteID = this.config.SiteID
-      sitePass = this.config.SiteID
+      sitePass = this.config.SitePass
     }
 
     return {

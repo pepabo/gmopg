@@ -23,7 +23,7 @@ export default class Memberable {
 
     if (this.config !== undefined) {
       siteID = this.config.SiteID
-      sitePass = this.config.SiteID
+      sitePass = this.config.SitePass
     }
 
     return {
