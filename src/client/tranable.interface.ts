@@ -1,5 +1,5 @@
 import {JobCd, Method, SeqMode} from '../client.enum'
-import {IShopArgs} from '../client.interface'
+import {IResult, IShopArgs} from '../client.interface'
 
 export interface IEntryTranArgs extends IShopArgs {
   OrderID: string
@@ -7,7 +7,7 @@ export interface IEntryTranArgs extends IShopArgs {
   Amount: number
 }
 
-export interface IEntryTranResult {
+export interface IEntryTranResult extends IResult {
   AccessID: string
   AccessPass: string
 }
@@ -34,7 +34,7 @@ export interface IExecTranArgs {
   ClientField3?: string
 }
 
-export interface IExecTranResult {
+export interface IExecTranResult extends IResult {
   Acs: string
   OrderID: string
   Forward: string
@@ -57,7 +57,7 @@ export interface IAlterTranArgs extends IShopArgs {
   Method?: Method
 }
 
-export interface IAlterTranResult {
+export interface IAlterTranResult extends IResult {
   AccessID: string
   AccessPass: string
   Forward: string
@@ -70,7 +70,7 @@ export interface ISearchTradeArgs extends IShopArgs {
   OrderID: string
 }
 
-export interface ISearchTradeResult {
+export interface ISearchTradeResult extends IResult {
   OrderID: string
   Status: string
   ProcessDate: string
@@ -104,7 +104,7 @@ export interface IChangeTranArgs extends IShopArgs {
   Tax?: string
 }
 
-export interface IChangeTranResult {
+export interface IChangeTranResult extends IResult {
   AccessID: string
   AccessPass: string
   Forward: string

@@ -1,5 +1,5 @@
 import {SeqMode} from '../client.enum'
-import {ISiteArgs} from '../client.interface'
+import {IResult, ISiteArgs} from '../client.interface'
 
 export interface ISaveCardArgs extends ISiteArgs {
   SeqMode?: SeqMode
@@ -13,7 +13,7 @@ export interface ISaveCardArgs extends ISiteArgs {
   Token?: string
 }
 
-export interface ISaveCardResult {
+export interface ISaveCardResult extends IResult {
   CardSeq: string
   CardNo: string
   Forward: string
@@ -30,7 +30,7 @@ export interface IDeleteCardArgs extends ISiteArgs {
   CardSeq: string
 }
 
-export interface IDeleteCardResult {
+export interface IDeleteCardResult extends IResult {
   CardSeq: string
 }
 
@@ -39,7 +39,7 @@ export interface ISearchCardArgs extends ISiteArgs {
   CardSeq?: string
 }
 
-export interface ISearchCardResult {
+export interface ISearchCardResult extends IResult {
   CardSeq: string
   DefaultFlag: string
   CardName: string
