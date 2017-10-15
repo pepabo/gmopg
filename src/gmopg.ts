@@ -72,5 +72,5 @@ export * from './client.interface'
 export * from './client.enum'
 export * from './config'
 
-module.exports = GMOPG.createInstance({})
-module.exports.default = GMOPG
+export interface GMOPGStatic extends GMOPG {
+}
