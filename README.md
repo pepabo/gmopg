@@ -64,7 +64,7 @@ GMOPG.entryTran({
 ### TypeScript
 
 ```ts
-import GMOPG, {TConfig} from 'gmopg'
+import gmopg, {TConfig} from 'gmopg'
 
 const config: TConfig = {
   axios: {},
@@ -73,7 +73,6 @@ const config: TConfig = {
   ShopID: 'Your ShopID',
   ShopPass: 'Your ShopPass'
 }
-const gmopg = new GMOPG(config)
 
 const orderID = 'Order ID'
 const amount  = 1234
