@@ -22,19 +22,8 @@ test('.CREATE returns new GMOPG instance', (t) => {
   t.true(instance instanceof GMOPG)
 })
 
-test('.create returns new GMOPG instance', (t) => {
-  const instance = t.context.gmopg.create({})
-  t.true(instance instanceof GMOPG)
-  t.notDeepEqual(t.context.gmopg, instance)
-})
-
 test('.GENERATE_MEMBER_ID returns generated memberID', (t) => {
   const ID = GMOPG.GENERATE_MEMBER_ID('key')
-  t.regex(ID, /key-\w{32}/)
-})
-
-test('.generateMemberID returns generated memberID', (t) => {
-  const ID = t.context.gmopg.generateMemberID('key')
   t.regex(ID, /key-\w{32}/)
 })
 
