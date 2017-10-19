@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-const GMOPG = require("./lib/gmopg").default;
+const GMOPG = require('./lib/gmopg').default;
 
 // Create the default instance to be exported
-var gmopgInstance = GMOPG.createInstance({});
+var gmopgInstance = GMOPG.CREATE({});
 
 module.exports = gmopgInstance;
 
