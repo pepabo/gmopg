@@ -29,13 +29,11 @@ export interface IGMOPG {
   alterTran(args: t.IAlterTranArgs): Promise<t.IAlterTranResult>
   searchTrade(args: t.ISearchTradeArgs): Promise<t.ISearchTradeResult>
   changeTran(args: t.IChangeTranArgs): Promise<t.IChangeTranResult>
-  createInstance(config: IConfig): IGMOPG
-  generateMemberID(key: string): string
 }
 
 export interface IGMOPGStatic extends IGMOPG {
-  createInstance(config: IConfig): IGMOPG
-  generateMemberID(key: string): string
+  CREATE(config: IConfig): IGMOPG
+  GENERATE_MEMBER_ID(key: string): string
 }
 
 declare const GMOPG: IGMOPGStatic
