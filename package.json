@@ -1,7 +1,7 @@
 {
   "name": "gmopg",
   "description": "GMO PaymentGateway API client",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "author": "linyows",
   "license": "MIT",
   "repository": "linyows/gmopg.js",
