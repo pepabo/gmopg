@@ -10,6 +10,7 @@
     "completed-docs": false,
     "missing-jsdoc": false,
     "no-empty-interface": false,
+    "ordered-imports": false,
     "arrow-parens": [
       true
     ],

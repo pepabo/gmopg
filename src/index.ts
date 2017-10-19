@@ -1,9 +1,9 @@
 import {AxiosInstance} from 'axios'
 import {IConfig} from './config'
-import * as m from './client/memberable.interface'
 import * as c from './client/cardable.interface'
+import * as e from './client.enum'
+import * as m from './client/memberable.interface'
 import * as t from './client/tranable.interface'
-import * as enums from './client.enum'
 
 export * from './client/memberable.interface'
 export * from './client/cardable.interface'
