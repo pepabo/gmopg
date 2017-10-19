@@ -30,14 +30,16 @@ export default class Tranable {
     }
     const data: IEntryTranArgs = merge(defaultData, args)
     const res: AxiosResponse = await this.client.post('/payment/EntryTran.idPass', data, this.options)
+    const parsed: any = qs.parse(res.data)
 
-    return qs.parse(res.data)
+    return <IEntryTranResult> parsed
   }
 
   public async execTran(args: IExecTranArgs): Promise<IExecTranResult> {
     const res: AxiosResponse = await this.client.post('/payment/ExecTran.idPass', args, this.options)
+    const parsed: any = qs.parse(res.data)
 
-    return qs.parse(res.data)
+    return <IExecTranResult> parsed
   }
 
   public async alterTran(args: IAlterTranArgs): Promise<IAlterTranResult> {
@@ -50,8 +52,9 @@ export default class Tranable {
     }
     const data: IAlterTranArgs = merge(defaultData, args)
     const res: AxiosResponse = await this.client.post('/payment/AlterTran.idPass', data, this.options)
+    const parsed: any = qs.parse(res.data)
 
-    return qs.parse(res.data)
+    return <IAlterTranResult> parsed
   }
 
   public async searchTrade(args: ISearchTradeArgs): Promise<ISearchTradeResult> {
@@ -62,8 +65,9 @@ export default class Tranable {
     }
     const data: ISearchTradeArgs = merge(defaultData, args)
     const res: AxiosResponse = await this.client.post('/payment/SearchTrade.idPass', data, this.options)
+    const parsed: any = qs.parse(res.data)
 
-    return qs.parse(res.data)
+    return <ISearchTradeResult> parsed
   }
 
   public async changeTran(args: IChangeTranArgs): Promise<IChangeTranResult> {
@@ -77,7 +81,8 @@ export default class Tranable {
     }
     const data: IChangeTranArgs = merge(defaultData, args)
     const res: AxiosResponse = await this.client.post('/payment/ChangeTran.idPass', data, this.options)
+    const parsed: any = qs.parse(res.data)
 
-    return qs.parse(res.data)
+    return <IChangeTranResult> parsed
   }
 }
