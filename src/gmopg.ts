@@ -29,7 +29,6 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
   defaultMemberData: () => any
 
   saveCard: (args: any) => any
-  updateCard: (args: any) => any
   deleteCard: (args: any) => any
   searchCard: (args: any) => any
   defaultCardData: () => any
@@ -37,7 +36,6 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
   entryTran: (args: any) => any
   execTran: (args: any) => any
   alterTran: (args: any) => any
-  updateTran: (args: any) => any
   deleteTran: (args: any) => any
   searchTrade: (args: any) => any
   changeTran: (args: any) => any
