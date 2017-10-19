@@ -15,9 +15,9 @@ export const defaults: IConfig = {
     baseURL: 'https://pt01.mul-pay.jp',
     headers: {
       'user-agent': 'GMO PG Client: Unofficial',
-      'content-length': '0',
-    },
-  },
+      'content-length': '0'
+    }
+  }
 }
 
 export default class Config {

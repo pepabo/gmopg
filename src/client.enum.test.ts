@@ -18,7 +18,7 @@ test('exports Method as enum', (t) => {
     Installment: '2',
     BonusLump: '3',
     Revolving: '4',
-    BonusInstallment: '5',
+    BonusInstallment: '5'
   }
   t.deepEqual(client.Method, expect)
 })
@@ -39,7 +39,7 @@ test('exports Status as enum', (t) => {
     Paysuccess: 'PAYSUCCESS',
     Payfail: 'PAYFAIL',
     Expired: 'EXPIRED',
-    Cancel: 'CANCEL',
+    Cancel: 'CANCEL'
   }
   t.deepEqual(client.Status, expect)
 })
@@ -53,7 +53,7 @@ test('exports JobCd as enum', (t) => {
     Void: 'VOID',
     Return: 'RETURN',
     Returnx: 'RETURNX',
-    Sauth: 'SAUTH',
+    Sauth: 'SAUTH'
   }
   t.deepEqual(client.JobCd, expect)
 })
@@ -61,7 +61,7 @@ test('exports JobCd as enum', (t) => {
 test('exports SeqMode as enum', (t) => {
   const expect = {
     Logic: '0',
-    Physics: '1',
+    Physics: '1'
   }
   t.deepEqual(client.SeqMode, expect)
 })
@@ -69,7 +69,7 @@ test('exports SeqMode as enum', (t) => {
 test('exports DefaultFlag as enum', (t) => {
   const expect = {
     BillingObject: '0',
-    NotSubjectToCharge: '1',
+    NotSubjectToCharge: '1'
   }
   t.deepEqual(client.DefaultFlag, expect)
 })
