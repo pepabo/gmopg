@@ -13,51 +13,41 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
   public client: AxiosInstance
   public options: object
 
+  public saveMember: (args: any) => any
+  public updateMember: (args: any) => any
+  public deleteMember: (args: any) => any
+  public searchMember: (args: any) => any
+  public defaultMemberData: () => any
+  public saveCard: (args: any) => any
+  public deleteCard: (args: any) => any
+  public searchCard: (args: any) => any
+  public defaultCardData: () => any
+  public entryTran: (args: any) => any
+  public execTran: (args: any) => any
+  public alterTran: (args: any) => any
+  public deleteTran: (args: any) => any
+  public searchTrade: (args: any) => any
+  public changeTran: (args: any) => any
+
   constructor(config: IConfig) {
     this.config = merge(defaults, config)
     const configByEnv: IConfig = buildByEnv()
     if (configByEnv !== {}) {
       this.config = merge(this.config, configByEnv)
     }
-    this.client = axios.create(this.config.axios)
-  }
-
-  saveMember: (args: any) => any
-  updateMember: (args: any) => any
-  deleteMember: (args: any) => any
-  searchMember: (args: any) => any
-  defaultMemberData: () => any
-
-  saveCard: (args: any) => any
-  deleteCard: (args: any) => any
-  searchCard: (args: any) => any
-  defaultCardData: () => any
-
-  entryTran: (args: any) => any
-  execTran: (args: any) => any
-  alterTran: (args: any) => any
-  deleteTran: (args: any) => any
-  searchTrade: (args: any) => any
-  changeTran: (args: any) => any
-
-  get enums() {
-    return enums
-  }
-
-  public create(config: TConfig): GMOPG {
-    return GMOPG.createInstance(config)
+    this.client = Axios.create(this.config.axios)
   }
 
   public static CREATE(config: IConfig): GMOPG {
     return new GMOPG(config)
   }
 
-  public generateMemberID(key: string): string {
-    return GMOPG.generateMemberID(key)
+  public static GENERATE_MEMBER_ID(key: string): string {
+    return generateID(key)
   }
 
-  static generateMemberID(key: string): string {
-    return generateID(key)
+  get enums() {
+    return enums
   }
 }
 
