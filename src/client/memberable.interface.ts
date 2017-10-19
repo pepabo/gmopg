@@ -16,9 +16,13 @@ export interface IUpdateMemberResult extends IResult {
   MemberID: string
 }
 
+export interface IDeleteMemberArgs extends IResult {}
+
 export interface IDeleteMemberResult extends IResult {
   MemberID: string
 }
+
+export interface ISearchMemberArgs extends IResult {}
 
 export interface ISearchMemberResult extends IResult {
   MemberID: string
