@@ -62,13 +62,3 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
 }
 
 applyMixins(GMOPG, [Memberable, Cardable, Tranable])
-
-export * from './client/memberable.interface'
-export * from './client/cardable.interface'
-export * from './client/tranable.interface'
-export * from './client.interface'
-export * from './client.enum'
-export * from './config'
-
-export interface GMOPGStatic extends GMOPG {
-}
