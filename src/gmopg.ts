@@ -1,11 +1,10 @@
-import axios, {AxiosInstance} from 'axios'
-
+import Axios, {AxiosInstance} from 'axios'
 import * as merge from 'deepmerge'
 import * as enums from './client.enum'
 import Memberable from './client/memberable'
 import Cardable from './client/cardable'
-import Tranable  from './client/tranable'
-import Config, {TConfig, defaults} from './config'
+import Tranable from './client/tranable'
+import {buildByEnv, IConfig, defaults} from './config'
 import {applyMixins, generateID} from './util'
 
 export default class GMOPG implements Memberable, Cardable, Tranable {

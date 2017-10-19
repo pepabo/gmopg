@@ -1,5 +1,5 @@
 import test from 'ava'
-import Config, {defaults} from './config'
+import * as config from './config'
 import * as process from 'process'
 
 test('defaults returns default config', (t) => {
@@ -13,11 +13,11 @@ test('defaults returns default config', (t) => {
       }
     }
   }
-  t.deepEqual(defaults, expect)
+  t.deepEqual(config.defaults, expect)
 })
 
 test('.buildByEnv returns config', (t) => {
-  t.deepEqual(Config.buildByEnv(), { axios: {} })
+  t.deepEqual(config.buildByEnv(), { axios: {} })
 })
 
 test('.buildByEnv returns config with env', (t) => {
@@ -38,5 +38,5 @@ test('.buildByEnv returns config with env', (t) => {
     ShopID: 'foo-shopid',
     ShopPass: 'foo-shoppass'
   }
-  t.deepEqual(Config.buildByEnv(), expect)
+  t.deepEqual(config.buildByEnv(), expect)
 })

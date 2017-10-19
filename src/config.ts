@@ -24,30 +24,28 @@ export const defaults: IConfig = {
   }
 }
 
-export default class Config {
-  static buildByEnv(): IConfig {
-    const c: IConfig = {}
-    c.axios = {}
+export function buildByEnv(): IConfig {
+  const c: IConfig = {}
+  c.axios = {}
 
-    if (process.env.GMOPG_ENDPOINT) {
-      c.axios.baseURL = process.env.GMOPG_ENDPOINT
-    }
-    if (process.env.GMOPG_TIMEOUT) {
-      c.axios.timeout = +`${process.env.GMOPG_TIMEOUT}`
-    }
-    if (process.env.GMOPG_SITEID) {
-      c.SiteID = process.env.GMOPG_SITEID
-    }
-    if (process.env.GMOPG_SITEPASS) {
-      c.SitePass = process.env.GMOPG_SITEPASS
-    }
-    if (process.env.GMOPG_SHOPID) {
-      c.ShopID = process.env.GMOPG_SHOPID
-    }
-    if (process.env.GMOPG_SHOPPASS) {
-      c.ShopPass = process.env.GMOPG_SHOPPASS
-    }
-
-    return c
+  if (process.env.GMOPG_ENDPOINT !== undefined) {
+    c.axios.baseURL = process.env.GMOPG_ENDPOINT
   }
+  if (process.env.GMOPG_TIMEOUT !== undefined) {
+    c.axios.timeout = +`${process.env.GMOPG_TIMEOUT}`
+  }
+  if (process.env.GMOPG_SITEID !== undefined) {
+    c.SiteID = process.env.GMOPG_SITEID
+  }
+  if (process.env.GMOPG_SITEPASS !== undefined) {
+    c.SitePass = process.env.GMOPG_SITEPASS
+  }
+  if (process.env.GMOPG_SHOPID !== undefined) {
+    c.ShopID = process.env.GMOPG_SHOPID
+  }
+  if (process.env.GMOPG_SHOPPASS !== undefined) {
+    c.ShopPass = process.env.GMOPG_SHOPPASS
+  }
+
+  return c
 }
