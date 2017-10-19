@@ -9,6 +9,7 @@
     "semicolon": [true, "never"],
     "completed-docs": false,
     "missing-jsdoc": false,
+    "no-empty-interface": false,
     "arrow-parens": [
       true
     ],
