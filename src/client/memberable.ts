@@ -1,12 +1,13 @@
 import {AxiosInstance, AxiosResponse} from 'axios'
 import * as merge from 'deepmerge'
 import * as qs from 'querystring'
-import {ISiteArgs} from '../client.interface'
 import {TConfig} from '../config'
 import {
+  IDeleteMemberArgs,
   IDeleteMemberResult,
   ISaveMemberArgs,
   ISaveMemberResult,
+  ISearchMemberArgs,
   ISearchMemberResult,
   IUpdateMemberArgs,
   IUpdateMemberResult
@@ -47,15 +48,15 @@ export default class Memberable {
     return qs.parse(res.data)
   }
 
-  public async deleteMember(args: ISiteArgs): Promise<IDeleteMemberResult> {
-    const data: ISiteArgs = merge(this.defaultMemberData(), args)
+  public async deleteMember(args: IDeleteMemberArgs): Promise<IDeleteMemberResult> {
+    const data: IDeleteMemberArgs = merge(this.defaultMemberData(), args)
     const res: AxiosResponse = await this.client.post('/payment/DeleteMember.idPass', data, this.options)
 
     return qs.parse(res.data)
   }
 
-  public async searchMember(args: ISiteArgs): Promise<ISearchMemberResult | null> {
-    const data: ISiteArgs = merge(this.defaultMemberData(), args)
+  public async searchMember(args: ISearchMemberArgs): Promise<ISearchMemberResult | null> {
+    const data: ISearchMemberArgs = merge(this.defaultMemberData(), args)
     const res: AxiosResponse = await this.client.post('/payment/SearchMember.idPass', data, this.options)
 
     return qs.parse(res.data)
