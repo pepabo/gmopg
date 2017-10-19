@@ -38,7 +38,7 @@ test('.generateMemberID returns generated memberID', (t) => {
   t.regex(ID, /key-\w{32}/)
 })
 
-test('.config returns TConfig', (t) => {
+test('.config returns IConfig', (t) => {
   const expect = {
     axios: {
       baseURL: 'https://pt01.mul-pay.jp',

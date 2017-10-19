@@ -1,7 +1,7 @@
 import {AxiosInstance, AxiosResponse} from 'axios'
 import * as merge from 'deepmerge'
 import * as qs from 'querystring'
-import {TConfig} from '../config'
+import {IConfig} from '../config'
 import {
   IAlterTranArgs,
   IAlterTranResult,
@@ -16,7 +16,7 @@ import {
 } from './tranable.interface'
 
 export default class Tranable {
-  public config: TConfig
+  public config: IConfig
   public client: AxiosInstance
   public options: object = {}
 

@@ -1,7 +1,7 @@
 import {AxiosInstance, AxiosResponse} from 'axios'
 import * as merge from 'deepmerge'
 import * as qs from 'querystring'
-import {TConfig} from '../config'
+import {IConfig} from '../config'
 import {
   IDeleteCardArgs,
   IDeleteCardResult,
@@ -12,7 +12,7 @@ import {
 } from './cardable.interface'
 
 export default class Cardable {
-  public config: TConfig
+  public config: IConfig
   public client: AxiosInstance
   public options: object = {}
 

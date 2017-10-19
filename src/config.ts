@@ -1,7 +1,7 @@
 import {AxiosRequestConfig} from 'axios'
 import * as process from 'process'
 
-export type TConfig = {
+export interface IConfig {
   axios?: AxiosRequestConfig
   SiteID?: string
   SitePass?: string
@@ -9,7 +9,7 @@ export type TConfig = {
   ShopPass?: string
 }
 
-export const defaults: TConfig = {
+export const defaults: IConfig = {
   axios: {
     timeout: 3*60*1000,
     baseURL: 'https://pt01.mul-pay.jp',
@@ -21,8 +21,8 @@ export const defaults: TConfig = {
 }
 
 export default class Config {
-  static buildByEnv(): TConfig {
-    const c: TConfig = {}
+  static buildByEnv(): IConfig {
+    const c: IConfig = {}
     c.axios = {}
 
     if (process.env.GMOPG_ENDPOINT) {

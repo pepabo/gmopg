@@ -64,9 +64,9 @@ GMOPG.entryTran({
 ### TypeScript
 
 ```ts
-import gmopg, {TConfig} from 'gmopg'
+import gmopg, {IConfig} from 'gmopg'
 
-const config: TConfig = {
+const config: IConfig = {
   axios: {},
   SiteID: 'Your SiteID',
   SitePass: 'Your SitePass',

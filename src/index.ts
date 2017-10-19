@@ -1,5 +1,5 @@
 import {AxiosInstance} from 'axios'
-import {TConfig} from './config'
+import {IConfig} from './config'
 import * as m from './client/memberable.interface'
 import * as c from './client/cardable.interface'
 import * as t from './client/tranable.interface'
@@ -13,7 +13,7 @@ export * from './client.enum'
 export * from './config'
 
 export interface GMOPGInstance {
-  config: TConfig
+  config: IConfig
   client: AxiosInstance
   options: object
   new: (config: TConfig) => GMOPGInstance
@@ -39,7 +39,7 @@ export interface GMOPGInstance {
 }
 
 export interface GMOPGStatic extends GMOPGInstance {
-  createInstance(config: TConfig): GMOPGInstance
+  createInstance(config: IConfig): GMOPGInstance
   generateMemberID(key: string): string
 }
 
