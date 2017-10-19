@@ -9,9 +9,13 @@ export interface IConfig {
   ShopPass?: string
 }
 
+const msec = 1000
+const sec = 60
+const min = 3
+
 export const defaults: IConfig = {
   axios: {
-    timeout: 3*60*1000,
+    timeout: min * sec * msec,
     baseURL: 'https://pt01.mul-pay.jp',
     headers: {
       'user-agent': 'GMO PG Client: Unofficial',
