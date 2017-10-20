@@ -1,6 +1,7 @@
 import {AxiosInstance, AxiosResponse} from 'axios'
 import * as merge from 'deepmerge'
 import * as qs from 'querystring'
+import Client from '../client'
 import {IConfig} from '../config'
 import {
   IDeleteMemberArgs,
@@ -13,7 +14,8 @@ import {
   IUpdateMemberResult
 } from './memberable.interface'
 
-export default class Memberable {
+export default class Memberable extends Client {
+  public name: string = 'Memberable'
   public config: IConfig
   public client: AxiosInstance
   public options: object = {}

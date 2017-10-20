@@ -1,6 +1,7 @@
 import {AxiosInstance, AxiosResponse} from 'axios'
 import * as merge from 'deepmerge'
 import * as qs from 'querystring'
+import Client from '../client'
 import {IConfig} from '../config'
 import {
   IDeleteCardArgs,
@@ -11,7 +12,8 @@ import {
   ISearchCardResult
 } from './cardable.interface'
 
-export default class Cardable {
+export default class Cardable extends Client {
+  public name: string = 'Cardable'
   public config: IConfig
   public client: AxiosInstance
   public options: object = {}

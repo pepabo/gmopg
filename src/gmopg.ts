@@ -8,6 +8,7 @@ import {buildByEnv, IConfig, defaults} from './config'
 import {applyMixins, generateID} from './util'
 
 export default class GMOPG implements Memberable, Cardable, Tranable {
+  public name: string = 'GMOPG'
   public config: IConfig
   public client: AxiosInstance
   public options: object
@@ -27,6 +28,7 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
   public deleteTran: (args: any) => any
   public searchTrade: (args: any) => any
   public changeTran: (args: any) => any
+  public errorHandler: (obj: any) => void
 
   constructor(config: IConfig) {
     this.config = merge(defaults, config)
