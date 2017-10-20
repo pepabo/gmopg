@@ -29,6 +29,8 @@ export interface IGMOPG {
   alterTran(args: t.IAlterTranArgs): Promise<t.IAlterTranResult>
   searchTrade(args: t.ISearchTradeArgs): Promise<t.ISearchTradeResult>
   changeTran(args: t.IChangeTranArgs): Promise<t.IChangeTranResult>
+  create(config: IConfig): IGMOPG
+  generateMemberID(key: string): string
 }
 
 export interface IGMOPGStatic extends IGMOPG {
