@@ -53,7 +53,7 @@
     "ci": "npm install && npm run lint && npm run cov && nsp check",
     "test": "npm run build && ava -v",
     "cov": "npm run build && nyc ava",
-    "lint": "tslint --type-check --project tsconfig.json -c tslint.json 'src/**/*.ts'",
+    "lint": "tslint --type-check --project tsconfig.json -c tslint.json src/**/*.ts",
     "preversion": "npm run clean && npm run build && npm test",
     "postversion": "git push origin --tags",
     "prepublishOnly": "npm run clean && npm run build && npm test"
