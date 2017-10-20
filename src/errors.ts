@@ -1,5 +1,6 @@
 export class BadRequest extends Error {
   public errors: string[]
+  public errInfo: string[]
 
   constructor(message?: string) {
     super(message)
@@ -7,7 +8,11 @@ export class BadRequest extends Error {
   }
 
   public parseError(obj: any): BadRequest {
-    this.errors = obj.ErrInfo.split('|')
+    this.errors = []
+    this.errInfo = obj.ErrInfo.split('|')
+    this.errInfo.map((code) => {
+      this.errors.push(errorDefinition[code])
+    })
     return this
   }
 
