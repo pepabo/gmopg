@@ -13,7 +13,7 @@
   ],
   "bugs": "https://github.com/linyows/gmopg.js/issues",
   "main": "./index.js",
-  "types": "./lib/index.d.ts",
+  "types": "./lib/types.d.ts",
   "files": [
     "MIT-LICENSE",
     "README.md",
