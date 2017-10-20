@@ -34,19 +34,6 @@ export default class Cardable extends Client {
     }
   }
 
-  /*
-  public parseResponseData(data: string): { [key: string]: string } {
-    const src: { [key: string]: string | string[] } = qs.parse(data)
-    let newObject: object = {}
-
-    Object.keys(src).forEach((key) => {
-      newObject[<string> key] = <string> src[key]
-    })
-
-    return newObject
-  }
-  */
-
   public async saveCard(args: ISaveCardArgs): Promise<ISaveCardResult> {
     const data: ISaveCardArgs = merge(this.defaultCardData, args)
     const res: AxiosResponse = await this.client.post('/payment/SaveCard.idPass', data, this.options)
