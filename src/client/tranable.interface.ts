@@ -92,8 +92,6 @@ export interface ISearchTradeResult extends IResult {
   ClientField1: string
   ClientField2: string
   ClientField3: string
-  ErrCode: string
-  ErrInfo: string
 }
 
 export interface IChangeTranArgs extends IShopArgs {

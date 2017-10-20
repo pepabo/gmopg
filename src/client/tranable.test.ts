@@ -167,9 +167,7 @@ test('.searchTrade calls API and returns response', async (t) => {
         'Approve=approve',
         'ClientField1=clientfield1',
         'ClientField2=clientfield2',
-        'ClientField3=clientfield3',
-        'ErrCode=errcode',
-        'ErrInfo=errinfo'
+        'ClientField3=clientfield3'
       ].join('&')
       const response: AxiosResponse = {
         data: text,
@@ -211,9 +209,7 @@ test('.searchTrade calls API and returns response', async (t) => {
     Approve: 'approve',
     ClientField1: 'clientfield1',
     ClientField2: 'clientfield2',
-    ClientField3: 'clientfield3',
-    ErrCode: 'errcode',
-    ErrInfo: 'errinfo'
+    ClientField3: 'clientfield3'
   }
   t.deepEqual(res, expect)
 })
