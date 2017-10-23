@@ -34,21 +34,21 @@ export default class Cardable extends Client {
   }
 
   public async saveCard(args: ISaveCardArgs): Promise<ISaveCardResult> {
-    const data: ISaveCardArgs = merge(this.defaultCardData, args)
+    const data: ISaveCardArgs = merge(this.defaultCardData(), args)
     const parsed: any = await this.post('/payment/SaveCard.idPass', data)
 
     return <ISaveCardResult> parsed
   }
 
   public async deleteCard(args: IDeleteCardArgs): Promise<IDeleteCardResult> {
-    const data: IDeleteCardArgs = merge(this.defaultCardData, args)
+    const data: IDeleteCardArgs = merge(this.defaultCardData(), args)
     const parsed: any = await this.post('/payment/DeleteCard.idPass', data)
 
     return <IDeleteCardResult> parsed
   }
 
   public async searchCard(args: ISearchCardArgs): Promise<ISearchCardResult[]> {
-    const data: ISearchCardArgs = merge(this.defaultCardData, args)
+    const data: ISearchCardArgs = merge(this.defaultCardData(), args)
     const parsed: any = await this.post('/payment/SearchCard.idPass', data)
 
     const cardSeqArry: string[] = parsed.CardSeq.split('|')
