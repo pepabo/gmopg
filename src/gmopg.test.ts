@@ -24,7 +24,7 @@ test('.CREATE returns new GMOPG instance', (t) => {
 
 test('.GENERATE_MEMBER_ID returns generated memberID', (t) => {
   const ID = GMOPG.GENERATE_MEMBER_ID('key')
-  t.regex(ID, /key-\w{32}/)
+  t.regex(ID, /^key-\w{32}$/)
 })
 
 test('.config returns IConfig', (t) => {
