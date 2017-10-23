@@ -93,6 +93,6 @@ test('.changeTran is function', (t) => {
   t.is(typeof t.context.gmopg.changeTran, 'function')
 })
 
-test('.errorHandler is function', (t) => {
-  t.is(typeof t.context.gmopg.errorHandler, 'function')
+test('.post is function', (t) => {
+  t.is(typeof t.context.gmopg.post, 'function')
 })
