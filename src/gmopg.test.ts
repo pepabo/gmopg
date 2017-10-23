@@ -92,3 +92,7 @@ test('.searchTrade is function', (t) => {
 test('.changeTran is function', (t) => {
   t.is(typeof t.context.gmopg.changeTran, 'function')
 })
+
+test('.errorHandler is function', (t) => {
+  t.is(typeof t.context.gmopg.errorHandler, 'function')
+})
