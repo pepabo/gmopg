@@ -42,6 +42,11 @@
       "member-variable-declaration"
     ]
   },
+  "linterOptions": {
+    "exclude": [
+      "**/*.test.ts"
+    ]
+  },
   "rulesDirectory": [
     "node_modules/tslint-microsoft-contrib"
   ]
