@@ -139,3 +139,7 @@ test('.searchMember calls API and returns response', async (t) => {
   }
   t.deepEqual(res, expect)
 })
+
+test('.errorHandler is function', (t) => {
+  t.is(typeof t.context.member.errorHandler, 'function')
+})
