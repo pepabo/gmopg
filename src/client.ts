@@ -7,7 +7,7 @@ export default class Client {
   public options: object = {}
 
   public async post(endpoint: string, data: any): Promise<any> {
-    const res: AxiosResponse = await this.client.post(endpoint, data, this.options)
+    const res: AxiosResponse = await this.client.post(endpoint, qs.stringify(data), this.options)
     const parsed: any = qs.parse(res.data)
 
     if (this.isError(parsed)) {
