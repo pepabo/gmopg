@@ -1,6 +1,5 @@
-import {AxiosInstance, AxiosResponse} from 'axios'
+import {AxiosInstance} from 'axios'
 import * as merge from 'deepmerge'
-import * as qs from 'querystring'
 import Client from '../client'
 import {IConfig} from '../config'
 import {
@@ -36,29 +35,21 @@ export default class Cardable extends Client {
 
   public async saveCard(args: ISaveCardArgs): Promise<ISaveCardResult> {
     const data: ISaveCardArgs = merge(this.defaultCardData, args)
-    const res: AxiosResponse = await this.client.post('/payment/SaveCard.idPass', data, this.options)
-    const parsed: any = qs.parse(res.data)
-    const result: ISaveCardResult = <ISaveCardResult> parsed
-    this.errorHandler(result)
+    const parsed: any = await this.post('/payment/SaveCard.idPass', data)
 
-    return result
+    return <ISaveCardResult> parsed
   }
 
   public async deleteCard(args: IDeleteCardArgs): Promise<IDeleteCardResult> {
     const data: IDeleteCardArgs = merge(this.defaultCardData, args)
-    const res: AxiosResponse = await this.client.post('/payment/DeleteCard.idPass', data, this.options)
-    const parsed: any = qs.parse(res.data)
-    const result: IDeleteCardResult = <IDeleteCardResult> parsed
-    this.errorHandler(result)
+    const parsed: any = await this.post('/payment/DeleteCard.idPass', data)
 
-    return result
+    return <IDeleteCardResult> parsed
   }
 
   public async searchCard(args: ISearchCardArgs): Promise<ISearchCardResult[]> {
     const data: ISearchCardArgs = merge(this.defaultCardData, args)
-    const res: AxiosResponse = await this.client.post('/payment/SearchCard.idPass', data, this.options)
-    const parsed: any = qs.parse(res.data)
-    this.errorHandler(parsed)
+    const parsed: any = await this.post('/payment/SearchCard.idPass', data)
 
     const cardSeqArry: string[] = parsed.CardSeq.split('|')
     const defaultFlagArry: string[] = parsed.DefaultFlag.split('|')

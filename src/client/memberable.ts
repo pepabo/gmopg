@@ -1,6 +1,5 @@
-import {AxiosInstance, AxiosResponse} from 'axios'
+import {AxiosInstance} from 'axios'
 import * as merge from 'deepmerge'
-import * as qs from 'querystring'
 import Client from '../client'
 import {IConfig} from '../config'
 import {
@@ -38,41 +37,29 @@ export default class Memberable extends Client {
 
   public async saveMember(args: ISaveMemberArgs): Promise<ISaveMemberResult> {
     const data: ISaveMemberArgs = merge(this.defaultMemberData(), args)
-    const res: AxiosResponse = await this.client.post('/payment/SaveMember.idPass', data, this.options)
-    const parsed: any = qs.parse(res.data)
-    const result: ISaveMemberResult = <ISaveMemberResult> parsed
-    this.errorHandler(result)
+    const parsed: any = await this.post('/payment/SaveMember.idPass', data)
 
-    return result
+    return <ISaveMemberResult> parsed
   }
 
   public async updateMember(args: IUpdateMemberArgs): Promise<IUpdateMemberResult> {
     const data: IUpdateMemberArgs = merge(this.defaultMemberData(), args)
-    const res: AxiosResponse = await this.client.post('/payment/UpdateMember.idPass', data, this.options)
-    const parsed: any = qs.parse(res.data)
-    const result: IUpdateMemberResult = <IUpdateMemberResult> parsed
-    this.errorHandler(result)
+    const parsed: any = await this.post('/payment/UpdateMember.idPass', data)
 
-    return result
+    return <IUpdateMemberResult> parsed
   }
 
   public async deleteMember(args: IDeleteMemberArgs): Promise<IDeleteMemberResult> {
     const data: IDeleteMemberArgs = merge(this.defaultMemberData(), args)
-    const res: AxiosResponse = await this.client.post('/payment/DeleteMember.idPass', data, this.options)
-    const parsed: any = qs.parse(res.data)
-    const result: IDeleteMemberResult = <IDeleteMemberResult> parsed
-    this.errorHandler(result)
+    const parsed: any = await this.post('/payment/DeleteMember.idPass', data)
 
-    return result
+    return <IDeleteMemberResult> parsed
   }
 
   public async searchMember(args: ISearchMemberArgs): Promise<ISearchMemberResult | null> {
     const data: ISearchMemberArgs = merge(this.defaultMemberData(), args)
-    const res: AxiosResponse = await this.client.post('/payment/SearchMember.idPass', data, this.options)
-    const parsed: any = qs.parse(res.data)
-    const result: ISearchMemberResult = <ISearchMemberResult> parsed
-    this.errorHandler(result)
+    const parsed: any = await this.post('/payment/SearchMember.idPass', data)
 
-    return result
+    return <ISearchMemberResult> parsed
   }
 }

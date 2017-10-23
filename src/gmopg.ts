@@ -28,7 +28,8 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
   public deleteTran: (args: any) => any
   public searchTrade: (args: any) => any
   public changeTran: (args: any) => any
-  public errorHandler: (obj: any) => void
+  public post: (endpoint: string, data: any) => any
+  public isError: (obj: any) => boolean
 
   constructor(config: IConfig) {
     this.config = merge(defaults, config)

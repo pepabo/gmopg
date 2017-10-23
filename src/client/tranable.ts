@@ -1,6 +1,5 @@
-import {AxiosInstance, AxiosResponse} from 'axios'
+import {AxiosInstance} from 'axios'
 import * as merge from 'deepmerge'
-import * as qs from 'querystring'
 import Client from '../client'
 import {IConfig} from '../config'
 import {
@@ -31,21 +30,15 @@ export default class Tranable extends Client {
       Amount: undefined
     }
     const data: IEntryTranArgs = merge(defaultData, args)
-    const res: AxiosResponse = await this.client.post('/payment/EntryTran.idPass', data, this.options)
-    const parsed: any = qs.parse(res.data)
-    const result: IEntryTranResult = <IEntryTranResult> parsed
-    this.errorHandler(result)
+    const parsed: any = await this.post('/payment/EntryTran.idPass', data)
 
-    return result
+    return <IEntryTranResult> parsed
   }
 
   public async execTran(args: IExecTranArgs): Promise<IExecTranResult> {
-    const res: AxiosResponse = await this.client.post('/payment/ExecTran.idPass', args, this.options)
-    const parsed: any = qs.parse(res.data)
-    const result: IExecTranResult = <IExecTranResult> parsed
-    this.errorHandler(result)
+    const parsed: any = await this.post('/payment/ExecTran.idPass', args)
 
-    return result
+    return <IExecTranResult> parsed
   }
 
   public async alterTran(args: IAlterTranArgs): Promise<IAlterTranResult> {
@@ -57,12 +50,9 @@ export default class Tranable extends Client {
       JobCd: undefined
     }
     const data: IAlterTranArgs = merge(defaultData, args)
-    const res: AxiosResponse = await this.client.post('/payment/AlterTran.idPass', data, this.options)
-    const parsed: any = qs.parse(res.data)
-    const result: IAlterTranResult = <IAlterTranResult> parsed
-    this.errorHandler(result)
+    const parsed: any = await this.post('/payment/AlterTran.idPass', data)
 
-    return result
+    return <IAlterTranResult> parsed
   }
 
   public async searchTrade(args: ISearchTradeArgs): Promise<ISearchTradeResult> {
@@ -72,12 +62,9 @@ export default class Tranable extends Client {
       OrderID: undefined
     }
     const data: ISearchTradeArgs = merge(defaultData, args)
-    const res: AxiosResponse = await this.client.post('/payment/SearchTrade.idPass', data, this.options)
-    const parsed: any = qs.parse(res.data)
-    const result: ISearchTradeResult = <ISearchTradeResult> parsed
-    this.errorHandler(result)
+    const parsed: any = await this.post('/payment/SearchTrade.idPass', data)
 
-    return result
+    return <ISearchTradeResult> parsed
   }
 
   public async changeTran(args: IChangeTranArgs): Promise<IChangeTranResult> {
@@ -90,11 +77,8 @@ export default class Tranable extends Client {
       Amount: undefined
     }
     const data: IChangeTranArgs = merge(defaultData, args)
-    const res: AxiosResponse = await this.client.post('/payment/ChangeTran.idPass', data, this.options)
-    const parsed: any = qs.parse(res.data)
-    const result: IChangeTranResult = <IChangeTranResult> parsed
-    this.errorHandler(result)
+    const parsed: any = await this.post('/payment/ChangeTran.idPass', data)
 
-    return result
+    return <IChangeTranResult> parsed
   }
 }
