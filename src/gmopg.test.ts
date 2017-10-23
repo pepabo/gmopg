@@ -27,6 +27,11 @@ test('.GENERATE_MEMBER_ID returns generated memberID', (t) => {
   t.regex(ID, /^key-\w{32}$/)
 })
 
+test('.GENERATE_MEMBER_ID returns max 60 chars', (t) => {
+  const ID = GMOPG.GENERATE_MEMBER_ID('0123456789-0123456789-0123456789-0123456789')
+  t.regex(ID, /^.{60}$/)
+})
+
 test('.config returns IConfig', (t) => {
   const expect = {
     axios: {
