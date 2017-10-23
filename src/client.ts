@@ -11,12 +11,8 @@ export default class Client {
     const parsed: any = qs.parse(res.data)
 
     if (this.isError(parsed)) {
-      const req = {
-        endpoint: endpoint,
-        data: data
-      }
       throw new BadRequest(`Bad Request: ${endpoint}`).
-        setRequest(req).setResponse(res).parseError(parsed)
+        setResponse(res).parseError(parsed)
     }
 
     return parsed

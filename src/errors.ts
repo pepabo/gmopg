@@ -1,17 +1,11 @@
 export class BadRequest extends Error {
   public errors: string[]
   public errInfo: string[]
-  public request: any
   public response: any
 
   constructor(message?: string) {
     super(message)
     Object.setPrototypeOf(this, new.target.prototype)
-  }
-
-  public setRequest(obj: any): BadRequest {
-    this.request = obj
-    return this
   }
 
   public setResponse(obj: any): BadRequest {
