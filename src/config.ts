@@ -18,8 +18,7 @@ export const defaults: IConfig = {
     timeout: min * sec * msec,
     baseURL: 'https://pt01.mul-pay.jp',
     headers: {
-      'user-agent': 'GMO PG Client: Unofficial',
-      'content-length': '0'
+      'user-agent': 'GMO PG Client: Unofficial'
     }
   }
 }

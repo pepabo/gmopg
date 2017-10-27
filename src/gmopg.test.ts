@@ -38,8 +38,7 @@ test('.config returns IConfig', (t) => {
       baseURL: 'https://pt01.mul-pay.jp',
       timeout: 180000,
       headers: {
-        'user-agent': 'GMO PG Client: Unofficial',
-        'content-length': '0'
+        'user-agent': 'GMO PG Client: Unofficial'
       }
     }
   }
