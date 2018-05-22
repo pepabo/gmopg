@@ -25,12 +25,14 @@ Purchase example
 ### Node.js
 
 ```js
-const GMOPG = require('gmopg')
-
-GMOPG.config.SiteID   = 'Your SiteID'
-GMOPG.config.SitePass = 'Your SitePass'
-GMOPG.config.ShopID   = 'Your ShopID'
-GMOPG.config.ShopPass = 'Your SitePass'
+const pg = require('gmopg')
+const GMOPG = pg.GMOPG.CREATE({
+  axios: { baseURL: 'https://p01.mul-pay.jp' },
+  SiteID: 'Your SiteID',
+  SitePass: 'Your SitePass',
+  ShopID: 'Your ShopID',
+  ShopPass: 'Your SitePass',
+})
 
 const orderID = 'Order ID'
 const amount  = 1234
@@ -64,15 +66,15 @@ GMOPG.entryTran({
 ### TypeScript
 
 ```ts
-import gmopg, {IConfig} from 'gmopg'
+import GMOPG from 'gmopg'
 
-const config: IConfig = {
-  axios: {},
+const gmopg = new GMOPG({
+  axios: { baseURL: 'https://p01.mul-pay.jp' },
   SiteID: 'Your SiteID',
   SitePass: 'Your SitePass',
   ShopID: 'Your ShopID',
   ShopPass: 'Your ShopPass'
-}
+})
 
 const orderID = 'Order ID'
 const amount  = 1234
@@ -103,8 +105,6 @@ const alterRes = await gmopg.alterTran({
 
 Config
 ------
-
-`GMOPG.config`:
 
 name          | description         | environ        | default
 ---           | ---                 | ---            | ---
