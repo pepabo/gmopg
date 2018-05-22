@@ -9,7 +9,6 @@ import {applyMixins, generateID} from './util'
 
 export default class GMOPG implements Memberable, Cardable, Tranable {
   public name: string = 'GMOPG'
-  public config: IConfig
   public client: AxiosInstance
   public options: object
 
@@ -31,12 +30,22 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
   public post: (endpoint: string, data: any) => any
   public isError: (obj: any) => boolean
 
+  private pConfig: IConfig
+
   constructor(config: IConfig) {
     this.config = merge(defaults, config)
     const configByEnv: IConfig = buildByEnv()
     if (configByEnv !== {}) {
       this.config = merge(this.config, configByEnv)
     }
+  }
+
+  public get config(): IConfig {
+    return this.pConfig
+  }
+
+  public set config(c: IConfig) {
+    this.pConfig = c
     this.client = Axios.create(this.config.axios)
   }
 
