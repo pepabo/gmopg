@@ -7,10 +7,11 @@ import Tranable from './client/tranable'
 import {buildByEnv, IConfig, defaults} from './config'
 import {applyMixins, generateID} from './util'
 
-export default class GMOPG implements Memberable, Cardable, Tranable {
+export class GMOPG implements Memberable, Cardable, Tranable {
   public name: string = 'GMOPG'
   public client: AxiosInstance
   public options: object
+  public config: IConfig
 
   public saveMember: (args: any) => any
   public updateMember: (args: any) => any
@@ -38,14 +39,6 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
     if (configByEnv !== {}) {
       this.config = merge(this.config, configByEnv)
     }
-  }
-
-  public get config(): IConfig {
-    return this.pConfig
-  }
-
-  public set config(c: IConfig) {
-    this.pConfig = c
     this.client = Axios.create(this.config.axios)
   }
 
@@ -63,3 +56,5 @@ export default class GMOPG implements Memberable, Cardable, Tranable {
 }
 
 applyMixins(GMOPG, [Memberable, Cardable, Tranable])
+
+export default GMOPG
