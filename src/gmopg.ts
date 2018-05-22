@@ -33,7 +33,10 @@ export class GMOPG implements Memberable, Cardable, Tranable {
 
   private pConfig: IConfig
 
-  constructor(config: IConfig) {
+  constructor(config: IConfig | undefined) {
+    if (config === undefined) {
+      config = {}
+    }
     this.config = merge(defaults, config)
     const configByEnv: IConfig = buildByEnv()
     if (configByEnv !== {}) {
