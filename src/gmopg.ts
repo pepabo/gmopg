@@ -80,7 +80,7 @@ export class GMOPG implements Memberable, Cardable, Tranable {
     this.client = Axios.create(this.config.axios)
   }
 
-  public static CREATE(config: IConfig): GMOPG {
+  public static CREATE(config: IConfig | undefined): GMOPG {
     return new GMOPG(config)
   }
 
