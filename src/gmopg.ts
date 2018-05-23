@@ -4,8 +4,9 @@ import * as enums from './client.enum'
 import Memberable from './client/memberable'
 import Cardable from './client/cardable'
 import Tranable from './client/tranable'
-import {buildByEnv, IConfig, defaults} from './config'
+import {buildByEnv, defaults} from './config'
 import {applyMixins, generateID} from './util'
+import {IConfig} from './config.interface'
 import {
   IDeleteMemberArgs,
   IDeleteMemberResult,

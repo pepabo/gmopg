@@ -1,7 +1,7 @@
 import {AxiosInstance} from 'axios'
 import * as merge from 'deepmerge'
 import Client from '../client'
-import {IConfig} from '../config'
+import {IConfig} from '../config.interface'
 import {
   IDeleteMemberArgs,
   IDeleteMemberResult,
