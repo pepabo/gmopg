@@ -88,7 +88,7 @@ export class GMOPG implements Memberable, Cardable, Tranable {
     return generateID(key).substring(0, 60)
   }
 
-  get enums() {
+  public static get ENUMS() {
     return enums
   }
 }
