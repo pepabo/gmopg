@@ -95,4 +95,9 @@ export class GMOPG implements Memberable, Cardable, Tranable {
 
 applyMixins(GMOPG, [Memberable, Cardable, Tranable])
 
+export * from './config.interface'
+export * from './client.interface'
+export * from './client/memberable.interface'
+export * from './client/cardable.interface'
+export * from './client/tranable.interface'
 export default GMOPG
