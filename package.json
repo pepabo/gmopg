@@ -31,7 +31,9 @@
   "devDependencies": {
     "@types/deepmerge": "^1.3.2",
     "@types/node": "^8.0.32",
-    "ava": "^0.22.0",
+    "ava": "^0.25.0",
+    "ava-ts": "^0.24.5",
+    "ts-node": "^6.0.3",
     "nsp": "^2.8.1",
     "coveralls": "^3.0.0",
     "nyc": "^11.2.1",
@@ -44,15 +46,15 @@
   },
   "ava": {
     "files": [
-      "./lib/**/*.test.js"
+      "src/**/*.test.ts"
     ]
   },
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf lib",
     "ci": "npm install && npm run lint && npm run cov && nsp check",
-    "test": "npm run build && ava -v",
-    "cov": "npm run build && nyc ava",
+    "test": "ava-ts -v",
+    "cov": "nyc npm test",
     "lint": "tslint -p tsconfig.json -c tslint.json src/**/*.ts",
     "preversion": "npm run clean && npm run build && npm test",
     "postversion": "git push origin --tags",
