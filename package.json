@@ -1,7 +1,7 @@
 {
   "name": "gmopg",
   "description": "GMO PaymentGateway API client",
-  "version": "0.19.2",
+  "version": "0.20.0",
   "author": "linyows",
   "license": "MIT",
   "repository": "linyows/gmopg.js",
@@ -13,7 +13,7 @@
   ],
   "bugs": "https://github.com/linyows/gmopg.js/issues",
   "main": "./index.js",
-  "types": "./lib/types.d.ts",
+  "types": "./lib/gmopg.d.ts",
   "files": [
     "MIT-LICENSE",
     "README.md",
@@ -46,6 +46,14 @@
   },
   "ava": {
     "files": [
+      "src/**/*.test.ts"
+    ]
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
       "src/**/*.test.ts"
     ]
   },

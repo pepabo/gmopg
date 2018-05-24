@@ -13,8 +13,15 @@ test('new returns GMOPG instance', (t) => {
   t.true(t.context.gmopg instanceof GMOPG)
 })
 
-test('.enums returns enum object', (t) => {
-  t.is(typeof t.context.gmopg.enums, 'object')
+test('.ENUMS returns enum object', (t) => {
+  t.deepEqual(Object.keys(GMOPG.ENUMS), [
+    'PayType',
+    'Method',
+    'Status',
+    'JobCd',
+    'SeqMode',
+    'DefaultFlag',
+  ])
 })
 
 test('.CREATE returns new GMOPG instance', (t) => {

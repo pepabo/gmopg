@@ -1,13 +1,5 @@
-import {AxiosRequestConfig} from 'axios'
 import * as process from 'process'
-
-export interface IConfig {
-  axios?: AxiosRequestConfig
-  SiteID?: string
-  SitePass?: string
-  ShopID?: string
-  ShopPass?: string
-}
+import {IConfig} from './config.interface'
 
 const msec = 1000
 const sec = 60
