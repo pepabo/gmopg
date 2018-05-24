@@ -49,6 +49,14 @@
       "src/**/*.test.ts"
     ]
   },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "src/**/*.test.ts"
+    ]
+  },
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf lib",
