@@ -6,5 +6,5 @@ script:
 after_success:
   - './node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls'
 notifications:
-  slack: linyows:2oeZ2qcLnaMjbnEYodwEXKTr
+  slack: pepabo:1cO6OMIn3eFpIeyMXSuxrYjC
   email: false
