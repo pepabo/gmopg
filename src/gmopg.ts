@@ -68,7 +68,7 @@ export class GMOPG implements Memberable, Cardable, Tranable {
   public searchTrade: (args: ISearchTradeArgs) => Promise<ISearchTradeResult>
   public changeTran: (args: IChangeTranArgs) => Promise<IChangeTranResult>
 
-  constructor(config: IConfig | undefined) {
+  constructor(config?: IConfig) {
     if (config === undefined) {
       config = {}
     }
@@ -80,7 +80,7 @@ export class GMOPG implements Memberable, Cardable, Tranable {
     this.client = Axios.create(this.config.axios)
   }
 
-  public static CREATE(config: IConfig | undefined): GMOPG {
+  public static CREATE(config?: IConfig): GMOPG {
     return new GMOPG(config)
   }
 
