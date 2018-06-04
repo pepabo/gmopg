@@ -2,7 +2,7 @@ import test from 'ava'
 import GMOPG from './gmopg'
 
 test.beforeEach((t) => {
-  t.context.gmopg = new GMOPG({})
+  t.context.gmopg = new GMOPG()
 })
 
 test('constructor.name returns Object', (t) => {
@@ -25,7 +25,7 @@ test('.ENUMS returns enum object', (t) => {
 })
 
 test('.CREATE returns new GMOPG instance', (t) => {
-  const instance = GMOPG.CREATE({})
+  const instance = GMOPG.CREATE()
   t.true(instance instanceof GMOPG)
 })
 
