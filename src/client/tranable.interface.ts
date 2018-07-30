@@ -4,7 +4,11 @@ import {IResult, IShopArgs} from '../client.interface'
 export interface IEntryTranArgs extends IShopArgs {
   OrderID: string
   JobCd: JobCd
+  ItemCode?: string
   Amount: number
+  Tax?: number
+  TdFlag?: string
+  TdTenantName?: string
 }
 
 export interface IEntryTranResult extends IResult {
