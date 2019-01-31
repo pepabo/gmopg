@@ -25,8 +25,9 @@ Purchase example
 ### Node.js
 
 ```js
-const pg = require('gmopg')
-const GMOPG = pg.GMOPG.CREATE({
+const GMOPG = require('gmopg').GMOPG;
+
+const gmopg = GMOPG.CREATE({
   axios: { baseURL: 'https://p01.mul-pay.jp' },
   SiteID: 'Your SiteID',
   SitePass: 'Your SitePass',
@@ -37,25 +38,25 @@ const GMOPG = pg.GMOPG.CREATE({
 const orderID = 'Order ID'
 const amount  = 1234
 
-GMOPG.entryTran({
+gmopg.entryTran({
   OrderID: orderID,
-  JobCd: GMOPG.enums.JobCd.Auth,
+  JobCd: GMOPG.ENUMS.JobCd.Auth,
   Amount: amount
 }).then((entryRes) => {
-  GMOPG.execTran({
-    AccessID: entryRes.accessId,
-    AccessPass: entryRes.accessPass,
+  gmopg.execTran({
+    AccessID: entryRes.AccessID,
+    AccessPass: entryRes.AccessPass,
     OrderID: orderID,
-    Method: GMOPG.enums.Method.Lump,
+    Method: GMOPG.ENUMS.Method.Lump,
     CardNo: '1234123412341234',
     Expire: '2024',
     SecurityCode: '123'
   }).then((execRes) => {
-    GMOPG.alterTran({
-      AccessID: entryRes.accessId,
-      AccessPass: entryRes.accessPass,
-      JobCd: GMOPG.enums.JobCd.Sales,
-      amount: amount
+    gmopg.alterTran({
+      AccessID: entryRes.AccessID,
+      AccessPass: entryRes.AccessPass,
+      JobCd: GMOPG.ENUMS.JobCd.Sales,
+      Amount: amount
     }).then((alterRes) => {
       console.log(alterRes)
     })
@@ -77,29 +78,29 @@ const gmopg = new GMOPG({
 })
 
 const orderID = 'Order ID'
-const amount  = 1234
+const amount = 1234
 
 const entryRes = await gmopg.entryTran({
   OrderID: orderID,
-  JobCd: gmopg.enums.JobCd.Auth,
+  JobCd: GMOPG.ENUMS.JobCd.Auth,
   Amount: amount
 })
 
 const execRes = await gmopg.execTran({
-  AccessID: entryRes.accessId,
-  AccessPass: entryRes.accessPass,
+  AccessID: entryRes.AccessID,
+  AccessPass: entryRes.AccessPass,
   OrderID: orderID,
-  Method: gmopg.enums.Method.Lump,
+  Method: GMOPG.ENUMS.Method.Lump,
   CardNo: '1234123412341234',
   Expire: '2024',
   SecurityCode: '123'
 })
 
 const alterRes = await gmopg.alterTran({
-  AccessID: entryRes.accessId,
-  AccessPass: entryRes.accessPass,
-  JobCd: gmopg.enums.JobCd.Sales,
-  amount: amount
+  AccessID: entryRes.AccessID,
+  AccessPass: entryRes.AccessPass,
+  JobCd: GMOPG.ENUMS.JobCd.Sales,
+  Amount: amount
 })
 ```
 
