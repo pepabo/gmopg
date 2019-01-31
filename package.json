@@ -34,7 +34,6 @@
     "ava": "^0.25.0",
     "ava-ts": "^0.24.5",
     "ts-node": "^6.0.3",
-    "nsp": "^2.8.1",
     "coveralls": "^3.0.0",
     "nyc": "^11.2.1",
     "tslint": "^5.7.0",
@@ -60,7 +59,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf lib",
-    "ci": "npm install && npm run lint && npm run cov && nsp check",
+    "ci": "npm install && npm run lint && npm run cov && npm audit",
     "test": "ava-ts -v",
     "cov": "nyc npm test",
     "lint": "tslint -p tsconfig.json -c tslint.json src/**/*.ts",
