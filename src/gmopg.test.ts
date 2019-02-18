@@ -27,6 +27,7 @@ test('.ENUMS returns enum object', (t) => {
     'JobCd',
     'SeqMode',
     'DefaultFlag',
+    'CvsCode',
   ])
 })
 
@@ -108,6 +109,18 @@ test('.searchTrade is function', (t) => {
 
 test('.changeTran is function', (t) => {
   t.is(typeof t.context.gmopg.changeTran, 'function')
+})
+
+test('.entryTranCvs is function', (t) => {
+  t.is(typeof t.context.gmopg.entryTranCvs, 'function')
+})
+
+test('.execTranCvs is function', (t) => {
+  t.is(typeof t.context.gmopg.execTranCvs, 'function')
+})
+
+test('.searchTradeMulti is function', (t) => {
+  t.is(typeof t.context.gmopg.searchTradeMulti, 'function')
 })
 
 test('.post is function', (t) => {
