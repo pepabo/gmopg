@@ -1,7 +1,14 @@
-import test from 'ava'
+import anyTest, {TestInterface} from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
 import Cardable from './cardable'
+import {SeqMode} from '../client.enum'
 import {IDeleteCardResult, ISaveCardResult, ISearchCardResult} from './cardable.interface'
+
+interface Context {
+  card: Cardable
+}
+
+const test = anyTest as TestInterface<Context>;
 
 test.beforeEach((t) => {
   const card = new Cardable()
@@ -69,7 +76,7 @@ test('.deleteCard calls API and returns response', async (t) => {
     SiteID: 'siteid',
     SitePass: 'sitepass',
     MemberID: 'memberid',
-    SeqMode: '0',
+    SeqMode: SeqMode.Logic,
     CardSeq: 'cardseq'
   }
   const res = await t.context.card.deleteCard(args)
@@ -99,7 +106,7 @@ test('.searchCard calls API and returns response', async (t) => {
     SiteID: 'siteid',
     SitePass: 'sitepass',
     MemberID: 'memberid',
-    SeqMode: '0',
+    SeqMode: SeqMode.Logic,
     CardSeq: 'cardseq'
   }
   const res = await t.context.card.searchCard(args)

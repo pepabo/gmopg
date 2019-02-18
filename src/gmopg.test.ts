@@ -1,5 +1,11 @@
-import test from 'ava'
+import anyTest, {TestInterface} from 'ava'
 import GMOPG from './gmopg'
+
+interface Context {
+  gmopg: GMOPG
+}
+
+const test = anyTest as TestInterface<Context>;
 
 test.beforeEach((t) => {
   t.context.gmopg = new GMOPG()

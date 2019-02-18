@@ -1,4 +1,4 @@
-import test from 'ava'
+import anyTest, {TestInterface} from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
 import {JobCd, Method} from '../client.enum'
 import Tranable from './tranable'
@@ -9,6 +9,12 @@ import {
   IExecTranResult,
   ISearchTradeResult
 } from './tranable.interface'
+
+interface Context {
+  tran: Tranable
+}
+
+const test = anyTest as TestInterface<Context>;
 
 test.beforeEach((t) => {
   const tran = new Tranable()
@@ -38,7 +44,7 @@ test('.entryTran calls API and returns response', async (t) => {
     ShopID: 'shopid',
     ShopPass: 'shoppass',
     OrderID: 'orderid',
-    JobCd: 'jobcd',
+    JobCd: JobCd.Check,
     Amount: 1234
   }
   const res = await t.context.tran.entryTran(args)
@@ -83,7 +89,7 @@ test('.execTran calls API and returns response', async (t) => {
     AccessID: 'accessid',
     AccessPass: 'accesspass',
     OrderID: 'orderid',
-    Method: '1',
+    Method: Method.Lump,
     PayTimes: 1,
     CardNo: 'cardno',
     Expire: 'expire',
@@ -128,7 +134,7 @@ test('.alterTran calls API and returns response', async (t) => {
     ShopPass: 'shoppass',
     AccessID: 'accessid',
     AccessPass: 'accesspass',
-    JobCd: 'jobcd'
+    JobCd: JobCd.Check
   }
   const res = await t.context.tran.alterTran(args)
 

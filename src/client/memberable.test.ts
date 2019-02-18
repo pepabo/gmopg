@@ -1,4 +1,4 @@
-import test from 'ava'
+import anyTest, {TestInterface} from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
 import Memberable from './memberable'
 import {
@@ -7,6 +7,12 @@ import {
   ISearchMemberResult,
   IUpdateMemberResult
 } from './memberable.interface'
+
+interface Context {
+  member: Memberable
+}
+
+const test = anyTest as TestInterface<Context>;
 
 test.beforeEach((t) => {
   const member = new Memberable()
