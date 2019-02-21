@@ -120,7 +120,7 @@ ShopPass      | PG shop pass        | GMOPG_SHOPPASS | undefined
 Contribution
 ------------
 
-1. Fork (https://github.com/linyows/gmopg.js/fork)
+1. Fork (https://github.com/pepabo/gmopg/fork)
 1. Create a feature branch
 1. Commit your changes
 1. Rebase your local changes against the master branch

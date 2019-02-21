@@ -4,14 +4,14 @@
   "version": "0.21.0",
   "author": "linyows",
   "license": "MIT",
-  "repository": "pepabo/gmopg.js",
-  "homepage": "https://github.com/pepabo/gmopg.js",
+  "repository": "pepabo/gmopg",
+  "homepage": "https://github.com/pepabo/gmopg",
   "keywords": [
     "api",
     "client",
     "payment"
   ],
-  "bugs": "https://github.com/pepabo/gmopg.js/issues",
+  "bugs": "https://github.com/pepabo/gmopg/issues",
   "main": "./index.js",
   "types": "./lib/gmopg.d.ts",
   "files": [
