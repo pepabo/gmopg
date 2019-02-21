@@ -1,13 +1,14 @@
 import {AxiosInstance, AxiosResponse} from 'axios'
 import {BadRequest} from './errors'
-import * as qs from 'querystring'
+import * as qs from 'qs'
+const encoder = require('qs-iconv/encoder')('shift_jis')
 
 export default class Client {
   public client: AxiosInstance
   public options: object = {}
 
   public async post(endpoint: string, data: any): Promise<any> {
-    const res: AxiosResponse = await this.client.post(endpoint, qs.stringify(data), this.options)
+    const res: AxiosResponse = await this.client.post(endpoint, qs.stringify(data, { encoder }), this.options)
     const parsed: any = qs.parse(res.data)
 
     if (this.isError(parsed)) {

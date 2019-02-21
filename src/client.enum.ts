@@ -52,3 +52,20 @@ export enum DefaultFlag {
   BillingObject = '0',
   NotSubjectToCharge = '1'
 }
+
+export enum CvsCode {
+  _Lawson = '00001',
+  _FamilyMart = '00002',
+  _Sunkus = '00003',
+  _CircleK = '00004',
+  _MiniStop = '00005',
+  _DailyYamazaki = '00006',
+  _SeicoMart = '00008',
+  Lawson = '10001',
+  FamilyMart = '10002',
+  Sunkus = '10003',
+  CircleK = '10004',
+  MiniStop = '10005',
+  SevenEleven = '00007',
+  SeicoMart = '10008'
+}
