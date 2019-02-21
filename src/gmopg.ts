@@ -4,8 +4,8 @@ import * as enums from './client.enum'
 import Memberable from './client/memberable'
 import Cardable from './client/cardable'
 import Tranable from './client/tranable'
-import TranableCvs from './client/tranableCvs'
-import TranableMulti from './client/tranableMulti'
+import CvsTranable from './client/cvsTranable'
+import MultiTranable from './client/multiTranable'
 import {buildByEnv, defaults} from './config'
 import {applyMixins, generateID} from './util'
 import {IConfig} from './config.interface'
@@ -44,14 +44,14 @@ import {
   IEntryTranCvsResult,
   IExecTranCvsArgs,
   IExecTranCvsResult
-} from './client/tranableCvs.interface'
+} from './client/cvsTranable.interface'
 import {
   ISearchTradeMultiArgs,
   ISearchTradeMultiCardResult,
   ISearchTradeMultiCvsResult
-} from './client/tranableMulti.interface'
+} from './client/multiTranable.interface'
 
-export class GMOPG implements Memberable, Cardable, Tranable, TranableCvs, TranableMulti {
+export class GMOPG implements Memberable, Cardable, Tranable, CvsTranable, MultiTranable {
   public name: string = 'GMOPG'
   public client: AxiosInstance
   public options: object
@@ -113,7 +113,7 @@ export class GMOPG implements Memberable, Cardable, Tranable, TranableCvs, Trana
   }
 }
 
-applyMixins(GMOPG, [Memberable, Cardable, Tranable, TranableCvs, TranableMulti])
+applyMixins(GMOPG, [Memberable, Cardable, Tranable, CvsTranable, MultiTranable])
 
 export * from './config.interface'
 export * from './client.interface'
@@ -121,6 +121,6 @@ export * from './client.enum'
 export * from './client/memberable.interface'
 export * from './client/cardable.interface'
 export * from './client/tranable.interface'
-export * from './client/tranableCvs.interface'
-export * from './client/tranableMulti.interface'
+export * from './client/cvsTranable.interface'
+export * from './client/multiTranable.interface'
 export default GMOPG

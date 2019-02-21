@@ -7,10 +7,10 @@ import {
   IEntryTranCvsResult,
   IExecTranCvsArgs,
   IExecTranCvsResult
-} from './tranableCvs.interface'
+} from './cvsTranable.interface'
 
-export default class TranableCvs extends Client {
-  public name: string = 'TranableCvs'
+export default class CvsTranable extends Client {
+  public name: string = 'CvsTranable'
   public config: IConfig
   public client: AxiosInstance
   public options: object = {}

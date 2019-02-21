@@ -6,10 +6,10 @@ import {
   ISearchTradeMultiArgs,
   ISearchTradeMultiCardResult,
   ISearchTradeMultiCvsResult
-} from './tranableMulti.interface'
+} from './multiTranable.interface'
 
-export default class TranableMulti extends Client {
-  public name: string = 'TranableMulti'
+export default class MultiTranable extends Client {
+  public name: string = 'MultiTranable'
   public config: IConfig
   public client: AxiosInstance
   public options: object = {}
