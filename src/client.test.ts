@@ -31,13 +31,13 @@ test('.post requests body correctly', async (t) => {
   }
 
   t.context.client.client.interceptors.request.use((req) => {
-    t.is(req.data, 'Foo=aaa&Bar=1&Baz=true&Ja=%E6%97%A5%E6%9C%AC%E8%AA%9E&Type=0')
+    t.is(req.data, 'Foo=aaa&Bar=0&Baz=true&Ja=%E6%97%A5%E6%9C%AC%E8%AA%9E&Type=0')
     return req
   })
 
   const res = await t.context.client.post('/test', {
     Foo: 'aaa',
-    Bar: 1,
+    Bar: 0,
     Baz: true,
     Ja: '日本語',
     Type: PayType.Credit
@@ -65,13 +65,13 @@ test('.postWithEncodeShiftJIS requests body correctly', async (t) => {
   }
 
   t.context.client.client.interceptors.request.use((req) => {
-    t.is(req.data, 'Foo=aaa&Bar=1&Baz=true&Ja=%93%FA%96%7B%8C%EA&Type=0')
+    t.is(req.data, 'Foo=aaa&Bar=0&Baz=true&Ja=%93%FA%96%7B%8C%EA&Type=0')
     return req
   })
 
   const res = await t.context.client.postWithEncodeShiftJIS('/test', {
     Foo: 'aaa',
-    Bar: 1,
+    Bar: 0,
     Baz: true,
     Ja: '日本語',
     Type: PayType.Credit
