@@ -8,18 +8,28 @@ export default class Client {
   public options: object = {}
 
   public async post(endpoint: string, data: any): Promise<any> {
-    const res: AxiosResponse = await this.client.post(endpoint, qs.stringify(data, { encoder }), this.options)
-    const parsed: any = qs.parse(res.data)
+    const res: AxiosResponse = await this.client.post(endpoint, qs.stringify(data), this.options)
 
+    return this.parseResponse(res, endpoint)
+  }
+
+  public async postWithEncodeShiftJIS(endpoint: string, data: any): Promise<any> {
+    const res: AxiosResponse = await this.client.post(endpoint, qs.stringify(data, { encoder }), this.options)
+
+    return this.parseResponse(res, endpoint)
+  }
+
+  public isError(res: any): boolean {
+    return !(res !== undefined && res.ErrCode === undefined)
+  }
+
+  public parseResponse(res: AxiosResponse, endpoint: string): any {
+    const parsed: any = qs.parse(res.data)
     if (this.isError(parsed)) {
       throw new BadRequest(`Bad Request: ${endpoint}`).
         setResponse(res).parseError(parsed)
     }
 
     return parsed
-  }
-
-  public isError(res: any): boolean {
-    return !(res !== undefined && res.ErrCode === undefined)
   }
 }

@@ -126,3 +126,7 @@ test('.searchTradeMulti is function', (t) => {
 test('.post is function', (t) => {
   t.is(typeof t.context.gmopg.post, 'function')
 })
+
+test('.postWithEncodeShiftJIS is function', (t) => {
+  t.is(typeof t.context.gmopg.postWithEncodeShiftJIS, 'function')
+})
