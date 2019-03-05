@@ -1,4 +1,5 @@
 import {AxiosInstance} from 'axios'
+import * as encoding from 'encoding-japanese'
 import * as merge from 'deepmerge'
 import Client from '../client'
 import {IConfig} from '../config.interface'
@@ -30,7 +31,11 @@ export default class CvsTranable extends Client {
   }
 
   public async execTranCvs(args: IExecTranCvsArgs): Promise<IExecTranCvsResult> {
-    const parsed: any = await this.post('/payment/ExecTranCvs.idPass', args)
+    const parsed: any = await this.post('/payment/ExecTranCvs.idPass', {
+      ...args,
+      CustomerName: encoding.urlEncode(encoding.convert(args.CustomerName, 'SJIS')),
+      CustomerKana: encoding.urlEncode(encoding.convert(args.CustomerKana, 'SJIS'))
+    })
 
     return <IExecTranCvsResult> parsed
   }
