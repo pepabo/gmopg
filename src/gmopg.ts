@@ -1,4 +1,4 @@
-import Axios, {AxiosInstance, AxiosResponse} from 'axios'
+import Axios, {AxiosInstance} from 'axios'
 import * as merge from 'deepmerge'
 import * as enums from './client.enum'
 import Memberable from './client/memberable'
@@ -59,9 +59,7 @@ export class GMOPG implements Memberable, Cardable, Tranable, CvsTranable, Multi
 
   // client
   public post: (endpoint: string, data: any) => Promise<any>
-  public postWithEncodeShiftJIS: (endpoint: string, data: any) => Promise<any>
   public isError: (res: any) => boolean
-  public parseResponse: (res: AxiosResponse, endpoint: string) => any
 
   // memberable
   public defaultMemberData: () => any

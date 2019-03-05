@@ -24,7 +24,7 @@ export default class MultiTranable extends Client {
       PayType: undefined
     }
     const data: ISearchTradeMultiArgs = merge(defaultData, args)
-    const parsed: any = await this.postWithEncodeShiftJIS('/payment/SearchTradeMulti.idPass', data)
+    const parsed: any = await this.post('/payment/SearchTradeMulti.idPass', data)
 
     return <R> parsed
   }
