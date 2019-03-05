@@ -24,13 +24,13 @@ export default class CvsTranable extends Client {
       Tax: undefined
     }
     const data: IEntryTranCvsArgs = merge(defaultData, args)
-    const parsed: any = await this.post('/payment/EntryTranCvs.idPass', data)
+    const parsed: any = await this.postWithEncodeShiftJIS('/payment/EntryTranCvs.idPass', data)
 
     return <IEntryTranCvsResult> parsed
   }
 
   public async execTranCvs(args: IExecTranCvsArgs): Promise<IExecTranCvsResult> {
-    const parsed: any = await this.post('/payment/ExecTranCvs.idPass', args)
+    const parsed: any = await this.postWithEncodeShiftJIS('/payment/ExecTranCvs.idPass', args)
 
     return <IExecTranCvsResult> parsed
   }
