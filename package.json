@@ -37,7 +37,7 @@
     "@types/qs": "^6.5.1",
     "ava": "^1.2.1",
     "coveralls": "^3.0.0",
-    "nyc": "^13.3.0",
+    "nyc": "^14.1.0",
     "ts-node": "^6.0.3",
     "tslint": "^5.7.0",
     "tslint-microsoft-contrib": "^5.0.1",
