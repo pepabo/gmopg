@@ -12,12 +12,11 @@
     "payment"
   ],
   "bugs": "https://github.com/pepabo/gmopg/issues",
-  "main": "./index.js",
+  "main": "./lib/gmopg.js",
   "types": "./lib/gmopg.d.ts",
   "files": [
     "MIT-LICENSE",
     "README.md",
-    "index.js",
     "lib/"
   ],
   "directories": {
@@ -25,23 +24,28 @@
     "src": "./src"
   },
   "dependencies": {
-    "axios": ">=0.19.0",
     "deepmerge": "^1.5.2",
     "encoding-japanese": "^1.0.29",
+    "node-fetch": "^2.6.0",
     "qs": "^6.6.0"
   },
   "devDependencies": {
     "@types/deepmerge": "^1.3.2",
     "@types/encoding-japanese": "^1.0.15",
+    "@types/nock": "^10.0.3",
     "@types/node": "^8.0.32",
+    "@types/node-fetch": "^2.3.4",
     "@types/qs": "^6.5.1",
+    "@types/sinon": "^7.0.11",
     "ava": "^1.2.1",
     "coveralls": "^3.0.0",
+    "nock": "^10.0.6",
     "nyc": "^14.1.0",
+    "sinon": "^7.3.2",
     "ts-node": "^6.0.3",
     "tslint": "^5.7.0",
     "tslint-microsoft-contrib": "^5.0.1",
-    "typescript": "^3.3.3"
+    "typescript": "^3.4.5"
   },
   "engines": {
     "node": ">=8.4.0"
@@ -56,7 +60,8 @@
     ],
     "files": [
       "src/**/*.test.ts"
-    ]
+    ],
+    "serial": true
   },
   "nyc": {
     "extension": [

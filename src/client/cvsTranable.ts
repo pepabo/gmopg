@@ -47,6 +47,6 @@ export default <T extends Constructor<Client>>(Base: T) => class extends Base {
     const data: ICancelCvsArgs = merge(defaultData, args)
     const parsed: any = await this.post('/payment/CvsCancel.idPass', data)
 
-    return <ICancelCvsResult> parsed
+    return <ICancelCvsResult>parsed
   }
 }

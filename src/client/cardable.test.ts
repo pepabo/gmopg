@@ -1,103 +1,44 @@
 import test from 'ava'
-import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
+import sinon = require('sinon')
 import Client from '../client'
-import WithCardable from './cardable'
 import {SeqMode} from '../client.enum'
+import WithCardable from './cardable'
 import {IDeleteCardResult, ISaveCardResult, ISearchCardResult} from './cardable.interface'
 
 const Cardable = WithCardable(Client)
-let card: any
+const cardable = new Cardable()
 
-test.beforeEach(() => {
-  card = new Cardable()
-  card.client = Axios.create({})
-})
-
-test('.defaultCardData returns default object', async (t) => {
-  const res = await card.defaultCardData()
-  const expect = {
-    SiteID: undefined,
-    SitePass: undefined,
-    MemberID: undefined
-  }
-  t.deepEqual(res, expect)
+test.afterEach(() => {
+  sinon.restore();
 })
 
 test('.saveCard calls API and returns response', async (t) => {
-  card.config.axios = {
-    adapter: async (config: AxiosRequestConfig) => {
-      const response: AxiosResponse = {
-        data: 'CardSeq=cardseq&CardNo=cardno&Forward=forward&Brand=brand',
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config
-      }
+  const expect: ISaveCardResult = {
+    CardSeq: 'cardseq',
+    CardNo: 'cardno',
+    Forward: 'forward',
+    Brand: 'brand'
+  };
 
-      return Promise.resolve(response)
-    }
-  }
+  sinon.stub(cardable, 'post').resolves(expect)
 
   const args = {
     SiteID: 'siteid',
     SitePass: 'sitepass',
     MemberID: 'memberid'
   }
-  const res = await card.saveCard(args)
+  const res = await cardable.saveCard(args)
 
-  const expect: ISaveCardResult = {
-    CardSeq: 'cardseq',
-    CardNo: 'cardno',
-    Forward: 'forward',
-    Brand: 'brand'
-  }
   t.deepEqual(res, expect)
 })
 
 test('.deleteCard calls API and returns response', async (t) => {
-  card.config.axios = {
-    adapter: async (config: AxiosRequestConfig) => {
-      const response: AxiosResponse = {
-        data: 'CardSeq=cardseq',
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config
-      }
-
-      return Promise.resolve(response)
-    }
-  }
-
-  const args = {
-    SiteID: 'siteid',
-    SitePass: 'sitepass',
-    MemberID: 'memberid',
-    SeqMode: SeqMode.Logic,
-    CardSeq: 'cardseq'
-  }
-  const res = await card.deleteCard(args)
 
   const expect: IDeleteCardResult = {
     CardSeq: 'cardseq'
   }
-  t.deepEqual(res, expect)
-})
 
-test('.searchCard calls API and returns response', async (t) => {
-  card.config.axios = {
-    adapter: async (config: AxiosRequestConfig) => {
-      const response: AxiosResponse = {
-        data: 'CardSeq=cardseq&DefaultFlag=1&CardName=cardname&CardNo=cardno&Expire=expire&HolderName=holdername&DeleteFlag=0',
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config
-      }
-
-      return Promise.resolve(response)
-    }
-  }
+  sinon.stub(cardable, 'post').resolves(expect)
 
   const args = {
     SiteID: 'siteid',
@@ -106,7 +47,12 @@ test('.searchCard calls API and returns response', async (t) => {
     SeqMode: SeqMode.Logic,
     CardSeq: 'cardseq'
   }
-  const res = await card.searchCard(args)
+  const res = await cardable.deleteCard(args)
+
+  t.deepEqual(res, expect)
+})
+
+test('.searchCard calls API and returns response', async (t) => {
 
   const result: ISearchCardResult = {
     CardSeq: 'cardseq',
@@ -117,6 +63,19 @@ test('.searchCard calls API and returns response', async (t) => {
     HolderName: 'holdername',
     DeleteFlag: '0'
   }
+
+  sinon.stub(cardable, 'post').resolves(result)
+
   const expect = [result]
+
+  const args = {
+    SiteID: 'siteid',
+    SitePass: 'sitepass',
+    MemberID: 'memberid',
+    SeqMode: SeqMode.Logic,
+    CardSeq: 'cardseq'
+  }
+  const res = await cardable.searchCard(args)
+
   t.deepEqual(res, expect)
 })

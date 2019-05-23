@@ -1,29 +1,25 @@
 import * as process from 'process'
 import {IConfig} from './config.interface'
 
-const msec = 1000
-const sec = 60
-const min = 3
 
 export const defaults: IConfig = {
-  axios: {
-    timeout: min * sec * msec,
-    baseURL: 'https://pt01.mul-pay.jp',
+  baseUrl: 'https://pt01.mul-pay.jp',
+  http: {
+    timeout: 1000 * 60 * 3,
     headers: {
       'user-agent': 'GMO PG Client: Unofficial'
-    }
+    },
   }
 }
 
 export function buildByEnv(): IConfig {
   const c: IConfig = {}
-  c.axios = {}
 
   if (process.env.GMOPG_ENDPOINT !== undefined) {
-    c.axios.baseURL = process.env.GMOPG_ENDPOINT
+    c.baseUrl = process.env.GMOPG_ENDPOINT
   }
   if (process.env.GMOPG_TIMEOUT !== undefined) {
-    c.axios.timeout = +`${process.env.GMOPG_TIMEOUT}`
+    c.http = {...c.http, timeout: +`${process.env.GMOPG_TIMEOUT}`};
   }
   if (process.env.GMOPG_SITEID !== undefined) {
     c.SiteID = process.env.GMOPG_SITEID

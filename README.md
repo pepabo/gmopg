@@ -28,7 +28,7 @@ Purchase example
 const {default: GMOPG, ENUMS} = require('gmopg');
 
 const gmopg = new GMOPG({
-  axios: { baseURL: 'https://p01.mul-pay.jp' },
+  baseUrl: 'https://p01.mul-pay.jp',
   SiteID: 'Your SiteID',
   SitePass: 'Your SitePass',
   ShopID: 'Your ShopID',
@@ -70,7 +70,7 @@ gmopg.entryTran({
 import GMOPG, {ENUMS} from 'gmopg'
 
 const gmopg = new GMOPG({
-  axios: { baseURL: 'https://p01.mul-pay.jp' },
+  baseUrl: 'https://p01.mul-pay.jp',
   SiteID: 'Your SiteID',
   SitePass: 'Your SitePass',
   ShopID: 'Your ShopID',
@@ -107,15 +107,15 @@ const alterRes = await gmopg.alterTran({
 Config
 ------
 
-name          | description         | environ        | default
----           | ---                 | ---            | ---
-axios.baseURL | baseurl for request | GMOPG_ENDPOINT | https://pt01.mul-pay.jp
-axios.timeout | timeout for request | GMOPG_TIMEOUT  | 180000 (ms)
-axios.headers | headers for request | -              | see code :eyes:
-SiteID        | PG site id          | GMOPG_SITEID   | undefined
-SitePass      | PG site pass        | GMOPG_SITEPASS | undefined
-ShopID        | PG shop id          | GMOPG_SHOPID   | undefined
-ShopPass      | PG shop pass        | GMOPG_SHOPPASS | undefined
+name         | description         | environ        | default
+---          | ---                 | ---            | ---
+baseUrl      | baseurl for request | GMOPG_ENDPOINT | https://pt01.mul-pay.jp
+http.timeout | timeout for request | GMOPG_TIMEOUT  | 180000 (ms)
+http.headers | headers for request | -              | see code :eyes:
+SiteID       | PG site id          | GMOPG_SITEID   | undefined
+SitePass     | PG site pass        | GMOPG_SITEPASS | undefined
+ShopID       | PG shop id          | GMOPG_SHOPID   | undefined
+ShopPass     | PG shop pass        | GMOPG_SHOPPASS | undefined
 
 Contribution
 ------------
