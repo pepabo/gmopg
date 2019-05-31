@@ -40,6 +40,8 @@ import {
   ISearchTradeResult
 } from './client/tranable.interface'
 import {
+  ICancelCvsArgs,
+  ICancelCvsResult,
   IEntryTranCvsArgs,
   IEntryTranCvsResult,
   IExecTranCvsArgs,
@@ -84,6 +86,7 @@ export class GMOPG implements Memberable, Cardable, Tranable, CvsTranable, Multi
   // tranable - cvs
   public entryTranCvs: (args: IEntryTranCvsArgs) => Promise<IEntryTranCvsResult>
   public execTranCvs: (args: IExecTranCvsArgs) => Promise<IExecTranCvsResult>
+  public cancelCvs: (args: ICancelCvsArgs) => Promise<ICancelCvsResult>
 
   // tranable - multi
   public searchTradeMulti: <R extends ISearchTradeMultiCardResult | ISearchTradeMultiCvsResult>(args: ISearchTradeMultiArgs) => Promise<R>

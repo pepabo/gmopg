@@ -119,6 +119,10 @@ test('.execTranCvs is function', (t) => {
   t.is(typeof t.context.gmopg.execTranCvs, 'function')
 })
 
+test('.cancelCvs is function', (t) => {
+  t.is(typeof t.context.gmopg.cancelCvs, 'function')
+})
+
 test('.searchTradeMulti is function', (t) => {
   t.is(typeof t.context.gmopg.searchTradeMulti, 'function')
 })
