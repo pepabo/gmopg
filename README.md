@@ -25,9 +25,9 @@ Purchase example
 ### Node.js
 
 ```js
-const GMOPG = require('gmopg').GMOPG;
+const {default: GMOPG, ENUMS} = require('gmopg');
 
-const gmopg = GMOPG.CREATE({
+const gmopg = new GMOPG({
   axios: { baseURL: 'https://p01.mul-pay.jp' },
   SiteID: 'Your SiteID',
   SitePass: 'Your SitePass',
@@ -40,14 +40,14 @@ const amount  = 1234
 
 gmopg.entryTran({
   OrderID: orderID,
-  JobCd: GMOPG.ENUMS.JobCd.Auth,
+  JobCd: ENUMS.JobCd.Auth,
   Amount: amount
 }).then((entryRes) => {
   gmopg.execTran({
     AccessID: entryRes.AccessID,
     AccessPass: entryRes.AccessPass,
     OrderID: orderID,
-    Method: GMOPG.ENUMS.Method.Lump,
+    Method: ENUMS.Method.Lump,
     CardNo: '1234123412341234',
     Expire: '2024',
     SecurityCode: '123'
@@ -55,7 +55,7 @@ gmopg.entryTran({
     gmopg.alterTran({
       AccessID: entryRes.AccessID,
       AccessPass: entryRes.AccessPass,
-      JobCd: GMOPG.ENUMS.JobCd.Sales,
+      JobCd: ENUMS.JobCd.Sales,
       Amount: amount
     }).then((alterRes) => {
       console.log(alterRes)
@@ -67,7 +67,7 @@ gmopg.entryTran({
 ### TypeScript
 
 ```ts
-import GMOPG from 'gmopg'
+import GMOPG, {ENUMS} from 'gmopg'
 
 const gmopg = new GMOPG({
   axios: { baseURL: 'https://p01.mul-pay.jp' },
@@ -82,7 +82,7 @@ const amount = 1234
 
 const entryRes = await gmopg.entryTran({
   OrderID: orderID,
-  JobCd: GMOPG.ENUMS.JobCd.Auth,
+  JobCd: ENUMS.JobCd.Auth,
   Amount: amount
 })
 
@@ -90,7 +90,7 @@ const execRes = await gmopg.execTran({
   AccessID: entryRes.AccessID,
   AccessPass: entryRes.AccessPass,
   OrderID: orderID,
-  Method: GMOPG.ENUMS.Method.Lump,
+  Method: ENUMS.Method.Lump,
   CardNo: '1234123412341234',
   Expire: '2024',
   SecurityCode: '123'
@@ -99,7 +99,7 @@ const execRes = await gmopg.execTran({
 const alterRes = await gmopg.alterTran({
   AccessID: entryRes.AccessID,
   AccessPass: entryRes.AccessPass,
-  JobCd: GMOPG.ENUMS.JobCd.Sales,
+  JobCd: ENUMS.JobCd.Sales,
   Amount: amount
 })
 ```
