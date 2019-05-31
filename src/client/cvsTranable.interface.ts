@@ -1,4 +1,4 @@
-import {CvsCode} from '../client.enum'
+import {CvsCode, Status} from '../client.enum'
 import {IResult, IShopArgs} from '../client.interface'
 
 export interface IEntryTranCvsArgs extends IShopArgs {
@@ -63,4 +63,15 @@ export interface IExecTranCvsResult extends IResult {
   ClientField1: string
   ClientField2: string
   ClientField3: string
+}
+
+export interface ICancelCvsArgs extends IShopArgs {
+  AccessID: string
+  AccessPass: string
+  OrderID: string
+}
+
+export interface ICancelCvsResult extends IResult {
+  OrderID: string
+  Status: Status
 }
