@@ -1,7 +1,6 @@
-import {AxiosInstance} from 'axios'
 import * as merge from 'deepmerge'
 import Client from '../client'
-import {IConfig} from '../config.interface'
+import {Constructor} from '../util'
 import {
   IDeleteCardArgs,
   IDeleteCardResult,
@@ -11,24 +10,13 @@ import {
   ISearchCardResult
 } from './cardable.interface'
 
-export default class Cardable extends Client {
-  public name: string = 'Cardable'
-  public config: IConfig
-  public client: AxiosInstance
-  public options: object = {}
-
+export default <T extends Constructor<Client>>(Base: T) => class Cardable extends Base {
   public defaultCardData(): any {
-    let siteID
-    let sitePass
-
-    if (this.config !== undefined) {
-      siteID = this.config.SiteID
-      sitePass = this.config.SitePass
-    }
+    const {SiteID, SitePass} = this.config
 
     return {
-      SiteID: siteID,
-      SitePass: sitePass,
+      SiteID,
+      SitePass,
       MemberID: undefined
     }
   }
@@ -37,14 +25,14 @@ export default class Cardable extends Client {
     const data: ISaveCardArgs = merge(this.defaultCardData(), args)
     const parsed: any = await this.post('/payment/SaveCard.idPass', data)
 
-    return <ISaveCardResult> parsed
+    return <ISaveCardResult>parsed
   }
 
   public async deleteCard(args: IDeleteCardArgs): Promise<IDeleteCardResult> {
     const data: IDeleteCardArgs = merge(this.defaultCardData(), args)
     const parsed: any = await this.post('/payment/DeleteCard.idPass', data)
 
-    return <IDeleteCardResult> parsed
+    return <IDeleteCardResult>parsed
   }
 
   public async searchCard(args: ISearchCardArgs): Promise<ISearchCardResult[]> {

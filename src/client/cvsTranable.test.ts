@@ -1,22 +1,23 @@
-import anyTest, {TestInterface} from 'ava'
+import test from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
 import {CvsCode} from '../client.enum'
-import CvsTranable from './cvsTranable'
+import Client from '../client'
+import WithCvsTranable from './cvsTranable'
 import {
   IEntryTranCvsResult,
   IExecTranCvsResult
 } from './cvsTranable.interface'
 
-const test = anyTest as TestInterface<{cvsTran: CvsTranable}>;
+const CvsTranable = WithCvsTranable(Client)
+let cvsTran: any
 
-test.beforeEach((t) => {
-  const cvsTran = new CvsTranable()
+test.beforeEach(() => {
+  cvsTran = new CvsTranable()
   cvsTran.client = Axios.create({})
-  t.context.cvsTran = cvsTran
 })
 
 test('.entryTranCvs calls API and returns response', async (t) => {
-  t.context.cvsTran.options = {
+  cvsTran.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const response: AxiosResponse = {
         data: 'AccessID=accessid&AccessPass=accesspass',
@@ -37,7 +38,7 @@ test('.entryTranCvs calls API and returns response', async (t) => {
     Amount: 1234,
     Tax: 123
   }
-  const res = await t.context.cvsTran.entryTranCvs(args)
+  const res = await cvsTran.entryTranCvs(args)
 
   const expect: IEntryTranCvsResult = {
     AccessID: 'accessid',
@@ -47,7 +48,7 @@ test('.entryTranCvs calls API and returns response', async (t) => {
 })
 
 test('.execTranCvs calls API and returns response', async (t) => {
-  t.context.cvsTran.options = {
+  cvsTran.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const text = [
         'OrderID=orderid',
@@ -85,7 +86,7 @@ test('.execTranCvs calls API and returns response', async (t) => {
     ReceiptsDisp12: '09011112222',
     ReceiptsDisp13: '10:00-19:00'
   }
-  const res = await t.context.cvsTran.execTranCvs(args)
+  const res = await cvsTran.execTranCvs(args)
 
   const expect: IExecTranCvsResult = {
     OrderID: 'orderid',

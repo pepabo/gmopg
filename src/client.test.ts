@@ -16,7 +16,7 @@ test.beforeEach((t) => {
 })
 
 test('.post requests body correctly', async (t) => {
-  t.context.client.options = {
+  t.context.client.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const response: AxiosResponse = {
         data: 'AccessID=accessid&AccessPass=accesspass',

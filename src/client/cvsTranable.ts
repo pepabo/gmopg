@@ -1,8 +1,7 @@
-import {AxiosInstance} from 'axios'
 import * as encoding from 'encoding-japanese'
 import * as merge from 'deepmerge'
 import Client from '../client'
-import {IConfig} from '../config.interface'
+import {Constructor} from '../util'
 import {
   IEntryTranCvsArgs,
   IEntryTranCvsResult,
@@ -10,16 +9,11 @@ import {
   IExecTranCvsResult
 } from './cvsTranable.interface'
 
-export default class CvsTranable extends Client {
-  public name: string = 'CvsTranable'
-  public config: IConfig
-  public client: AxiosInstance
-  public options: object = {}
-
+export default <T extends Constructor<Client>>(Base: T) => class extends Base {
   public async entryTranCvs(args: IEntryTranCvsArgs): Promise<IEntryTranCvsResult> {
     const defaultData = {
-      ShopID: this.config !== undefined ? this.config.ShopID : undefined,
-      ShopPass: this.config !== undefined ? this.config.ShopPass : undefined,
+      ShopID: this.config.ShopID,
+      ShopPass: this.config.ShopPass,
       OrderID: undefined,
       Amount: undefined,
       Tax: undefined
@@ -27,7 +21,7 @@ export default class CvsTranable extends Client {
     const data: IEntryTranCvsArgs = merge(defaultData, args)
     const parsed: any = await this.post('/payment/EntryTranCvs.idPass', data)
 
-    return <IEntryTranCvsResult> parsed
+    return <IEntryTranCvsResult>parsed
   }
 
   public async execTranCvs(args: IExecTranCvsArgs): Promise<IExecTranCvsResult> {
@@ -37,7 +31,6 @@ export default class CvsTranable extends Client {
       CustomerKana: encoding.urlEncode(encoding.convert(args.CustomerKana, 'SJIS'))
     })
 
-    return <IExecTranCvsResult> parsed
+    return <IExecTranCvsResult>parsed
   }
-
 }

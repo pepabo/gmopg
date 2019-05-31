@@ -1,22 +1,23 @@
-import anyTest, {TestInterface} from 'ava'
+import test from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
 import {CvsCode, PayType, Status, Method, JobCd} from '../client.enum'
-import MultiTranable from './multiTranable'
+import Client from '../client'
+import WithMultiTranable from './multiTranable'
 import {
   ISearchTradeMultiCardResult,
   ISearchTradeMultiCvsResult
 } from './multiTranable.interface'
 
-const test = anyTest as TestInterface<{multiTran: MultiTranable}>;
+const MultiTranable = WithMultiTranable(Client)
+let multiTran: any
 
-test.beforeEach((t) => {
-  const multiTran = new MultiTranable()
+test.beforeEach(() => {
+  multiTran = new MultiTranable()
   multiTran.client = Axios.create({})
-  t.context.multiTran = multiTran
 })
 
 test('.searchTradeMulti calls API and returns response - CVS', async (t) => {
-  t.context.multiTran.options = {
+  multiTran.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const text = [
         `Status=${Status.Reqsuccess}`,
@@ -53,7 +54,7 @@ test('.searchTradeMulti calls API and returns response - CVS', async (t) => {
     OrderID: 'orderid',
     PayType: PayType.Cvs
   }
-  const res = await t.context.multiTran.searchTradeMulti<ISearchTradeMultiCvsResult>(args)
+  const res = await multiTran.searchTradeMulti(args)
 
   const expect: ISearchTradeMultiCvsResult = {
     Status: Status.Reqsuccess,
@@ -76,7 +77,7 @@ test('.searchTradeMulti calls API and returns response - CVS', async (t) => {
 })
 
 test('.searchTradeMulti calls API and returns response - Credit', async (t) => {
-  t.context.multiTran.options = {
+  multiTran.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const text = [
         `Status=${Status.Capture}`,
@@ -119,7 +120,7 @@ test('.searchTradeMulti calls API and returns response - Credit', async (t) => {
     OrderID: 'orderid',
     PayType: PayType.Credit
   }
-  const res = await t.context.multiTran.searchTradeMulti<ISearchTradeMultiCardResult>(args)
+  const res = await multiTran.searchTradeMulti(args)
 
   const expect: ISearchTradeMultiCardResult = {
     Status: Status.Capture,

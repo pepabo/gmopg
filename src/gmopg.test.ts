@@ -1,14 +1,10 @@
-import anyTest, {TestInterface} from 'ava'
-import GMOPG from './gmopg'
+import test from 'ava'
+import GMOPG, {ENUMS, GENERATE_MEMBER_ID} from './gmopg'
 
-interface Context {
-  gmopg: GMOPG
-}
+let gmopg: any
 
-const test = anyTest as TestInterface<Context>;
-
-test.beforeEach((t) => {
-  t.context.gmopg = new GMOPG()
+test.beforeEach(() => {
+  gmopg = new GMOPG()
 })
 
 test('constructor.name returns Object', (t) => {
@@ -16,11 +12,11 @@ test('constructor.name returns Object', (t) => {
 })
 
 test('new returns GMOPG instance', (t) => {
-  t.true(t.context.gmopg instanceof GMOPG)
+  t.true(gmopg instanceof GMOPG)
 })
 
 test('.ENUMS returns enum object', (t) => {
-  t.deepEqual(Object.keys(GMOPG.ENUMS), [
+  t.deepEqual(Object.keys(ENUMS), [
     'PayType',
     'Method',
     'Status',
@@ -31,18 +27,13 @@ test('.ENUMS returns enum object', (t) => {
   ])
 })
 
-test('.CREATE returns new GMOPG instance', (t) => {
-  const instance = GMOPG.CREATE()
-  t.true(instance instanceof GMOPG)
-})
-
 test('.GENERATE_MEMBER_ID returns generated memberID', (t) => {
-  const ID = GMOPG.GENERATE_MEMBER_ID('key')
+  const ID = GENERATE_MEMBER_ID('key')
   t.regex(ID, /^key-\w{32}$/)
 })
 
 test('.GENERATE_MEMBER_ID returns max 60 chars', (t) => {
-  const ID = GMOPG.GENERATE_MEMBER_ID('0123456789-0123456789-0123456789-0123456789')
+  const ID = GENERATE_MEMBER_ID('0123456789-0123456789-0123456789-0123456789')
   t.regex(ID, /^.{60}$/)
 })
 
@@ -56,73 +47,73 @@ test('.config returns IConfig', (t) => {
       }
     }
   }
-  t.deepEqual(t.context.gmopg.config, expect)
+  t.deepEqual(gmopg.config, expect)
 })
 
 test('.client returns AxiosInstance', (t) => {
-  t.is(typeof t.context.gmopg.client, 'function')
+  t.is(typeof gmopg.client, 'function')
 })
 
 test('.saveMember is function', (t) => {
-  t.is(typeof t.context.gmopg.saveMember, 'function')
+  t.is(typeof gmopg.saveMember, 'function')
 })
 
 test('.updateMember is function', (t) => {
-  t.is(typeof t.context.gmopg.updateMember, 'function')
+  t.is(typeof gmopg.updateMember, 'function')
 })
 
 test('.deleteMember is function', (t) => {
-  t.is(typeof t.context.gmopg.deleteMember, 'function')
+  t.is(typeof gmopg.deleteMember, 'function')
 })
 
 test('.searchMember is function', (t) => {
-  t.is(typeof t.context.gmopg.searchMember, 'function')
+  t.is(typeof gmopg.searchMember, 'function')
 })
 
 test('.saveCard is function', (t) => {
-  t.is(typeof t.context.gmopg.saveCard, 'function')
+  t.is(typeof gmopg.saveCard, 'function')
 })
 
 test('.deleteCard is function', (t) => {
-  t.is(typeof t.context.gmopg.deleteCard, 'function')
+  t.is(typeof gmopg.deleteCard, 'function')
 })
 
 test('.searchCard is function', (t) => {
-  t.is(typeof t.context.gmopg.searchCard, 'function')
+  t.is(typeof gmopg.searchCard, 'function')
 })
 
 test('.entryTran is function', (t) => {
-  t.is(typeof t.context.gmopg.entryTran, 'function')
+  t.is(typeof gmopg.entryTran, 'function')
 })
 
 test('.execTran is function', (t) => {
-  t.is(typeof t.context.gmopg.execTran, 'function')
+  t.is(typeof gmopg.execTran, 'function')
 })
 
 test('.alterTran is function', (t) => {
-  t.is(typeof t.context.gmopg.alterTran, 'function')
+  t.is(typeof gmopg.alterTran, 'function')
 })
 
 test('.searchTrade is function', (t) => {
-  t.is(typeof t.context.gmopg.searchTrade, 'function')
+  t.is(typeof gmopg.searchTrade, 'function')
 })
 
 test('.changeTran is function', (t) => {
-  t.is(typeof t.context.gmopg.changeTran, 'function')
+  t.is(typeof gmopg.changeTran, 'function')
 })
 
 test('.entryTranCvs is function', (t) => {
-  t.is(typeof t.context.gmopg.entryTranCvs, 'function')
+  t.is(typeof gmopg.entryTranCvs, 'function')
 })
 
 test('.execTranCvs is function', (t) => {
-  t.is(typeof t.context.gmopg.execTranCvs, 'function')
+  t.is(typeof gmopg.execTranCvs, 'function')
 })
 
 test('.searchTradeMulti is function', (t) => {
-  t.is(typeof t.context.gmopg.searchTradeMulti, 'function')
+  t.is(typeof gmopg.searchTradeMulti, 'function')
 })
 
 test('.post is function', (t) => {
-  t.is(typeof t.context.gmopg.post, 'function')
+  t.is(typeof gmopg.post, 'function')
 })
