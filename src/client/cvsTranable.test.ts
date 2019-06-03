@@ -1,9 +1,10 @@
 import test from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
-import {CvsCode} from '../client.enum'
+import {CvsCode, Status} from '../client.enum'
 import Client from '../client'
-import WithCvsTranable from './cvsTranable'
+import CvsTranable from './cvsTranable'
 import {
+  ICancelCvsResult,
   IEntryTranCvsResult,
   IExecTranCvsResult
 } from './cvsTranable.interface'
@@ -103,3 +104,37 @@ test('.execTranCvs calls API and returns response', async (t) => {
   t.deepEqual(res, expect)
 })
 
+test('.cancelCvs calls API and returns response', async (t) => {
+  t.context.cvsTran.options = {
+    adapter: async (config: AxiosRequestConfig) => {
+      const text = [
+        'OrderID=orderid',
+        `Status=${Status.Cancel}`
+      ].join('&')
+      const response: AxiosResponse = {
+        data: text,
+        status: 200,
+        statusText: 'OK',
+        headers: {},
+        config
+      }
+
+      return Promise.resolve(response)
+    }
+  }
+
+  const args = {
+    ShopID: 'shopid',
+    ShopPass: 'shoppass',
+    AccessID: 'accessid',
+    AccessPass: 'accesspass',
+    OrderID: 'orderid'
+  }
+  const res = await t.context.cvsTran.cancelCvs(args)
+
+  const expect: ICancelCvsResult = {
+    OrderID: 'orderid',
+    Status: Status.Cancel
+  }
+  t.deepEqual(res, expect)
+})

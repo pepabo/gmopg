@@ -1,6 +1,6 @@
 import test from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
-import {JobCd, Method} from '../client.enum'
+import {JobCd, Method, Status} from '../client.enum'
 import Client from '../client'
 import WithTranable from './tranable'
 import {
@@ -151,7 +151,7 @@ test('.searchTrade calls API and returns response', async (t) => {
     adapter: async (config: AxiosRequestConfig) => {
       const text = [
         'OrderID=orderid',
-        'Status=status',
+        'Status=CHECK',
         'ProcessDate=processdate',
         'JobCd=CHECK',
         'AccessID=accessid',
@@ -193,7 +193,7 @@ test('.searchTrade calls API and returns response', async (t) => {
 
   const expect: ISearchTradeResult = {
     OrderID: 'orderid',
-    Status: 'status',
+    Status: Status.Check,
     ProcessDate: 'processdate',
     JobCd: JobCd.Check,
     AccessID: 'accessid',
