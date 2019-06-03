@@ -1,4 +1,4 @@
-import {JobCd, Method, SeqMode} from '../client.enum'
+import {JobCd, Method, SeqMode, Status} from '../client.enum'
 import {IResult, IShopArgs} from '../client.interface'
 
 export interface IEntryTranArgs extends IShopArgs {
@@ -76,7 +76,7 @@ export interface ISearchTradeArgs extends IShopArgs {
 
 export interface ISearchTradeResult extends IResult {
   OrderID: string
-  Status: string
+  Status: Status
   ProcessDate: string
   JobCd: JobCd
   AccessID: string
