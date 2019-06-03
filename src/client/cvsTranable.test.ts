@@ -2,7 +2,7 @@ import test from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
 import {CvsCode, Status} from '../client.enum'
 import Client from '../client'
-import CvsTranable from './cvsTranable'
+import WithCvsTranable from './cvsTranable'
 import {
   ICancelCvsResult,
   IEntryTranCvsResult,
@@ -105,7 +105,7 @@ test('.execTranCvs calls API and returns response', async (t) => {
 })
 
 test('.cancelCvs calls API and returns response', async (t) => {
-  t.context.cvsTran.options = {
+  cvsTran.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const text = [
         'OrderID=orderid',
@@ -130,7 +130,7 @@ test('.cancelCvs calls API and returns response', async (t) => {
     AccessPass: 'accesspass',
     OrderID: 'orderid'
   }
-  const res = await t.context.cvsTran.cancelCvs(args)
+  const res = await cvsTran.cancelCvs(args)
 
   const expect: ICancelCvsResult = {
     OrderID: 'orderid',
