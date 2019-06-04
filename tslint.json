@@ -40,7 +40,8 @@
       "parameter",
       "property-declaration",
       "member-variable-declaration"
-    ]
+    ],
+    "variable-name": [true, "allow-pascal-case"]
   },
   "linterOptions": {
     "exclude": [

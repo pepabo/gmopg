@@ -1,6 +1,7 @@
-import anyTest, {TestInterface} from 'ava'
+import test from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
-import Memberable from './memberable'
+import Client from '../client'
+import WithMemberable from './memberable'
 import {
   IDeleteMemberResult,
   ISaveMemberResult,
@@ -8,20 +9,16 @@ import {
   IUpdateMemberResult
 } from './memberable.interface'
 
-interface Context {
-  member: Memberable
-}
+const Memberable = WithMemberable(Client)
+let member: any
 
-const test = anyTest as TestInterface<Context>;
-
-test.beforeEach((t) => {
-  const member = new Memberable()
+test.beforeEach(() => {
+  member = new Memberable()
   member.client = Axios.create({})
-  t.context.member = member
 })
 
 test('.defaultMemberData returns default object', async (t) => {
-  const res = await t.context.member.defaultMemberData()
+  const res = await member.defaultMemberData()
   const expect = {
     SiteID: undefined,
     SitePass: undefined,
@@ -31,7 +28,7 @@ test('.defaultMemberData returns default object', async (t) => {
 })
 
 test('.saveMember calls API and returns response', async (t) => {
-  t.context.member.options = {
+  member.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const response: AxiosResponse = {
         data: 'MemberID=memberid',
@@ -51,7 +48,7 @@ test('.saveMember calls API and returns response', async (t) => {
     MemberID: 'memberid',
     MemberName: 'membername'
   }
-  const res = await t.context.member.saveMember(args)
+  const res = await member.saveMember(args)
 
   const expect: ISaveMemberResult = {
     MemberID: 'memberid'
@@ -60,7 +57,7 @@ test('.saveMember calls API and returns response', async (t) => {
 })
 
 test('.updateMember calls API and returns response', async (t) => {
-  t.context.member.options = {
+  member.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const response: AxiosResponse = {
         data: 'MemberID=memberid',
@@ -80,7 +77,7 @@ test('.updateMember calls API and returns response', async (t) => {
     MemberID: 'memberid',
     MemberName: 'membername'
   }
-  const res = await t.context.member.updateMember(args)
+  const res = await member.updateMember(args)
 
   const expect: IUpdateMemberResult = {
     MemberID: 'memberid'
@@ -89,7 +86,7 @@ test('.updateMember calls API and returns response', async (t) => {
 })
 
 test('.deleteMember calls API and returns response', async (t) => {
-  t.context.member.options = {
+  member.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const response: AxiosResponse = {
         data: 'MemberID=memberid',
@@ -108,7 +105,7 @@ test('.deleteMember calls API and returns response', async (t) => {
     SitePass: 'sitepass',
     MemberID: 'memberid'
   }
-  const res = await t.context.member.deleteMember(args)
+  const res = await member.deleteMember(args)
 
   const expect: IDeleteMemberResult = {
     MemberID: 'memberid'
@@ -117,7 +114,7 @@ test('.deleteMember calls API and returns response', async (t) => {
 })
 
 test('.searchMember calls API and returns response', async (t) => {
-  t.context.member.options = {
+  member.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const response: AxiosResponse = {
         data: 'MemberID=memberid&MemberName=membername&DeleteFlag=1',
@@ -136,7 +133,7 @@ test('.searchMember calls API and returns response', async (t) => {
     SitePass: 'sitepass',
     MemberID: 'memberid'
   }
-  const res = await t.context.member.searchMember(args)
+  const res = await member.searchMember(args)
 
   const expect: ISearchMemberResult = {
     MemberID: 'memberid',
@@ -147,5 +144,5 @@ test('.searchMember calls API and returns response', async (t) => {
 })
 
 test('.post is function', (t) => {
-  t.is(typeof t.context.member.post, 'function')
+  t.is(typeof member.post, 'function')
 })

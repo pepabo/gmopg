@@ -1,23 +1,20 @@
-import anyTest, {TestInterface} from 'ava'
+import test from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
-import Cardable from './cardable'
+import Client from '../client'
+import WithCardable from './cardable'
 import {SeqMode} from '../client.enum'
 import {IDeleteCardResult, ISaveCardResult, ISearchCardResult} from './cardable.interface'
 
-interface Context {
-  card: Cardable
-}
+const Cardable = WithCardable(Client)
+let card: any
 
-const test = anyTest as TestInterface<Context>;
-
-test.beforeEach((t) => {
-  const card = new Cardable()
+test.beforeEach(() => {
+  card = new Cardable()
   card.client = Axios.create({})
-  t.context.card = card
 })
 
 test('.defaultCardData returns default object', async (t) => {
-  const res = await t.context.card.defaultCardData()
+  const res = await card.defaultCardData()
   const expect = {
     SiteID: undefined,
     SitePass: undefined,
@@ -27,7 +24,7 @@ test('.defaultCardData returns default object', async (t) => {
 })
 
 test('.saveCard calls API and returns response', async (t) => {
-  t.context.card.options = {
+  card.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const response: AxiosResponse = {
         data: 'CardSeq=cardseq&CardNo=cardno&Forward=forward&Brand=brand',
@@ -46,7 +43,7 @@ test('.saveCard calls API and returns response', async (t) => {
     SitePass: 'sitepass',
     MemberID: 'memberid'
   }
-  const res = await t.context.card.saveCard(args)
+  const res = await card.saveCard(args)
 
   const expect: ISaveCardResult = {
     CardSeq: 'cardseq',
@@ -58,7 +55,7 @@ test('.saveCard calls API and returns response', async (t) => {
 })
 
 test('.deleteCard calls API and returns response', async (t) => {
-  t.context.card.options = {
+  card.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const response: AxiosResponse = {
         data: 'CardSeq=cardseq',
@@ -79,7 +76,7 @@ test('.deleteCard calls API and returns response', async (t) => {
     SeqMode: SeqMode.Logic,
     CardSeq: 'cardseq'
   }
-  const res = await t.context.card.deleteCard(args)
+  const res = await card.deleteCard(args)
 
   const expect: IDeleteCardResult = {
     CardSeq: 'cardseq'
@@ -88,7 +85,7 @@ test('.deleteCard calls API and returns response', async (t) => {
 })
 
 test('.searchCard calls API and returns response', async (t) => {
-  t.context.card.options = {
+  card.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const response: AxiosResponse = {
         data: 'CardSeq=cardseq&DefaultFlag=1&CardName=cardname&CardNo=cardno&Expire=expire&HolderName=holdername&DeleteFlag=0',
@@ -109,7 +106,7 @@ test('.searchCard calls API and returns response', async (t) => {
     SeqMode: SeqMode.Logic,
     CardSeq: 'cardseq'
   }
-  const res = await t.context.card.searchCard(args)
+  const res = await card.searchCard(args)
 
   const result: ISearchCardResult = {
     CardSeq: 'cardseq',

@@ -1,7 +1,8 @@
-import anyTest, {TestInterface} from 'ava'
+import test from 'ava'
 import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
 import {JobCd, Method, Status} from '../client.enum'
-import Tranable from './tranable'
+import Client from '../client'
+import WithTranable from './tranable'
 import {
   IAlterTranResult,
   IChangeTranResult,
@@ -10,20 +11,16 @@ import {
   ISearchTradeResult
 } from './tranable.interface'
 
-interface Context {
-  tran: Tranable
-}
+const Tranable = WithTranable(Client)
+let tran: any
 
-const test = anyTest as TestInterface<Context>;
-
-test.beforeEach((t) => {
-  const tran = new Tranable()
+test.beforeEach(() => {
+  tran = new Tranable()
   tran.client = Axios.create({})
-  t.context.tran = tran
 })
 
 test('.entryTran calls API and returns response', async (t) => {
-  t.context.tran.options = {
+  tran.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const response: AxiosResponse = {
         data: 'AccessID=accessid&AccessPass=accesspass',
@@ -47,7 +44,7 @@ test('.entryTran calls API and returns response', async (t) => {
     JobCd: JobCd.Check,
     Amount: 1234
   }
-  const res = await t.context.tran.entryTran(args)
+  const res = await tran.entryTran(args)
 
   const expect: IEntryTranResult = {
     AccessID: 'accessid',
@@ -57,7 +54,7 @@ test('.entryTran calls API and returns response', async (t) => {
 })
 
 test('.execTran calls API and returns response', async (t) => {
-  t.context.tran.options = {
+  tran.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const text = [
         'Acs=acs',
@@ -95,7 +92,7 @@ test('.execTran calls API and returns response', async (t) => {
     Expire: 'expire',
     SecurityCode: '123'
   }
-  const res = await t.context.tran.execTran(args)
+  const res = await tran.execTran(args)
 
   const expect: IExecTranResult = {
     Acs: 'acs',
@@ -115,7 +112,7 @@ test('.execTran calls API and returns response', async (t) => {
 })
 
 test('.alterTran calls API and returns response', async (t) => {
-  t.context.tran.options = {
+  tran.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const response: AxiosResponse = {
         data: 'AccessID=accessid&AccessPass=accesspass&Forward=forward&Approve=approve&TranID=tranid&TranDate=trandate',
@@ -136,7 +133,7 @@ test('.alterTran calls API and returns response', async (t) => {
     AccessPass: 'accesspass',
     JobCd: JobCd.Check
   }
-  const res = await t.context.tran.alterTran(args)
+  const res = await tran.alterTran(args)
 
   const expect: IAlterTranResult = {
     AccessID: 'accessid',
@@ -150,7 +147,7 @@ test('.alterTran calls API and returns response', async (t) => {
 })
 
 test('.searchTrade calls API and returns response', async (t) => {
-  t.context.tran.options = {
+  tran.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const text = [
         'OrderID=orderid',
@@ -192,7 +189,7 @@ test('.searchTrade calls API and returns response', async (t) => {
     ShopPass: 'shoppass',
     OrderID: 'orderid'
   }
-  const res = await t.context.tran.searchTrade(args)
+  const res = await tran.searchTrade(args)
 
   const expect: ISearchTradeResult = {
     OrderID: 'orderid',
@@ -221,7 +218,7 @@ test('.searchTrade calls API and returns response', async (t) => {
 })
 
 test('.changeTran calls API and returns response', async (t) => {
-  t.context.tran.options = {
+  tran.config.axios = {
     adapter: async (config: AxiosRequestConfig) => {
       const text = [
         'AccessID=accessid',
@@ -251,7 +248,7 @@ test('.changeTran calls API and returns response', async (t) => {
     JobCd: JobCd.Check,
     Amount: 1234
   }
-  const res = await t.context.tran.changeTran(args)
+  const res = await tran.changeTran(args)
 
   const expect: IChangeTranResult = {
     AccessID: 'accessid',
