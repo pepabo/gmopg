@@ -1,25 +1,28 @@
-import Axios, {AxiosInstance, AxiosResponse} from 'axios'
+import * as qs from 'qs'
+import * as merge from 'deepmerge'
+import fetch, {Response} from 'node-fetch';
 import {BadRequest} from './errors'
 import {IConfig} from './config.interface'
 import {buildByEnv, defaults} from './config'
-import * as qs from 'qs'
-import * as merge from 'deepmerge'
 
 export default class Client {
-  public client: AxiosInstance
   public config: IConfig
 
   constructor(config: IConfig = {}) {
     this.config = merge(merge(defaults, config), buildByEnv())
-    this.client = Axios.create(this.config.axios)
   }
 
-  public async post(endpoint: string, data: any): Promise<any> {
-    const res: AxiosResponse = await this.client.post(endpoint, qs.stringify(data, {encode: false}), this.config.axios)
-    const parsed: any = qs.parse(res.data)
+  public async post(pathname: string, data: any): Promise<any> {
+    const res: Response = await fetch(this.config.baseUrl + pathname, {
+      method: 'POST',
+      body: qs.stringify(data, {encode: false}),
+      ...this.config.http,
+    })
 
-    if (this.isError(parsed)) {
-      throw new BadRequest(`Bad Request: ${endpoint}`).
+    const parsed: any = qs.parse(await res.text());
+
+    if (!res.ok || this.isError(parsed)) {
+      throw new BadRequest(`Bad Request: ${pathname}`).
         setResponse(res).parseError(parsed)
     }
 

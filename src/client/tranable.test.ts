@@ -1,7 +1,7 @@
 import test from 'ava'
-import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
-import {JobCd, Method, Status} from '../client.enum'
+import sinon = require('sinon')
 import Client from '../client'
+import {JobCd, Method, Status} from '../client.enum'
 import WithTranable from './tranable'
 import {
   IAlterTranResult,
@@ -12,27 +12,19 @@ import {
 } from './tranable.interface'
 
 const Tranable = WithTranable(Client)
-let tran: any
+const tranable = new Tranable()
 
-test.beforeEach(() => {
-  tran = new Tranable()
-  tran.client = Axios.create({})
+test.afterEach(() => {
+  sinon.restore();
 })
 
 test('.entryTran calls API and returns response', async (t) => {
-  tran.config.axios = {
-    adapter: async (config: AxiosRequestConfig) => {
-      const response: AxiosResponse = {
-        data: 'AccessID=accessid&AccessPass=accesspass',
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config
-      }
-
-      return Promise.resolve(response)
-    }
+  const expect: IEntryTranResult = {
+    AccessID: 'accessid',
+    AccessPass: 'accesspass'
   }
+
+  sinon.stub(tranable, 'post').resolves(expect)
 
   const args = {
     SiteID: 'siteid',
@@ -44,56 +36,12 @@ test('.entryTran calls API and returns response', async (t) => {
     JobCd: JobCd.Check,
     Amount: 1234
   }
-  const res = await tran.entryTran(args)
+  const res = await tranable.entryTran(args)
 
-  const expect: IEntryTranResult = {
-    AccessID: 'accessid',
-    AccessPass: 'accesspass'
-  }
   t.deepEqual(res, expect)
 })
 
 test('.execTran calls API and returns response', async (t) => {
-  tran.config.axios = {
-    adapter: async (config: AxiosRequestConfig) => {
-      const text = [
-        'Acs=acs',
-        'OrderID=orderid',
-        'Forward=forward',
-        'Method=1',
-        'PayTimes=1',
-        'Approve=approve',
-        'TranID=tranid',
-        'TranDate=trandate',
-        'CheckString=checkstring',
-        'ClientField1=clientfield1',
-        'ClientField2=clientfield2',
-        'ClientField3=clientfield3'
-      ].join('&')
-      const response: AxiosResponse = {
-        data: text,
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config
-      }
-
-      return Promise.resolve(response)
-    }
-  }
-
-  const args = {
-    AccessID: 'accessid',
-    AccessPass: 'accesspass',
-    OrderID: 'orderid',
-    Method: Method.Lump,
-    PayTimes: 1,
-    CardNo: 'cardno',
-    Expire: 'expire',
-    SecurityCode: '123'
-  }
-  const res = await tran.execTran(args)
-
   const expect: IExecTranResult = {
     Acs: 'acs',
     OrderID: 'orderid',
@@ -108,33 +56,25 @@ test('.execTran calls API and returns response', async (t) => {
     ClientField2: 'clientfield2',
     ClientField3: 'clientfield3'
   }
+
+  sinon.stub(tranable, 'post').resolves(expect)
+
+  const args = {
+    AccessID: 'accessid',
+    AccessPass: 'accesspass',
+    OrderID: 'orderid',
+    Method: Method.Lump,
+    PayTimes: 1,
+    CardNo: 'cardno',
+    Expire: 'expire',
+    SecurityCode: '123'
+  }
+  const res = await tranable.execTran(args)
+
   t.deepEqual(res, expect)
 })
 
 test('.alterTran calls API and returns response', async (t) => {
-  tran.config.axios = {
-    adapter: async (config: AxiosRequestConfig) => {
-      const response: AxiosResponse = {
-        data: 'AccessID=accessid&AccessPass=accesspass&Forward=forward&Approve=approve&TranID=tranid&TranDate=trandate',
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config
-      }
-
-      return Promise.resolve(response)
-    }
-  }
-
-  const args = {
-    ShopID: 'shopid',
-    ShopPass: 'shoppass',
-    AccessID: 'accessid',
-    AccessPass: 'accesspass',
-    JobCd: JobCd.Check
-  }
-  const res = await tran.alterTran(args)
-
   const expect: IAlterTranResult = {
     AccessID: 'accessid',
     AccessPass: 'accesspass',
@@ -143,54 +83,22 @@ test('.alterTran calls API and returns response', async (t) => {
     TranID: 'tranid',
     TranDate: 'trandate'
   }
-  t.deepEqual(res, expect)
-})
 
-test('.searchTrade calls API and returns response', async (t) => {
-  tran.config.axios = {
-    adapter: async (config: AxiosRequestConfig) => {
-      const text = [
-        'OrderID=orderid',
-        'Status=CHECK',
-        'ProcessDate=processdate',
-        'JobCd=CHECK',
-        'AccessID=accessid',
-        'AccessPass=accesspass',
-        'ItemCode=itemcode',
-        'Amount=1234',
-        'Tax=10',
-        'SiteID=siteid',
-        'MemberID=memberid',
-        'CardNo=cardno',
-        'Expire=expire',
-        'Method=1',
-        'PayTimes=1',
-        'Forward=forward',
-        'TranID=tranid',
-        'Approve=approve',
-        'ClientField1=clientfield1',
-        'ClientField2=clientfield2',
-        'ClientField3=clientfield3'
-      ].join('&')
-      const response: AxiosResponse = {
-        data: text,
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config
-      }
-
-      return Promise.resolve(response)
-    }
-  }
+  sinon.stub(tranable, 'post').resolves(expect)
 
   const args = {
     ShopID: 'shopid',
     ShopPass: 'shoppass',
-    OrderID: 'orderid'
+    AccessID: 'accessid',
+    AccessPass: 'accesspass',
+    JobCd: JobCd.Check
   }
-  const res = await tran.searchTrade(args)
+  const res = await tranable.alterTran(args)
 
+  t.deepEqual(res, expect)
+})
+
+test('.searchTrade calls API and returns response', async (t) => {
   const expect: ISearchTradeResult = {
     OrderID: 'orderid',
     Status: Status.Check,
@@ -214,31 +122,29 @@ test('.searchTrade calls API and returns response', async (t) => {
     ClientField2: 'clientfield2',
     ClientField3: 'clientfield3'
   }
+
+  sinon.stub(tranable, 'post').resolves(expect)
+
+  const args = {
+    ShopID: 'shopid',
+    ShopPass: 'shoppass',
+    OrderID: 'orderid'
+  }
+  const res = await tranable.searchTrade(args)
   t.deepEqual(res, expect)
 })
 
 test('.changeTran calls API and returns response', async (t) => {
-  tran.config.axios = {
-    adapter: async (config: AxiosRequestConfig) => {
-      const text = [
-        'AccessID=accessid',
-        'AccessPass=accesspass',
-        'Forward=forward',
-        'Approve=approve',
-        'TranID=tranid',
-        'TranDate=trandate'
-      ].join('&')
-      const response: AxiosResponse = {
-        data: text,
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config
-      }
-
-      return Promise.resolve(response)
-    }
+  const expect: IChangeTranResult = {
+    AccessID: 'accessid',
+    AccessPass: 'accesspass',
+    Forward: 'forward',
+    Approve: 'approve',
+    TranID: 'tranid',
+    TranDate: 'trandate'
   }
+
+  sinon.stub(tranable, 'post').resolves(expect)
 
   const args = {
     ShopID: 'shopid',
@@ -248,15 +154,7 @@ test('.changeTran calls API and returns response', async (t) => {
     JobCd: JobCd.Check,
     Amount: 1234
   }
-  const res = await tran.changeTran(args)
+  const res = await tranable.changeTran(args)
 
-  const expect: IChangeTranResult = {
-    AccessID: 'accessid',
-    AccessPass: 'accesspass',
-    Forward: 'forward',
-    Approve: 'approve',
-    TranID: 'tranid',
-    TranDate: 'trandate'
-  }
   t.deepEqual(res, expect)
 })

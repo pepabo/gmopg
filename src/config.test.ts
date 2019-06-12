@@ -4,8 +4,8 @@ import * as process from 'process'
 
 test('defaults returns default config', (t) => {
   const expect = {
-    axios: {
-      baseURL: 'https://pt01.mul-pay.jp',
+    baseUrl: 'https://pt01.mul-pay.jp',
+    http: {
       timeout: 180000,
       headers: {
         'user-agent': 'GMO PG Client: Unofficial'
@@ -16,7 +16,7 @@ test('defaults returns default config', (t) => {
 })
 
 test('.buildByEnv returns config', (t) => {
-  t.deepEqual(config.buildByEnv(), { axios: {} })
+  t.deepEqual(config.buildByEnv(), {})
 })
 
 test('.buildByEnv returns config with env', (t) => {
@@ -28,8 +28,8 @@ test('.buildByEnv returns config with env', (t) => {
   process.env.GMOPG_SHOPPASS = 'foo-shoppass'
 
   const expect = {
-    axios: {
-      baseURL: 'https://foo.com',
+    baseUrl: 'https://foo.com',
+    http: {
       timeout: 123
     },
     SiteID: 'foo-siteid',

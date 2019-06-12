@@ -39,8 +39,8 @@ test('.GENERATE_MEMBER_ID returns max 60 chars', (t) => {
 
 test('.config returns IConfig', (t) => {
   const expect = {
-    axios: {
-      baseURL: 'https://pt01.mul-pay.jp',
+    baseUrl: 'https://pt01.mul-pay.jp',
+    http: {
       timeout: 180000,
       headers: {
         'user-agent': 'GMO PG Client: Unofficial'
@@ -48,10 +48,6 @@ test('.config returns IConfig', (t) => {
     }
   }
   t.deepEqual(gmopg.config, expect)
-})
-
-test('.client returns AxiosInstance', (t) => {
-  t.is(typeof gmopg.client, 'function')
 })
 
 test('.saveMember is function', (t) => {

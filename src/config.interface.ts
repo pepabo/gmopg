@@ -1,7 +1,8 @@
-import {AxiosRequestConfig} from 'axios'
+import {RequestInit} from 'node-fetch'
 
 export interface IConfig {
-  axios?: AxiosRequestConfig
+  baseUrl?: string
+  http?: RequestInit
   SiteID?: string
   SitePass?: string
   ShopID?: string

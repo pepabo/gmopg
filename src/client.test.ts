@@ -1,50 +1,50 @@
-import anyTest, {TestInterface} from 'ava'
-import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
+import test from 'ava'
+import nock = require('nock');
 import {PayType} from './client.enum'
 import Client from './client'
 
-interface Context {
-  client: Client
-}
+const baseUrl = 'https://x.y';
 
-const test = anyTest as TestInterface<Context>;
+const client = new Client({baseUrl})
 
-test.beforeEach((t) => {
-  const client = new Client()
-  client.client = Axios.create({})
-  t.context.client = client
+test('.post is function', (t) => {
+  t.is(typeof client.post, 'function')
 })
 
 test('.post requests body correctly', async (t) => {
-  t.context.client.config.axios = {
-    adapter: async (config: AxiosRequestConfig) => {
-      const response: AxiosResponse = {
-        data: 'AccessID=accessid&AccessPass=accesspass',
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config
-      }
+  nock(baseUrl)
+    .post(/.*/, 'Foo=aaa&Bar=0&Baz=true&Ja=日本語&Type=0')
+    .reply(200, 'AccessID=accessid&AccessPass=accesspass')
 
-      return Promise.resolve(response)
-    }
-  }
-
-  t.context.client.client.interceptors.request.use((req) => {
-    t.is(req.data, 'Foo=aaa&Bar=0&Baz=true&Ja=日本語&Type=0')
-    return req
-  })
-
-  const res = await t.context.client.post('/test', {
+  const res = await client.post('/test1', {
     Foo: 'aaa',
     Bar: 0,
     Baz: true,
     Ja: '日本語',
     Type: PayType.Credit
-  })
+  });
 
   t.deepEqual(res, {
     AccessID: 'accessid',
     AccessPass: 'accesspass'
   })
+})
+
+test('.post returns errors correctly', async (t) => {
+  nock(baseUrl)
+    .post(/.*/, 'Foo=aaa&Bar=0&Baz=true&Ja=日本語&Type=0')
+    .reply(200, 'ErrCode=E01&ErrInfo=E01190001')
+
+  try {
+    await client.post('/test2', {
+      Foo: 'aaa',
+      Bar: 0,
+      Baz: true,
+      Ja: '日本語',
+      Type: PayType.Credit
+    });
+    t.fail()
+  } catch (err) {
+    t.deepEqual(err.errInfo, ["E01190001"])
+  }
 })

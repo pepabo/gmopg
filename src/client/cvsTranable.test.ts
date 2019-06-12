@@ -1,7 +1,7 @@
 import test from 'ava'
-import Axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
-import {CvsCode, Status} from '../client.enum'
+import sinon = require('sinon')
 import Client from '../client'
+import {CvsCode, Status} from '../client.enum'
 import WithCvsTranable from './cvsTranable'
 import {
   ICancelCvsResult,
@@ -10,27 +10,19 @@ import {
 } from './cvsTranable.interface'
 
 const CvsTranable = WithCvsTranable(Client)
-let cvsTran: any
+const cvsTranable = new CvsTranable()
 
-test.beforeEach(() => {
-  cvsTran = new CvsTranable()
-  cvsTran.client = Axios.create({})
+test.afterEach(() => {
+  sinon.restore();
 })
 
 test('.entryTranCvs calls API and returns response', async (t) => {
-  cvsTran.config.axios = {
-    adapter: async (config: AxiosRequestConfig) => {
-      const response: AxiosResponse = {
-        data: 'AccessID=accessid&AccessPass=accesspass',
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config
-      }
-
-      return Promise.resolve(response)
-    }
+  const expect: IEntryTranCvsResult = {
+    AccessID: 'accessid',
+    AccessPass: 'accesspass'
   }
+
+  sinon.stub(cvsTranable, 'post').resolves(expect)
 
   const args = {
     ShopID: 'shopid',
@@ -39,41 +31,26 @@ test('.entryTranCvs calls API and returns response', async (t) => {
     Amount: 1234,
     Tax: 123
   }
-  const res = await cvsTran.entryTranCvs(args)
+  const res = await cvsTranable.entryTranCvs(args)
 
-  const expect: IEntryTranCvsResult = {
-    AccessID: 'accessid',
-    AccessPass: 'accesspass'
-  }
   t.deepEqual(res, expect)
 })
 
 test('.execTranCvs calls API and returns response', async (t) => {
-  cvsTran.config.axios = {
-    adapter: async (config: AxiosRequestConfig) => {
-      const text = [
-        'OrderID=orderid',
-        `Convenience=${CvsCode.Lawson}`,
-        'ConfNo=confno',
-        'ReceiptNo=receiptno',
-        'PaymentTerm=yyyyMMddHHmmss',
-        'TranDate=yyyyMMddHHmmss',
-        'CheckString=checkstring',
-        'ClientField1=clientfield1',
-        'ClientField2=clientfield2',
-        'ClientField3=clientfield3'
-      ].join('&')
-      const response: AxiosResponse = {
-        data: text,
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config
-      }
-
-      return Promise.resolve(response)
-    }
+  const expect: IExecTranCvsResult = {
+    OrderID: 'orderid',
+    Convenience: CvsCode.Lawson,
+    ConfNo: 'confno',
+    ReceiptNo: 'receiptno',
+    PaymentTerm: 'yyyyMMddHHmmss',
+    TranDate: 'yyyyMMddHHmmss',
+    CheckString: 'checkstring',
+    ClientField1: 'clientfield1',
+    ClientField2: 'clientfield2',
+    ClientField3: 'clientfield3'
   }
+
+  sinon.stub(cvsTranable, 'post').resolves(expect)
 
   const args = {
     AccessID: 'accessid',
@@ -87,41 +64,18 @@ test('.execTranCvs calls API and returns response', async (t) => {
     ReceiptsDisp12: '09011112222',
     ReceiptsDisp13: '10:00-19:00'
   }
-  const res = await cvsTran.execTranCvs(args)
+  const res = await cvsTranable.execTranCvs(args)
 
-  const expect: IExecTranCvsResult = {
-    OrderID: 'orderid',
-    Convenience: CvsCode.Lawson,
-    ConfNo: 'confno',
-    ReceiptNo: 'receiptno',
-    PaymentTerm: 'yyyyMMddHHmmss',
-    TranDate: 'yyyyMMddHHmmss',
-    CheckString: 'checkstring',
-    ClientField1: 'clientfield1',
-    ClientField2: 'clientfield2',
-    ClientField3: 'clientfield3'
-  }
   t.deepEqual(res, expect)
 })
 
 test('.cancelCvs calls API and returns response', async (t) => {
-  cvsTran.config.axios = {
-    adapter: async (config: AxiosRequestConfig) => {
-      const text = [
-        'OrderID=orderid',
-        `Status=${Status.Cancel}`
-      ].join('&')
-      const response: AxiosResponse = {
-        data: text,
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        config
-      }
-
-      return Promise.resolve(response)
-    }
+  const expect: ICancelCvsResult = {
+    OrderID: 'orderid',
+    Status: Status.Cancel
   }
+
+  sinon.stub(cvsTranable, 'post').resolves(expect)
 
   const args = {
     ShopID: 'shopid',
@@ -130,11 +84,8 @@ test('.cancelCvs calls API and returns response', async (t) => {
     AccessPass: 'accesspass',
     OrderID: 'orderid'
   }
-  const res = await cvsTran.cancelCvs(args)
 
-  const expect: ICancelCvsResult = {
-    OrderID: 'orderid',
-    Status: Status.Cancel
-  }
+  const res = await cvsTranable.cancelCvs(args)
+
   t.deepEqual(res, expect)
 })
