@@ -43,7 +43,9 @@ test('.config returns IConfig', (t) => {
     http: {
       timeout: 180000,
       headers: {
-        'user-agent': 'GMO PG Client: Unofficial'
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json, text/plain, */*',
+        'User-Agent': 'GMO PG Client: Unofficial'
       }
     }
   }
