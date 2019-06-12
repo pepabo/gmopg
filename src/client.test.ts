@@ -11,8 +11,12 @@ test('.post is function', (t) => {
   t.is(typeof client.post, 'function')
 })
 
-test('.post requests body correctly', async (t) => {
-  nock(baseUrl)
+test('.post requests body correctly and send correct content-type header', async (t) => {
+  nock(baseUrl, {
+    reqheaders: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  })
     .post(/.*/, 'Foo=aaa&Bar=0&Baz=true&Ja=日本語&Type=0')
     .reply(200, 'AccessID=accessid&AccessPass=accesspass')
 
