@@ -3,7 +3,7 @@ import sinon = require('sinon')
 import Client from '../client'
 import {SeqMode} from '../client.enum'
 import WithCardable from './cardable'
-import {IDeleteCardResult, ISaveCardResult, ISearchCardResult} from './cardable.interface'
+import {IDeleteCardResult, ISaveCardResult, ISearchCardResult, ISearchCardDetailResult, ISearchCardDetailArgs} from './cardable.interface'
 
 const Cardable = WithCardable(Client)
 const cardable = new Cardable()
@@ -76,6 +76,34 @@ test('.searchCard calls API and returns response', async (t) => {
     CardSeq: 'cardseq'
   }
   const res = await cardable.searchCard(args)
+
+  t.deepEqual(res, expect)
+})
+
+test('.searchCardDetail calls API and returns response', async (t) => {
+
+  const result: ISearchCardDetailResult = {
+    CardNo: 'cardno',
+    Brand: 'brand',
+    DomesticFlag: '1',
+    IssuerCode: '1234567',
+    DebitPrepaidFlag: '1',
+    DebitPrepaidIssuerName: 'debitPrepaidIssuerName',
+    ForwardFinal: '1234567',
+    ErrCode: '',
+    ErrInfo: '',
+  }
+
+  sinon.stub(cardable, 'post').resolves(result)
+
+  const expect = [result]
+
+  const args: ISearchCardDetailArgs = {
+    ShopID: 'shopid',
+    ShopPass: 'shoppass',
+    Token: 'token'
+  }
+  const res = await cardable.searchCardDetail(args)
 
   t.deepEqual(res, expect)
 })

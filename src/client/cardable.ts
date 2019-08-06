@@ -7,7 +7,9 @@ import {
   ISaveCardArgs,
   ISaveCardResult,
   ISearchCardArgs,
-  ISearchCardResult
+  ISearchCardResult,
+  ISearchCardDetailArgs,
+  ISearchCardDetailResult
 } from './cardable.interface'
 
 export default <T extends Constructor<Client>>(Base: T) => class Cardable extends Base {
@@ -59,4 +61,34 @@ export default <T extends Constructor<Client>>(Base: T) => class Cardable extend
       }
     })
   }
+
+  public async searchCardDetail(args: ISearchCardDetailArgs): Promise<ISearchCardDetailResult[]> {
+    const data: ISearchCardDetailArgs = merge(this.defaultCardData(), args)
+    const parsed: any = await this.post('/payment/SearchCardDetail.idPass', data)
+
+    const cardNoArry: string[] = parsed.CardNo.split('|')
+    const brandArry: string[] = parsed.Brand.split('|')
+    const domesticFlagArry: string[] = parsed.DomesticFlag.split('|')
+    const issuerCodeArry: string[] = parsed.IssuerCode.split('|')
+    const debitPrepaidFlagArry: string[] = parsed.DebitPrepaidFlag.split('|')
+    const debitPrepaidIssuerNameArry: string[] = parsed.DebitPrepaidIssuerName.split('|')
+    const forwardFianlArry: string[] = parsed.ForwardFinal.split('|')
+    const errCodeArry: string[] = parsed.ErrCode.split('|')
+    const errInfoArry: string[] = parsed.ErrInfo.split('|')
+
+    return cardNoArry.map((_, index): ISearchCardDetailResult => {
+      return {
+        CardNo: cardNoArry[index],
+        Brand: brandArry[index],
+        DomesticFlag: domesticFlagArry[index],
+        IssuerCode: issuerCodeArry[index],
+        DebitPrepaidFlag: debitPrepaidFlagArry[index],
+        DebitPrepaidIssuerName: debitPrepaidIssuerNameArry[index],
+        ForwardFinal: forwardFianlArry[index],
+        ErrCode: errCodeArry[index],
+        ErrInfo: errInfoArry[index]
+      }
+    })
+  }
+
 }

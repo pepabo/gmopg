@@ -1,5 +1,5 @@
 import {SeqMode} from '../client.enum'
-import {IResult, ISiteArgs} from '../client.interface'
+import {IResult, ISiteArgs, IShopArgs} from '../client.interface'
 
 export interface ISaveCardArgs extends ISiteArgs {
   SeqMode?: SeqMode
@@ -47,6 +47,25 @@ export interface ISearchCardResult extends IResult {
   Expire: string
   HolderName: string
   DeleteFlag: string
+  Brand?: string
+  DomesticFlag?: string
+  IssuerCode?: string
+  DebitPrepaidFlag?: string
+  DebitPrepaidIssuerName?: string
+  ForwardFinal?: string
+}
+
+export interface ISearchCardDetailArgs extends IShopArgs, ISiteArgs {
+  Token?: string
+  SearchType?: string
+  CardNo?: string
+  OrderID?: string
+  SeqMode?: SeqMode
+  CardSeq?: string
+}
+
+export interface ISearchCardDetailResult extends IResult {
+  CardNo?: string
   Brand?: string
   DomesticFlag?: string
   IssuerCode?: string
