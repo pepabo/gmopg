@@ -7,10 +7,6 @@ test.beforeEach(() => {
   gmopg = new GMOPG()
 })
 
-test('constructor.name returns Object', (t) => {
-  t.is(t.context.constructor.name, 'Object')
-})
-
 test('new returns GMOPG instance', (t) => {
   t.true(gmopg instanceof GMOPG)
 })

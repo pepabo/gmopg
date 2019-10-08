@@ -1,7 +1,7 @@
-const errorDefinition: {[key: string]: {jp: string, en: string}} = require('./error-codes.json');
+const errorDefinition: {[key: string]: {ja: string, en: string}} = require('./error-codes.json');
 
 export class BadRequest extends Error {
-  public errors: {jp: string, en: string}[]
+  public errors: {ja: string, en: string}[]
   public errInfo: string[]
   public response: any
 
