@@ -5,6 +5,7 @@ import {BadRequest} from './errors'
 import {IConfig} from './config.interface'
 import {buildByEnv, defaults} from './config'
 
+
 export default class Client {
   public config: IConfig
 
