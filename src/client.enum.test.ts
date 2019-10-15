@@ -7,7 +7,8 @@ test('exports PayType as enum', (t) => {
     Credit: '0',
     Suica: '1',
     Edy: '2',
-    Cvs: '3'
+    Cvs: '3',
+    DirectDebit: '28',
   }
   t.deepEqual(client.PayType, expect)
 })
