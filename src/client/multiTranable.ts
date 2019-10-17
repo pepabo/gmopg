@@ -4,7 +4,7 @@ import {Constructor} from '../util'
 import {
   ISearchTradeMultiArgs,
   ISearchTradeMultiCardResult,
-  ISearchTradeMultiCvsResult
+  ISearchTradeMultiCvsResult,
 } from './multiTranable.interface'
 
 export default <T extends Constructor<Client>>(Base: T) => class extends Base {
@@ -15,7 +15,7 @@ export default <T extends Constructor<Client>>(Base: T) => class extends Base {
       ShopID: this.config.ShopID,
       ShopPass: this.config.ShopPass,
       OrderID: undefined,
-      PayType: undefined
+      PayType: undefined,
     }
     const data: ISearchTradeMultiArgs = merge(defaultData, args)
     const parsed: any = await this.post('/payment/SearchTradeMulti.idPass', data)

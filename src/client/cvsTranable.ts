@@ -8,7 +8,7 @@ import {
   IEntryTranCvsArgs,
   IEntryTranCvsResult,
   IExecTranCvsArgs,
-  IExecTranCvsResult
+  IExecTranCvsResult,
 } from './cvsTranable.interface'
 
 export default <T extends Constructor<Client>>(Base: T) => class extends Base {
@@ -18,7 +18,7 @@ export default <T extends Constructor<Client>>(Base: T) => class extends Base {
       ShopPass: this.config.ShopPass,
       OrderID: undefined,
       Amount: undefined,
-      Tax: undefined
+      Tax: undefined,
     }
     const data: IEntryTranCvsArgs = merge(defaultData, args)
     const parsed: any = await this.post('/payment/EntryTranCvs.idPass', data)
@@ -30,7 +30,7 @@ export default <T extends Constructor<Client>>(Base: T) => class extends Base {
     const parsed: any = await this.post('/payment/ExecTranCvs.idPass', {
       ...args,
       CustomerName: encoding.urlEncode(encoding.convert(args.CustomerName, 'SJIS')),
-      CustomerKana: encoding.urlEncode(encoding.convert(args.CustomerKana, 'SJIS'))
+      CustomerKana: encoding.urlEncode(encoding.convert(args.CustomerKana, 'SJIS')),
     })
 
     return <IExecTranCvsResult>parsed
@@ -42,7 +42,7 @@ export default <T extends Constructor<Client>>(Base: T) => class extends Base {
       ShopPass: this.config !== undefined ? this.config.ShopPass : undefined,
       AccessID: undefined,
       AccessPass: undefined,
-      OrderID: undefined
+      OrderID: undefined,
     }
     const data: ICancelCvsArgs = merge(defaultData, args)
     const parsed: any = await this.post('/payment/CvsCancel.idPass', data)
