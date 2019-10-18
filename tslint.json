@@ -35,6 +35,7 @@
     "no-unsafe-any": false,
     "prefer-function-over-method": true,
     "prefer-method-signature": true,
+    "trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
     "typedef": [
       true,
       "parameter",

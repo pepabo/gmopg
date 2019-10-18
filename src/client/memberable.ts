@@ -9,7 +9,7 @@ import {
   ISearchMemberArgs,
   ISearchMemberResult,
   IUpdateMemberArgs,
-  IUpdateMemberResult
+  IUpdateMemberResult,
 } from './memberable.interface'
 
 export default <T extends Constructor<Client>>(Base: T) => class extends Base {
@@ -19,7 +19,7 @@ export default <T extends Constructor<Client>>(Base: T) => class extends Base {
     return {
       SiteID,
       SitePass,
-      MemberID: undefined
+      MemberID: undefined,
     }
   }
 

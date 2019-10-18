@@ -9,7 +9,7 @@ import {
   ISearchCardArgs,
   ISearchCardResult,
   ISearchCardDetailArgs,
-  ISearchCardDetailResult
+  ISearchCardDetailResult,
 } from './cardable.interface'
 
 export default <T extends Constructor<Client>>(Base: T) => class Cardable extends Base {
@@ -19,7 +19,7 @@ export default <T extends Constructor<Client>>(Base: T) => class Cardable extend
     return {
       SiteID,
       SitePass,
-      MemberID: undefined
+      MemberID: undefined,
     }
   }
 
@@ -57,7 +57,7 @@ export default <T extends Constructor<Client>>(Base: T) => class Cardable extend
         CardNo: cardNoArry[index],
         Expire: expireArry[index],
         HolderName: holderNameArry[index],
-        DeleteFlag: deleteFlagArry[index]
+        DeleteFlag: deleteFlagArry[index],
       }
     })
   }
@@ -86,7 +86,7 @@ export default <T extends Constructor<Client>>(Base: T) => class Cardable extend
         DebitPrepaidIssuerName: debitPrepaidIssuerNameArry[index],
         ForwardFinal: forwardFianlArry[index],
         ErrCode: errCodeArry[index],
-        ErrInfo: errInfoArry[index]
+        ErrInfo: errInfoArry[index],
       }
     })
   }

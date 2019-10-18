@@ -11,7 +11,7 @@ import {
   IExecTranArgs,
   IExecTranResult,
   ISearchTradeArgs,
-  ISearchTradeResult
+  ISearchTradeResult,
 } from './tranable.interface'
 
 export default <T extends Constructor<Client>>(Base: T) => class extends Base {
@@ -21,7 +21,7 @@ export default <T extends Constructor<Client>>(Base: T) => class extends Base {
       ShopPass: this.config.ShopPass,
       OrderID: undefined,
       JobCd: undefined,
-      Amount: undefined
+      Amount: undefined,
     }
     const data: IEntryTranArgs = merge(defaultData, args)
     const parsed: any = await this.post('/payment/EntryTran.idPass', data)
@@ -41,7 +41,7 @@ export default <T extends Constructor<Client>>(Base: T) => class extends Base {
       ShopPass: this.config.ShopPass,
       AccessID: undefined,
       AccessPass: undefined,
-      JobCd: undefined
+      JobCd: undefined,
     }
     const data: IAlterTranArgs = merge(defaultData, args)
     const parsed: any = await this.post('/payment/AlterTran.idPass', data)
@@ -53,7 +53,7 @@ export default <T extends Constructor<Client>>(Base: T) => class extends Base {
     const defaultData = {
       ShopID: this.config.ShopID,
       ShopPass: this.config.ShopPass,
-      OrderID: undefined
+      OrderID: undefined,
     }
     const data: ISearchTradeArgs = merge(defaultData, args)
     const parsed: any = await this.post('/payment/SearchTrade.idPass', data)
@@ -68,7 +68,7 @@ export default <T extends Constructor<Client>>(Base: T) => class extends Base {
       AccessID: undefined,
       AccessPass: undefined,
       JobCd: undefined,
-      Amount: undefined
+      Amount: undefined,
     }
     const data: IChangeTranArgs = merge(defaultData, args)
     const parsed: any = await this.post('/payment/ChangeTran.idPass', data)
