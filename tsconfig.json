@@ -31,6 +31,7 @@
     "preserveConstEnums": false,
     "pretty": false,
     "removeComments": true,
+    "resolveJsonModule": true,
     "sourceMap": false,
     "strictNullChecks": true,
     "stripInternal": false,
@@ -39,6 +40,7 @@
     "watch": false
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "./src/**/*.json"
   ]
 }
