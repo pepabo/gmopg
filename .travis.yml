@@ -3,6 +3,7 @@ node_js:
   - '10'
 script:
   - npm run ci
+  - npm run test:js
 after_success:
   - './node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls'
 notifications:
