@@ -76,6 +76,7 @@
     "clean": "rm -rf lib package-lock.json",
     "ci": "npm run clean && npm i && npm run lint && npm run cov && npm audit",
     "test": "ava -v",
+    "test:js": "npm run build && ava src/**/*.js",
     "cov": "nyc npm test",
     "lint": "tslint -p tsconfig.json -c tslint.json src/**/*.ts",
     "preversion": "npm run clean && npm run build && npm test",
