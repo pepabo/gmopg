@@ -18,3 +18,9 @@ test('.parseError returns ErrInfo as array', (t) => {
   t.is(err.errInfo[0], 'NC1000009')
   t.is(err.errInfo[1], 'N0C030G96')
 })
+
+test('.parseError returns unique ErrInfos', (t) => {
+  const err = new BadRequest().parseError({ErrInfo: 'E61030001|E61030001'})
+  t.deepEqual(err.errors, [{ja: 'ご契約内容エラー/現在のご契約では、ご利用になれません。', en: 'Your request cannot be accepted under the current merchant contract.'}])
+  t.deepEqual(err.errInfo, ['E61030001'])
+})

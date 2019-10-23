@@ -23,7 +23,7 @@ export class BadRequest extends Error {
   }
 
   public parseError(obj: any): BadRequest {
-    this.errInfo = obj.ErrInfo.split('|')
+    this.errInfo = [...new Set<string>(obj.ErrInfo.split('|'))]
     this.errors = this.errInfo.map((code) => errorDefinition[code])
     return this
   }
