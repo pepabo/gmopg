@@ -17,7 +17,8 @@
   "files": [
     "MIT-LICENSE",
     "README.md",
-    "lib/"
+    "lib/",
+    "error-codes.json"
   ],
   "directories": {
     "lib": "./lib",
