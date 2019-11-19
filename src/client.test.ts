@@ -52,3 +52,17 @@ test('.post returns errors correctly', async (t) => {
     t.deepEqual(err.errInfo, ["E01190001"])
   }
 })
+
+test('.post should not decode "+" chars', async (t) => {
+  nock(baseUrl)
+    .post(/.*/)
+    .reply(200, 'TranID=123aZ&Token=abc123/+-_&StartUrl=https://x.y/z')
+
+  const res = await client.post('/test1', {foo: '1'});
+
+  t.deepEqual(res, {
+    TranID: '123aZ',
+    Token: 'abc123/+-_',
+    StartUrl: 'https://x.y/z',
+  })
+})
