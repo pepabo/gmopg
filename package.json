@@ -49,7 +49,7 @@
     "typescript": "^3.6.3"
   },
   "engines": {
-    "node": ">=8.4.0"
+    "node": ">=10"
   },
   "ava": {
     "compileEnhancements": false,
