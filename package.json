@@ -1,7 +1,7 @@
 {
   "name": "gmopg",
   "description": "GMO PaymentGateway API client",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "author": "linyows",
   "license": "MIT",
   "repository": "pepabo/gmopg",
@@ -38,7 +38,7 @@
     "@types/node-fetch": "^2.5.2",
     "@types/qs": "^6.5.1",
     "@types/sinon": "^7.5.0",
-    "ava": "^2.4.0",
+    "ava": "^3.11.0",
     "codecov": "^3.7.2",
     "nock": "^11.4.0",
     "nyc": "^14.1.1",
@@ -52,7 +52,6 @@
     "node": ">=10"
   },
   "ava": {
-    "compileEnhancements": false,
     "extensions": [
       "ts"
     ],
