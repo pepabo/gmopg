@@ -74,10 +74,10 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf lib package-lock.json",
-    "ci": "npm run clean && npm i && npm run lint && npm run cov && npm audit",
+    "ci": "npm run clean && npm i && npm run lint && npm run cov && npm audit && npm run cov:report",
     "test": "ava -v",
     "cov": "nyc npm test",
-    "cov:report": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "cov:report": "nyc report --reporter=text-lcov > coverage.lcov",
     "lint": "tslint -p tsconfig.json -c tslint.json src/**/*.ts",
     "preversion": "npm run clean && npm run build && npm test",
     "postversion": "git push origin --tags",
