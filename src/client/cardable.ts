@@ -38,9 +38,7 @@ export default <T extends Constructor<Client>>(Base: T) =>
       return <DeleteCardResult>parsed
     }
 
-    public async searchCard(
-      args: SearchCardArgs
-    ): Promise<SearchCardResult[]> {
+    public async searchCard(args: SearchCardArgs): Promise<SearchCardResult[]> {
       const data: SearchCardArgs = merge(this.defaultCardData(), args)
       const parsed: any = await this.post('/payment/SearchCard.idPass', data)
 
@@ -65,23 +63,16 @@ export default <T extends Constructor<Client>>(Base: T) =>
       })
     }
 
-    public async searchCardDetail(
-      args: SearchCardDetailArgs
-    ): Promise<SearchCardDetailResult[]> {
+    public async searchCardDetail(args: SearchCardDetailArgs): Promise<SearchCardDetailResult[]> {
       const data: SearchCardDetailArgs = merge(this.defaultCardData(), args)
-      const parsed: any = await this.post(
-        '/payment/SearchCardDetail.idPass',
-        data
-      )
+      const parsed: any = await this.post('/payment/SearchCardDetail.idPass', data)
 
       const cardNoArry: string[] = parsed.CardNo.split('|')
       const brandArry: string[] = parsed.Brand.split('|')
       const domesticFlagArry: string[] = parsed.DomesticFlag.split('|')
       const issuerCodeArry: string[] = parsed.IssuerCode.split('|')
       const debitPrepaidFlagArry: string[] = parsed.DebitPrepaidFlag.split('|')
-      const debitPrepaidIssuerNameArry: string[] = parsed.DebitPrepaidIssuerName.split(
-        '|'
-      )
+      const debitPrepaidIssuerNameArry: string[] = parsed.DebitPrepaidIssuerName.split('|')
       const forwardFianlArry: string[] = parsed.ForwardFinal.split('|')
       const errCodeArry: string[] = parsed.ErrCode.split('|')
       const errInfoArry: string[] = parsed.ErrInfo.split('|')

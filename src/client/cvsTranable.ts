@@ -2,20 +2,11 @@ import * as encoding from 'encoding-japanese'
 import * as merge from 'deepmerge'
 import Client from '../client'
 import { Constructor } from '../util'
-import {
-  CancelCvsArgs,
-  CancelCvsResult,
-  EntryTranCvsArgs,
-  EntryTranCvsResult,
-  ExecTranCvsArgs,
-  ExecTranCvsResult,
-} from './cvsTranable.interface'
+import { CancelCvsArgs, CancelCvsResult, EntryTranCvsArgs, EntryTranCvsResult, ExecTranCvsArgs, ExecTranCvsResult } from './cvsTranable.interface'
 
 export default <T extends Constructor<Client>>(Base: T) =>
   class extends Base {
-    public async entryTranCvs(
-      args: EntryTranCvsArgs
-    ): Promise<EntryTranCvsResult> {
+    public async entryTranCvs(args: EntryTranCvsArgs): Promise<EntryTranCvsResult> {
       const defaultData = {
         ShopID: this.config.ShopID,
         ShopPass: this.config.ShopPass,
@@ -29,17 +20,11 @@ export default <T extends Constructor<Client>>(Base: T) =>
       return <EntryTranCvsResult>parsed
     }
 
-    public async execTranCvs(
-      args: ExecTranCvsArgs
-    ): Promise<ExecTranCvsResult> {
+    public async execTranCvs(args: ExecTranCvsArgs): Promise<ExecTranCvsResult> {
       const parsed: any = await this.post('/payment/ExecTranCvs.idPass', {
         ...args,
-        CustomerName: encoding.urlEncode(
-          encoding.convert(args.CustomerName, 'SJIS')
-        ),
-        CustomerKana: encoding.urlEncode(
-          encoding.convert(args.CustomerKana, 'SJIS')
-        ),
+        CustomerName: encoding.urlEncode(encoding.convert(args.CustomerName, 'SJIS')),
+        CustomerKana: encoding.urlEncode(encoding.convert(args.CustomerKana, 'SJIS')),
       })
 
       return <ExecTranCvsResult>parsed

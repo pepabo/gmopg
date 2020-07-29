@@ -31,27 +31,21 @@ export default <T extends Constructor<Client>>(Base: T) =>
       return <SaveMemberResult>parsed
     }
 
-    public async updateMember(
-      args: UpdateMemberArgs
-    ): Promise<UpdateMemberResult> {
+    public async updateMember(args: UpdateMemberArgs): Promise<UpdateMemberResult> {
       const data: UpdateMemberArgs = merge(this.defaultMemberData(), args)
       const parsed: any = await this.post('/payment/UpdateMember.idPass', data)
 
       return <UpdateMemberResult>parsed
     }
 
-    public async deleteMember(
-      args: DeleteMemberArgs
-    ): Promise<DeleteMemberResult> {
+    public async deleteMember(args: DeleteMemberArgs): Promise<DeleteMemberResult> {
       const data: DeleteMemberArgs = merge(this.defaultMemberData(), args)
       const parsed: any = await this.post('/payment/DeleteMember.idPass', data)
 
       return <DeleteMemberResult>parsed
     }
 
-    public async searchMember(
-      args: SearchMemberArgs
-    ): Promise<SearchMemberResult | null> {
+    public async searchMember(args: SearchMemberArgs): Promise<SearchMemberResult | null> {
       const data: SearchMemberArgs = merge(this.defaultMemberData(), args)
       const parsed: any = await this.post('/payment/SearchMember.idPass', data)
 

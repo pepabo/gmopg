@@ -3,10 +3,7 @@ import sinon = require('sinon')
 import Client from '../client'
 import { CvsCode, PayType, Status, Method, JobCd } from '../client.enum'
 import WithMultiTranable from './multiTranable'
-import {
-  SearchTradeMultiCardResult,
-  SearchTradeMultiCvsResult,
-} from './multiTranable.interface'
+import { SearchTradeMultiCardResult, SearchTradeMultiCvsResult } from './multiTranable.interface'
 
 const MultiTranable = WithMultiTranable(Client)
 const multiTranable = new MultiTranable()
@@ -42,9 +39,7 @@ test('.searchTradeMulti calls API and returns response - CVS', async t => {
     OrderID: 'orderid',
     PayType: PayType.Cvs,
   }
-  const res = await multiTranable.searchTradeMulti<SearchTradeMultiCvsResult>(
-    args
-  )
+  const res = await multiTranable.searchTradeMulti<SearchTradeMultiCvsResult>(args)
 
   t.deepEqual(res, expect)
 })
@@ -82,9 +77,7 @@ test('.searchTradeMulti calls API and returns response - Credit', async t => {
     OrderID: 'orderid',
     PayType: PayType.Credit,
   }
-  const res = await multiTranable.searchTradeMulti<SearchTradeMultiCardResult>(
-    args
-  )
+  const res = await multiTranable.searchTradeMulti<SearchTradeMultiCardResult>(args)
 
   t.deepEqual(res, expect)
 })

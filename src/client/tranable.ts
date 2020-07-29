@@ -50,9 +50,7 @@ export default <T extends Constructor<Client>>(Base: T) =>
       return <AlterTranResult>parsed
     }
 
-    public async searchTrade(
-      args: SearchTradeArgs
-    ): Promise<SearchTradeResult> {
+    public async searchTrade(args: SearchTradeArgs): Promise<SearchTradeResult> {
       const defaultData = {
         ShopID: this.config.ShopID,
         ShopPass: this.config.ShopPass,
