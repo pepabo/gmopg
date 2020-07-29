@@ -1,41 +1,46 @@
 import test from 'ava'
 import sinon = require('sinon')
 import Client from '../client'
-import {SeqMode} from '../client.enum'
+import { SeqMode } from '../client.enum'
 import WithCardable from './cardable'
-import {IDeleteCardResult, ISaveCardResult, ISearchCardResult, ISearchCardDetailResult, ISearchCardDetailArgs} from './cardable.interface'
+import {
+  IDeleteCardResult,
+  ISaveCardResult,
+  ISearchCardResult,
+  ISearchCardDetailResult,
+  ISearchCardDetailArgs,
+} from './cardable.interface'
 
 const Cardable = WithCardable(Client)
 const cardable = new Cardable()
 
 test.afterEach(() => {
-  sinon.restore();
+  sinon.restore()
 })
 
-test('.saveCard calls API and returns response', async (t) => {
+test('.saveCard calls API and returns response', async t => {
   const expect: ISaveCardResult = {
     CardSeq: 'cardseq',
     CardNo: 'cardno',
     Forward: 'forward',
-    Brand: 'brand'
-  };
+    Brand: 'brand',
+  }
 
   sinon.stub(cardable, 'post').resolves(expect)
 
   const args = {
     SiteID: 'siteid',
     SitePass: 'sitepass',
-    MemberID: 'memberid'
+    MemberID: 'memberid',
   }
   const res = await cardable.saveCard(args)
 
   t.deepEqual(res, expect)
 })
 
-test('.deleteCard calls API and returns response', async (t) => {
-
+test('.deleteCard calls API and returns response', async t => {
   const expect: IDeleteCardResult = {
-    CardSeq: 'cardseq'
+    CardSeq: 'cardseq',
   }
 
   sinon.stub(cardable, 'post').resolves(expect)
@@ -45,15 +50,14 @@ test('.deleteCard calls API and returns response', async (t) => {
     SitePass: 'sitepass',
     MemberID: 'memberid',
     SeqMode: SeqMode.Logic,
-    CardSeq: 'cardseq'
+    CardSeq: 'cardseq',
   }
   const res = await cardable.deleteCard(args)
 
   t.deepEqual(res, expect)
 })
 
-test('.searchCard calls API and returns response', async (t) => {
-
+test('.searchCard calls API and returns response', async t => {
   const result: ISearchCardResult = {
     CardSeq: 'cardseq',
     DefaultFlag: '1',
@@ -61,7 +65,7 @@ test('.searchCard calls API and returns response', async (t) => {
     CardNo: 'cardno',
     Expire: 'expire',
     HolderName: 'holdername',
-    DeleteFlag: '0'
+    DeleteFlag: '0',
   }
 
   sinon.stub(cardable, 'post').resolves(result)
@@ -73,15 +77,14 @@ test('.searchCard calls API and returns response', async (t) => {
     SitePass: 'sitepass',
     MemberID: 'memberid',
     SeqMode: SeqMode.Logic,
-    CardSeq: 'cardseq'
+    CardSeq: 'cardseq',
   }
   const res = await cardable.searchCard(args)
 
   t.deepEqual(res, expect)
 })
 
-test('.searchCardDetail calls API and returns response', async (t) => {
-
+test('.searchCardDetail calls API and returns response', async t => {
   const result: ISearchCardDetailResult = {
     CardNo: 'cardno',
     Brand: 'brand',
@@ -101,7 +104,7 @@ test('.searchCardDetail calls API and returns response', async (t) => {
   const args: ISearchCardDetailArgs = {
     ShopID: 'shopid',
     ShopPass: 'shoppass',
-    Token: 'token'
+    Token: 'token',
   }
   const res = await cardable.searchCardDetail(args)
 

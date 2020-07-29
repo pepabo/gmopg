@@ -1,5 +1,5 @@
-import {JobCd, Method, SeqMode, Status} from '../client.enum'
-import {IResult, IShopArgs} from '../client.interface'
+import { JobCd, Method, SeqMode, Status } from '../client.enum'
+import { IResult, IShopArgs } from '../client.interface'
 
 export interface IEntryTranArgs extends IShopArgs {
   OrderID: string

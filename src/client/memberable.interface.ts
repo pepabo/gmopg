@@ -1,4 +1,4 @@
-import {IResult, ISiteArgs} from '../client.interface'
+import { IResult, ISiteArgs } from '../client.interface'
 
 export interface ISaveMemberArgs extends ISiteArgs {
   MemberName?: string

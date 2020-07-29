@@ -1,5 +1,5 @@
-import {SeqMode} from '../client.enum'
-import {IResult, ISiteArgs, IShopArgs} from '../client.interface'
+import { SeqMode } from '../client.enum'
+import { IResult, ISiteArgs, IShopArgs } from '../client.interface'
 
 export interface ISaveCardArgs extends ISiteArgs {
   SeqMode?: SeqMode

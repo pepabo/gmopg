@@ -1,5 +1,5 @@
-import {PayType, Status, CvsCode, JobCd, Method} from '../client.enum'
-import {IResult, IShopArgs} from '../client.interface'
+import { PayType, Status, CvsCode, JobCd, Method } from '../client.enum'
+import { IResult, IShopArgs } from '../client.interface'
 
 export interface ISearchTradeMultiArgs extends IShopArgs {
   OrderID: string

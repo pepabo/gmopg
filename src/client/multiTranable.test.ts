@@ -1,21 +1,21 @@
 import test from 'ava'
 import sinon = require('sinon')
 import Client from '../client'
-import {CvsCode, PayType, Status, Method, JobCd} from '../client.enum'
+import { CvsCode, PayType, Status, Method, JobCd } from '../client.enum'
 import WithMultiTranable from './multiTranable'
 import {
   ISearchTradeMultiCardResult,
-  ISearchTradeMultiCvsResult
+  ISearchTradeMultiCvsResult,
 } from './multiTranable.interface'
 
 const MultiTranable = WithMultiTranable(Client)
 const multiTranable = new MultiTranable()
 
 test.afterEach(() => {
-  sinon.restore();
+  sinon.restore()
 })
 
-test('.searchTradeMulti calls API and returns response - CVS', async (t) => {
+test('.searchTradeMulti calls API and returns response - CVS', async t => {
   const expect: ISearchTradeMultiCvsResult = {
     Status: Status.Reqsuccess,
     ProcessDate: 'processdate',
@@ -31,7 +31,7 @@ test('.searchTradeMulti calls API and returns response - CVS', async (t) => {
     CvsCode: CvsCode.Lawson,
     CvsConfNo: 'cvsconfno',
     CvsReceiptNo: 'cvsreceiptno',
-    PaymentTerm: 'paymentterm'
+    PaymentTerm: 'paymentterm',
   }
 
   sinon.stub(multiTranable, 'post').resolves(expect)
@@ -40,14 +40,16 @@ test('.searchTradeMulti calls API and returns response - CVS', async (t) => {
     ShopID: 'shopid',
     ShopPass: 'shoppass',
     OrderID: 'orderid',
-    PayType: PayType.Cvs
+    PayType: PayType.Cvs,
   }
-  const res = await multiTranable.searchTradeMulti<ISearchTradeMultiCvsResult>(args)
+  const res = await multiTranable.searchTradeMulti<ISearchTradeMultiCvsResult>(
+    args
+  )
 
   t.deepEqual(res, expect)
 })
 
-test('.searchTradeMulti calls API and returns response - Credit', async (t) => {
+test('.searchTradeMulti calls API and returns response - Credit', async t => {
   const expect: ISearchTradeMultiCardResult = {
     Status: Status.Capture,
     ProcessDate: 'processdate',
@@ -69,7 +71,7 @@ test('.searchTradeMulti calls API and returns response - Credit', async (t) => {
     ClientField1: 'clientfield1',
     ClientField2: 'clientfield2',
     ClientField3: 'clientfield3',
-    PayType: PayType.Credit
+    PayType: PayType.Credit,
   }
 
   sinon.stub(multiTranable, 'post').resolves(expect)
@@ -78,9 +80,11 @@ test('.searchTradeMulti calls API and returns response - Credit', async (t) => {
     ShopID: 'shopid',
     ShopPass: 'shoppass',
     OrderID: 'orderid',
-    PayType: PayType.Credit
+    PayType: PayType.Credit,
   }
-  const res = await multiTranable.searchTradeMulti<ISearchTradeMultiCardResult>(args)
+  const res = await multiTranable.searchTradeMulti<ISearchTradeMultiCardResult>(
+    args
+  )
 
   t.deepEqual(res, expect)
 })

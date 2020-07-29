@@ -1,27 +1,27 @@
 import test from 'ava'
 import sinon = require('sinon')
 import Client from '../client'
-import {JobCd, Method, Status} from '../client.enum'
+import { JobCd, Method, Status } from '../client.enum'
 import WithTranable from './tranable'
 import {
   IAlterTranResult,
   IChangeTranResult,
   IEntryTranResult,
   IExecTranResult,
-  ISearchTradeResult
+  ISearchTradeResult,
 } from './tranable.interface'
 
 const Tranable = WithTranable(Client)
 const tranable = new Tranable()
 
 test.afterEach(() => {
-  sinon.restore();
+  sinon.restore()
 })
 
-test('.entryTran calls API and returns response', async (t) => {
+test('.entryTran calls API and returns response', async t => {
   const expect: IEntryTranResult = {
     AccessID: 'accessid',
-    AccessPass: 'accesspass'
+    AccessPass: 'accesspass',
   }
 
   sinon.stub(tranable, 'post').resolves(expect)
@@ -34,14 +34,14 @@ test('.entryTran calls API and returns response', async (t) => {
     ShopPass: 'shoppass',
     OrderID: 'orderid',
     JobCd: JobCd.Check,
-    Amount: 1234
+    Amount: 1234,
   }
   const res = await tranable.entryTran(args)
 
   t.deepEqual(res, expect)
 })
 
-test('.execTran calls API and returns response', async (t) => {
+test('.execTran calls API and returns response', async t => {
   const expect: IExecTranResult = {
     Acs: 'acs',
     OrderID: 'orderid',
@@ -54,7 +54,7 @@ test('.execTran calls API and returns response', async (t) => {
     CheckString: 'checkstring',
     ClientField1: 'clientfield1',
     ClientField2: 'clientfield2',
-    ClientField3: 'clientfield3'
+    ClientField3: 'clientfield3',
   }
 
   sinon.stub(tranable, 'post').resolves(expect)
@@ -67,21 +67,21 @@ test('.execTran calls API and returns response', async (t) => {
     PayTimes: 1,
     CardNo: 'cardno',
     Expire: 'expire',
-    SecurityCode: '123'
+    SecurityCode: '123',
   }
   const res = await tranable.execTran(args)
 
   t.deepEqual(res, expect)
 })
 
-test('.alterTran calls API and returns response', async (t) => {
+test('.alterTran calls API and returns response', async t => {
   const expect: IAlterTranResult = {
     AccessID: 'accessid',
     AccessPass: 'accesspass',
     Forward: 'forward',
     Approve: 'approve',
     TranID: 'tranid',
-    TranDate: 'trandate'
+    TranDate: 'trandate',
   }
 
   sinon.stub(tranable, 'post').resolves(expect)
@@ -91,14 +91,14 @@ test('.alterTran calls API and returns response', async (t) => {
     ShopPass: 'shoppass',
     AccessID: 'accessid',
     AccessPass: 'accesspass',
-    JobCd: JobCd.Check
+    JobCd: JobCd.Check,
   }
   const res = await tranable.alterTran(args)
 
   t.deepEqual(res, expect)
 })
 
-test('.searchTrade calls API and returns response', async (t) => {
+test('.searchTrade calls API and returns response', async t => {
   const expect: ISearchTradeResult = {
     OrderID: 'orderid',
     Status: Status.Check,
@@ -120,7 +120,7 @@ test('.searchTrade calls API and returns response', async (t) => {
     Approve: 'approve',
     ClientField1: 'clientfield1',
     ClientField2: 'clientfield2',
-    ClientField3: 'clientfield3'
+    ClientField3: 'clientfield3',
   }
 
   sinon.stub(tranable, 'post').resolves(expect)
@@ -128,20 +128,20 @@ test('.searchTrade calls API and returns response', async (t) => {
   const args = {
     ShopID: 'shopid',
     ShopPass: 'shoppass',
-    OrderID: 'orderid'
+    OrderID: 'orderid',
   }
   const res = await tranable.searchTrade(args)
   t.deepEqual(res, expect)
 })
 
-test('.changeTran calls API and returns response', async (t) => {
+test('.changeTran calls API and returns response', async t => {
   const expect: IChangeTranResult = {
     AccessID: 'accessid',
     AccessPass: 'accesspass',
     Forward: 'forward',
     Approve: 'approve',
     TranID: 'tranid',
-    TranDate: 'trandate'
+    TranDate: 'trandate',
   }
 
   sinon.stub(tranable, 'post').resolves(expect)
@@ -152,7 +152,7 @@ test('.changeTran calls API and returns response', async (t) => {
     AccessID: 'accessid',
     AccessPass: 'accesspass',
     JobCd: JobCd.Check,
-    Amount: 1234
+    Amount: 1234,
   }
   const res = await tranable.changeTran(args)
 
