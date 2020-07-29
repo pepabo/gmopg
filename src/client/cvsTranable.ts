@@ -3,19 +3,19 @@ import * as merge from 'deepmerge'
 import Client from '../client'
 import { Constructor } from '../util'
 import {
-  ICancelCvsArgs,
-  ICancelCvsResult,
-  IEntryTranCvsArgs,
-  IEntryTranCvsResult,
-  IExecTranCvsArgs,
-  IExecTranCvsResult,
+  CancelCvsArgs,
+  CancelCvsResult,
+  EntryTranCvsArgs,
+  EntryTranCvsResult,
+  ExecTranCvsArgs,
+  ExecTranCvsResult,
 } from './cvsTranable.interface'
 
 export default <T extends Constructor<Client>>(Base: T) =>
   class extends Base {
     public async entryTranCvs(
-      args: IEntryTranCvsArgs
-    ): Promise<IEntryTranCvsResult> {
+      args: EntryTranCvsArgs
+    ): Promise<EntryTranCvsResult> {
       const defaultData = {
         ShopID: this.config.ShopID,
         ShopPass: this.config.ShopPass,
@@ -23,15 +23,15 @@ export default <T extends Constructor<Client>>(Base: T) =>
         Amount: undefined,
         Tax: undefined,
       }
-      const data: IEntryTranCvsArgs = merge(defaultData, args)
+      const data: EntryTranCvsArgs = merge(defaultData, args)
       const parsed: any = await this.post('/payment/EntryTranCvs.idPass', data)
 
-      return <IEntryTranCvsResult>parsed
+      return <EntryTranCvsResult>parsed
     }
 
     public async execTranCvs(
-      args: IExecTranCvsArgs
-    ): Promise<IExecTranCvsResult> {
+      args: ExecTranCvsArgs
+    ): Promise<ExecTranCvsResult> {
       const parsed: any = await this.post('/payment/ExecTranCvs.idPass', {
         ...args,
         CustomerName: encoding.urlEncode(
@@ -42,10 +42,10 @@ export default <T extends Constructor<Client>>(Base: T) =>
         ),
       })
 
-      return <IExecTranCvsResult>parsed
+      return <ExecTranCvsResult>parsed
     }
 
-    public async cancelCvs(args: ICancelCvsArgs): Promise<ICancelCvsResult> {
+    public async cancelCvs(args: CancelCvsArgs): Promise<CancelCvsResult> {
       const defaultData = {
         ShopID: this.config !== undefined ? this.config.ShopID : undefined,
         ShopPass: this.config !== undefined ? this.config.ShopPass : undefined,
@@ -53,9 +53,9 @@ export default <T extends Constructor<Client>>(Base: T) =>
         AccessPass: undefined,
         OrderID: undefined,
       }
-      const data: ICancelCvsArgs = merge(defaultData, args)
+      const data: CancelCvsArgs = merge(defaultData, args)
       const parsed: any = await this.post('/payment/CvsCancel.idPass', data)
 
-      return <ICancelCvsResult>parsed
+      return <CancelCvsResult>parsed
     }
   }

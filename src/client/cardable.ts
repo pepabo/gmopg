@@ -2,14 +2,14 @@ import * as merge from 'deepmerge'
 import Client from '../client'
 import { Constructor } from '../util'
 import {
-  IDeleteCardArgs,
-  IDeleteCardResult,
-  ISaveCardArgs,
-  ISaveCardResult,
-  ISearchCardArgs,
-  ISearchCardResult,
-  ISearchCardDetailArgs,
-  ISearchCardDetailResult,
+  DeleteCardArgs,
+  DeleteCardResult,
+  SaveCardArgs,
+  SaveCardResult,
+  SearchCardArgs,
+  SearchCardResult,
+  SearchCardDetailArgs,
+  SearchCardDetailResult,
 } from './cardable.interface'
 
 export default <T extends Constructor<Client>>(Base: T) =>
@@ -24,24 +24,24 @@ export default <T extends Constructor<Client>>(Base: T) =>
       }
     }
 
-    public async saveCard(args: ISaveCardArgs): Promise<ISaveCardResult> {
-      const data: ISaveCardArgs = merge(this.defaultCardData(), args)
+    public async saveCard(args: SaveCardArgs): Promise<SaveCardResult> {
+      const data: SaveCardArgs = merge(this.defaultCardData(), args)
       const parsed: any = await this.post('/payment/SaveCard.idPass', data)
 
-      return <ISaveCardResult>parsed
+      return <SaveCardResult>parsed
     }
 
-    public async deleteCard(args: IDeleteCardArgs): Promise<IDeleteCardResult> {
-      const data: IDeleteCardArgs = merge(this.defaultCardData(), args)
+    public async deleteCard(args: DeleteCardArgs): Promise<DeleteCardResult> {
+      const data: DeleteCardArgs = merge(this.defaultCardData(), args)
       const parsed: any = await this.post('/payment/DeleteCard.idPass', data)
 
-      return <IDeleteCardResult>parsed
+      return <DeleteCardResult>parsed
     }
 
     public async searchCard(
-      args: ISearchCardArgs
-    ): Promise<ISearchCardResult[]> {
-      const data: ISearchCardArgs = merge(this.defaultCardData(), args)
+      args: SearchCardArgs
+    ): Promise<SearchCardResult[]> {
+      const data: SearchCardArgs = merge(this.defaultCardData(), args)
       const parsed: any = await this.post('/payment/SearchCard.idPass', data)
 
       const cardSeqArry: string[] = parsed.CardSeq.split('|')
@@ -66,9 +66,9 @@ export default <T extends Constructor<Client>>(Base: T) =>
     }
 
     public async searchCardDetail(
-      args: ISearchCardDetailArgs
-    ): Promise<ISearchCardDetailResult[]> {
-      const data: ISearchCardDetailArgs = merge(this.defaultCardData(), args)
+      args: SearchCardDetailArgs
+    ): Promise<SearchCardDetailResult[]> {
+      const data: SearchCardDetailArgs = merge(this.defaultCardData(), args)
       const parsed: any = await this.post(
         '/payment/SearchCardDetail.idPass',
         data
@@ -87,7 +87,7 @@ export default <T extends Constructor<Client>>(Base: T) =>
       const errInfoArry: string[] = parsed.ErrInfo.split('|')
 
       return cardNoArry.map(
-        (_, index): ISearchCardDetailResult => {
+        (_, index): SearchCardDetailResult => {
           return {
             CardNo: cardNoArry[index],
             Brand: brandArry[index],

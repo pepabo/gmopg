@@ -4,11 +4,11 @@ import Client from '../client'
 import { JobCd, Method, Status } from '../client.enum'
 import WithTranable from './tranable'
 import {
-  IAlterTranResult,
-  IChangeTranResult,
-  IEntryTranResult,
-  IExecTranResult,
-  ISearchTradeResult,
+  AlterTranResult,
+  ChangeTranResult,
+  EntryTranResult,
+  ExecTranResult,
+  SearchTradeResult,
 } from './tranable.interface'
 
 const Tranable = WithTranable(Client)
@@ -19,7 +19,7 @@ test.afterEach(() => {
 })
 
 test('.entryTran calls API and returns response', async t => {
-  const expect: IEntryTranResult = {
+  const expect: EntryTranResult = {
     AccessID: 'accessid',
     AccessPass: 'accesspass',
   }
@@ -42,7 +42,7 @@ test('.entryTran calls API and returns response', async t => {
 })
 
 test('.execTran calls API and returns response', async t => {
-  const expect: IExecTranResult = {
+  const expect: ExecTranResult = {
     Acs: 'acs',
     OrderID: 'orderid',
     Forward: 'forward',
@@ -75,7 +75,7 @@ test('.execTran calls API and returns response', async t => {
 })
 
 test('.alterTran calls API and returns response', async t => {
-  const expect: IAlterTranResult = {
+  const expect: AlterTranResult = {
     AccessID: 'accessid',
     AccessPass: 'accesspass',
     Forward: 'forward',
@@ -99,7 +99,7 @@ test('.alterTran calls API and returns response', async t => {
 })
 
 test('.searchTrade calls API and returns response', async t => {
-  const expect: ISearchTradeResult = {
+  const expect: SearchTradeResult = {
     OrderID: 'orderid',
     Status: Status.Check,
     ProcessDate: 'processdate',
@@ -135,7 +135,7 @@ test('.searchTrade calls API and returns response', async t => {
 })
 
 test('.changeTran calls API and returns response', async t => {
-  const expect: IChangeTranResult = {
+  const expect: ChangeTranResult = {
     AccessID: 'accessid',
     AccessPass: 'accesspass',
     Forward: 'forward',

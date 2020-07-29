@@ -3,10 +3,10 @@ import sinon = require('sinon')
 import Client from '../client'
 import WithMemberable from './memberable'
 import {
-  IDeleteMemberResult,
-  ISaveMemberResult,
-  ISearchMemberResult,
-  IUpdateMemberResult,
+  DeleteMemberResult,
+  SaveMemberResult,
+  SearchMemberResult,
+  UpdateMemberResult,
 } from './memberable.interface'
 
 const Memberable = WithMemberable(Client)
@@ -17,7 +17,7 @@ test.afterEach(() => {
 })
 
 test('.saveMember calls API and returns response', async t => {
-  const expect: ISaveMemberResult = {
+  const expect: SaveMemberResult = {
     MemberID: 'memberid',
   }
 
@@ -35,7 +35,7 @@ test('.saveMember calls API and returns response', async t => {
 })
 
 test('.updateMember calls API and returns response', async t => {
-  const expect: IUpdateMemberResult = {
+  const expect: UpdateMemberResult = {
     MemberID: 'memberid',
   }
 
@@ -53,7 +53,7 @@ test('.updateMember calls API and returns response', async t => {
 })
 
 test('.deleteMember calls API and returns response', async t => {
-  const expect: IDeleteMemberResult = {
+  const expect: DeleteMemberResult = {
     MemberID: 'memberid',
   }
 
@@ -70,7 +70,7 @@ test('.deleteMember calls API and returns response', async t => {
 })
 
 test('.searchMember calls API and returns response', async t => {
-  const expect: ISearchMemberResult = {
+  const expect: SearchMemberResult = {
     MemberID: 'memberid',
     MemberName: 'membername',
     DeleteFlag: '1',

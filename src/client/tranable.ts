@@ -2,21 +2,21 @@ import * as merge from 'deepmerge'
 import Client from '../client'
 import { Constructor } from '../util'
 import {
-  IAlterTranArgs,
-  IAlterTranResult,
-  IChangeTranArgs,
-  IChangeTranResult,
-  IEntryTranArgs,
-  IEntryTranResult,
-  IExecTranArgs,
-  IExecTranResult,
-  ISearchTradeArgs,
-  ISearchTradeResult,
+  AlterTranArgs,
+  AlterTranResult,
+  ChangeTranArgs,
+  ChangeTranResult,
+  EntryTranArgs,
+  EntryTranResult,
+  ExecTranArgs,
+  ExecTranResult,
+  SearchTradeArgs,
+  SearchTradeResult,
 } from './tranable.interface'
 
 export default <T extends Constructor<Client>>(Base: T) =>
   class extends Base {
-    public async entryTran(args: IEntryTranArgs): Promise<IEntryTranResult> {
+    public async entryTran(args: EntryTranArgs): Promise<EntryTranResult> {
       const defaultData = {
         ShopID: this.config.ShopID,
         ShopPass: this.config.ShopPass,
@@ -24,19 +24,19 @@ export default <T extends Constructor<Client>>(Base: T) =>
         JobCd: undefined,
         Amount: undefined,
       }
-      const data: IEntryTranArgs = merge(defaultData, args)
+      const data: EntryTranArgs = merge(defaultData, args)
       const parsed: any = await this.post('/payment/EntryTran.idPass', data)
 
-      return <IEntryTranResult>parsed
+      return <EntryTranResult>parsed
     }
 
-    public async execTran(args: IExecTranArgs): Promise<IExecTranResult> {
+    public async execTran(args: ExecTranArgs): Promise<ExecTranResult> {
       const parsed: any = await this.post('/payment/ExecTran.idPass', args)
 
-      return <IExecTranResult>parsed
+      return <ExecTranResult>parsed
     }
 
-    public async alterTran(args: IAlterTranArgs): Promise<IAlterTranResult> {
+    public async alterTran(args: AlterTranArgs): Promise<AlterTranResult> {
       const defaultData = {
         ShopID: this.config.ShopID,
         ShopPass: this.config.ShopPass,
@@ -44,27 +44,27 @@ export default <T extends Constructor<Client>>(Base: T) =>
         AccessPass: undefined,
         JobCd: undefined,
       }
-      const data: IAlterTranArgs = merge(defaultData, args)
+      const data: AlterTranArgs = merge(defaultData, args)
       const parsed: any = await this.post('/payment/AlterTran.idPass', data)
 
-      return <IAlterTranResult>parsed
+      return <AlterTranResult>parsed
     }
 
     public async searchTrade(
-      args: ISearchTradeArgs
-    ): Promise<ISearchTradeResult> {
+      args: SearchTradeArgs
+    ): Promise<SearchTradeResult> {
       const defaultData = {
         ShopID: this.config.ShopID,
         ShopPass: this.config.ShopPass,
         OrderID: undefined,
       }
-      const data: ISearchTradeArgs = merge(defaultData, args)
+      const data: SearchTradeArgs = merge(defaultData, args)
       const parsed: any = await this.post('/payment/SearchTrade.idPass', data)
 
-      return <ISearchTradeResult>parsed
+      return <SearchTradeResult>parsed
     }
 
-    public async changeTran(args: IChangeTranArgs): Promise<IChangeTranResult> {
+    public async changeTran(args: ChangeTranArgs): Promise<ChangeTranResult> {
       const defaultData = {
         ShopID: this.config.ShopID,
         ShopPass: this.config.ShopPass,
@@ -73,9 +73,9 @@ export default <T extends Constructor<Client>>(Base: T) =>
         JobCd: undefined,
         Amount: undefined,
       }
-      const data: IChangeTranArgs = merge(defaultData, args)
+      const data: ChangeTranArgs = merge(defaultData, args)
       const parsed: any = await this.post('/payment/ChangeTran.idPass', data)
 
-      return <IChangeTranResult>parsed
+      return <ChangeTranResult>parsed
     }
   }

@@ -4,9 +4,9 @@ import Client from '../client'
 import { CvsCode, Status } from '../client.enum'
 import WithCvsTranable from './cvsTranable'
 import {
-  ICancelCvsResult,
-  IEntryTranCvsResult,
-  IExecTranCvsResult,
+  CancelCvsResult,
+  EntryTranCvsResult,
+  ExecTranCvsResult,
 } from './cvsTranable.interface'
 
 const CvsTranable = WithCvsTranable(Client)
@@ -17,7 +17,7 @@ test.afterEach(() => {
 })
 
 test('.entryTranCvs calls API and returns response', async t => {
-  const expect: IEntryTranCvsResult = {
+  const expect: EntryTranCvsResult = {
     AccessID: 'accessid',
     AccessPass: 'accesspass',
   }
@@ -37,7 +37,7 @@ test('.entryTranCvs calls API and returns response', async t => {
 })
 
 test('.execTranCvs calls API and returns response', async t => {
-  const expect: IExecTranCvsResult = {
+  const expect: ExecTranCvsResult = {
     OrderID: 'orderid',
     Convenience: CvsCode.Lawson,
     ConfNo: 'confno',
@@ -70,7 +70,7 @@ test('.execTranCvs calls API and returns response', async t => {
 })
 
 test('.cancelCvs calls API and returns response', async t => {
-  const expect: ICancelCvsResult = {
+  const expect: CancelCvsResult = {
     OrderID: 'orderid',
     Status: Status.Cancel,
   }

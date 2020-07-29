@@ -2,14 +2,14 @@ import * as merge from 'deepmerge'
 import Client from '../client'
 import { Constructor } from '../util'
 import {
-  IDeleteMemberArgs,
-  IDeleteMemberResult,
-  ISaveMemberArgs,
-  ISaveMemberResult,
-  ISearchMemberArgs,
-  ISearchMemberResult,
-  IUpdateMemberArgs,
-  IUpdateMemberResult,
+  DeleteMemberArgs,
+  DeleteMemberResult,
+  SaveMemberArgs,
+  SaveMemberResult,
+  SearchMemberArgs,
+  SearchMemberResult,
+  UpdateMemberArgs,
+  UpdateMemberResult,
 } from './memberable.interface'
 
 export default <T extends Constructor<Client>>(Base: T) =>
@@ -24,37 +24,37 @@ export default <T extends Constructor<Client>>(Base: T) =>
       }
     }
 
-    public async saveMember(args: ISaveMemberArgs): Promise<ISaveMemberResult> {
-      const data: ISaveMemberArgs = merge(this.defaultMemberData(), args)
+    public async saveMember(args: SaveMemberArgs): Promise<SaveMemberResult> {
+      const data: SaveMemberArgs = merge(this.defaultMemberData(), args)
       const parsed: any = await this.post('/payment/SaveMember.idPass', data)
 
-      return <ISaveMemberResult>parsed
+      return <SaveMemberResult>parsed
     }
 
     public async updateMember(
-      args: IUpdateMemberArgs
-    ): Promise<IUpdateMemberResult> {
-      const data: IUpdateMemberArgs = merge(this.defaultMemberData(), args)
+      args: UpdateMemberArgs
+    ): Promise<UpdateMemberResult> {
+      const data: UpdateMemberArgs = merge(this.defaultMemberData(), args)
       const parsed: any = await this.post('/payment/UpdateMember.idPass', data)
 
-      return <IUpdateMemberResult>parsed
+      return <UpdateMemberResult>parsed
     }
 
     public async deleteMember(
-      args: IDeleteMemberArgs
-    ): Promise<IDeleteMemberResult> {
-      const data: IDeleteMemberArgs = merge(this.defaultMemberData(), args)
+      args: DeleteMemberArgs
+    ): Promise<DeleteMemberResult> {
+      const data: DeleteMemberArgs = merge(this.defaultMemberData(), args)
       const parsed: any = await this.post('/payment/DeleteMember.idPass', data)
 
-      return <IDeleteMemberResult>parsed
+      return <DeleteMemberResult>parsed
     }
 
     public async searchMember(
-      args: ISearchMemberArgs
-    ): Promise<ISearchMemberResult | null> {
-      const data: ISearchMemberArgs = merge(this.defaultMemberData(), args)
+      args: SearchMemberArgs
+    ): Promise<SearchMemberResult | null> {
+      const data: SearchMemberArgs = merge(this.defaultMemberData(), args)
       const parsed: any = await this.post('/payment/SearchMember.idPass', data)
 
-      return <ISearchMemberResult>parsed
+      return <SearchMemberResult>parsed
     }
   }

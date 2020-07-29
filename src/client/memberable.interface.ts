@@ -1,34 +1,34 @@
-import { IResult, ISiteArgs } from '../client.interface'
+import { Result, SiteArgs } from '../client.interface'
 
-export interface ISaveMemberArgs extends ISiteArgs {
+export interface SaveMemberArgs extends SiteArgs {
   MemberName?: string
 }
 
-export interface ISaveMemberResult extends IResult {
+export interface SaveMemberResult extends Result {
   MemberID: string
 }
 
-export interface IUpdateMemberArgs extends ISiteArgs {
+export interface UpdateMemberArgs extends SiteArgs {
   MemberName?: string
 }
 
-export interface IUpdateMemberResult extends IResult {
+export interface UpdateMemberResult extends Result {
   MemberID: string
 }
 
-export interface IDeleteMemberArgs extends IResult {
+export interface DeleteMemberArgs extends Result {
   MemberID: string
 }
 
-export interface IDeleteMemberResult extends IResult {
+export interface DeleteMemberResult extends Result {
   MemberID: string
 }
 
-export interface ISearchMemberArgs extends IResult {
+export interface SearchMemberArgs extends Result {
   MemberID: string
 }
 
-export interface ISearchMemberResult extends IResult {
+export interface SearchMemberResult extends Result {
   MemberID: string
   MemberName: string
   DeleteFlag: string

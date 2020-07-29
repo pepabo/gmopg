@@ -1,15 +1,15 @@
-export interface ISiteArgs {
+export interface SiteArgs {
   SiteID?: string
   SitePass?: string
   MemberID?: string
 }
 
-export interface IShopArgs {
+export interface ShopArgs {
   ShopID?: string
   ShopPass?: string
 }
 
-export interface IResult {
+export interface Result {
   ErrCode?: string
   ErrInfo?: string
 }

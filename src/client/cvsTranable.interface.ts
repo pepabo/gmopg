@@ -1,18 +1,18 @@
 import { CvsCode, Status } from '../client.enum'
-import { IResult, IShopArgs } from '../client.interface'
+import { Result, ShopArgs } from '../client.interface'
 
-export interface IEntryTranCvsArgs extends IShopArgs {
+export interface EntryTranCvsArgs extends ShopArgs {
   OrderID: string
   Amount: number
   Tax: number
 }
 
-export interface IEntryTranCvsResult extends IResult {
+export interface EntryTranCvsResult extends Result {
   AccessID: string
   AccessPass: string
 }
 
-export interface IExecTranCvsArgs {
+export interface ExecTranCvsArgs {
   AccessID: string
   AccessPass: string
   OrderID: string
@@ -52,7 +52,7 @@ export interface IExecTranCvsArgs {
   ClientFieldFlag?: string
 }
 
-export interface IExecTranCvsResult extends IResult {
+export interface ExecTranCvsResult extends Result {
   OrderID: string
   Convenience: CvsCode
   ConfNo: string
@@ -65,13 +65,13 @@ export interface IExecTranCvsResult extends IResult {
   ClientField3: string
 }
 
-export interface ICancelCvsArgs extends IShopArgs {
+export interface CancelCvsArgs extends ShopArgs {
   AccessID: string
   AccessPass: string
   OrderID: string
 }
 
-export interface ICancelCvsResult extends IResult {
+export interface CancelCvsResult extends Result {
   OrderID: string
   Status: Status
 }

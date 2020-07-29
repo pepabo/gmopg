@@ -4,8 +4,8 @@ import Client from '../client'
 import { CvsCode, PayType, Status, Method, JobCd } from '../client.enum'
 import WithMultiTranable from './multiTranable'
 import {
-  ISearchTradeMultiCardResult,
-  ISearchTradeMultiCvsResult,
+  SearchTradeMultiCardResult,
+  SearchTradeMultiCvsResult,
 } from './multiTranable.interface'
 
 const MultiTranable = WithMultiTranable(Client)
@@ -16,7 +16,7 @@ test.afterEach(() => {
 })
 
 test('.searchTradeMulti calls API and returns response - CVS', async t => {
-  const expect: ISearchTradeMultiCvsResult = {
+  const expect: SearchTradeMultiCvsResult = {
     Status: Status.Reqsuccess,
     ProcessDate: 'processdate',
     AccessID: 'accessid',
@@ -42,7 +42,7 @@ test('.searchTradeMulti calls API and returns response - CVS', async t => {
     OrderID: 'orderid',
     PayType: PayType.Cvs,
   }
-  const res = await multiTranable.searchTradeMulti<ISearchTradeMultiCvsResult>(
+  const res = await multiTranable.searchTradeMulti<SearchTradeMultiCvsResult>(
     args
   )
 
@@ -50,7 +50,7 @@ test('.searchTradeMulti calls API and returns response - CVS', async t => {
 })
 
 test('.searchTradeMulti calls API and returns response - Credit', async t => {
-  const expect: ISearchTradeMultiCardResult = {
+  const expect: SearchTradeMultiCardResult = {
     Status: Status.Capture,
     ProcessDate: 'processdate',
     JobCd: JobCd.Capture,
@@ -82,7 +82,7 @@ test('.searchTradeMulti calls API and returns response - Credit', async t => {
     OrderID: 'orderid',
     PayType: PayType.Credit,
   }
-  const res = await multiTranable.searchTradeMulti<ISearchTradeMultiCardResult>(
+  const res = await multiTranable.searchTradeMulti<SearchTradeMultiCardResult>(
     args
   )
 

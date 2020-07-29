@@ -4,11 +4,11 @@ import Client from '../client'
 import { SeqMode } from '../client.enum'
 import WithCardable from './cardable'
 import {
-  IDeleteCardResult,
-  ISaveCardResult,
-  ISearchCardResult,
-  ISearchCardDetailResult,
-  ISearchCardDetailArgs,
+  DeleteCardResult,
+  SaveCardResult,
+  SearchCardResult,
+  SearchCardDetailResult,
+  SearchCardDetailArgs,
 } from './cardable.interface'
 
 const Cardable = WithCardable(Client)
@@ -19,7 +19,7 @@ test.afterEach(() => {
 })
 
 test('.saveCard calls API and returns response', async t => {
-  const expect: ISaveCardResult = {
+  const expect: SaveCardResult = {
     CardSeq: 'cardseq',
     CardNo: 'cardno',
     Forward: 'forward',
@@ -39,7 +39,7 @@ test('.saveCard calls API and returns response', async t => {
 })
 
 test('.deleteCard calls API and returns response', async t => {
-  const expect: IDeleteCardResult = {
+  const expect: DeleteCardResult = {
     CardSeq: 'cardseq',
   }
 
@@ -58,7 +58,7 @@ test('.deleteCard calls API and returns response', async t => {
 })
 
 test('.searchCard calls API and returns response', async t => {
-  const result: ISearchCardResult = {
+  const result: SearchCardResult = {
     CardSeq: 'cardseq',
     DefaultFlag: '1',
     CardName: 'cardname',
@@ -85,7 +85,7 @@ test('.searchCard calls API and returns response', async t => {
 })
 
 test('.searchCardDetail calls API and returns response', async t => {
-  const result: ISearchCardDetailResult = {
+  const result: SearchCardDetailResult = {
     CardNo: 'cardno',
     Brand: 'brand',
     DomesticFlag: '1',
@@ -101,7 +101,7 @@ test('.searchCardDetail calls API and returns response', async t => {
 
   const expect = [result]
 
-  const args: ISearchCardDetailArgs = {
+  const args: SearchCardDetailArgs = {
     ShopID: 'shopid',
     ShopPass: 'shoppass',
     Token: 'token',
