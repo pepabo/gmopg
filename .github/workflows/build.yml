@@ -15,3 +15,7 @@ jobs:
     - name: npm install and lint
       run: |
         npm run ci
+    - uses: actions/checkout@master
+    - uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage.lcov
