@@ -13,6 +13,7 @@ import {
 } from './memberable.interface'
 import { SiteArgs } from '../client.interface'
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default <T extends Constructor<Client>>(Base: T) =>
   class extends Base {
     public defaultMemberData(): SiteArgs {

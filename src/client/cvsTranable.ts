@@ -4,6 +4,7 @@ import Client from '../client'
 import { Constructor } from '../util'
 import { CancelCvsArgs, CancelCvsResult, EntryTranCvsArgs, EntryTranCvsResult, ExecTranCvsArgs, ExecTranCvsResult } from './cvsTranable.interface'
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default <T extends Constructor<Client>>(Base: T) =>
   class extends Base {
     public async entryTranCvs(args: EntryTranCvsArgs): Promise<EntryTranCvsResult> {
