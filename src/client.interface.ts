@@ -13,3 +13,7 @@ export interface Result {
   ErrCode?: string
   ErrInfo?: string
 }
+
+export type UnknownParams = {
+  [key: string]: qs.UnknownFacade
+}

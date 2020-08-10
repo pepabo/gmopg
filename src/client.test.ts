@@ -7,6 +7,19 @@ const baseUrl = 'https://x.y';
 
 const client = new Client({baseUrl})
 
+type ExampleData = {
+  Foo: string,
+  Bar: number,
+  Baz: boolean,
+  Ja: string,
+  Type: PayType,
+}
+
+type ExampleRes = {
+  AccessID: string,
+  AccessPass: string,
+}
+
 test('.post is function', (t) => {
   t.is(typeof client.post, 'function')
 })
@@ -20,13 +33,13 @@ test('.post requests body correctly and send correct content-type header', async
     .post(/.*/, 'Foo=aaa&Bar=0&Baz=true&Ja=日本語&Type=0')
     .reply(200, 'AccessID=accessid&AccessPass=accesspass')
 
-  const res = await client.post('/test1', {
+  const res = await client.post<ExampleData, ExampleRes>('/test1', {
     Foo: 'aaa',
     Bar: 0,
     Baz: true,
     Ja: '日本語',
     Type: PayType.Credit
-  });
+  })
 
   t.deepEqual(res, {
     AccessID: 'accessid',
@@ -40,13 +53,13 @@ test('.post returns errors correctly', async (t) => {
     .reply(200, 'ErrCode=E01&ErrInfo=E01190001')
 
   try {
-    await client.post('/test2', {
+    await client.post<ExampleData, unknown>('/test2', {
       Foo: 'aaa',
       Bar: 0,
       Baz: true,
       Ja: '日本語',
       Type: PayType.Credit
-    });
+    })
     t.fail()
   } catch (err) {
     t.deepEqual(err.errInfo, ["E01190001"])
@@ -58,7 +71,16 @@ test('.post should not decode "+" chars', async (t) => {
     .post(/.*/)
     .reply(200, 'TranID=123aZ&Token=abc123/+-_&StartUrl=https://x.y/z')
 
-  const res = await client.post('/test1', {foo: '1'});
+  type Data = {
+    foo: string,
+  }
+    
+  type Res = {
+    TranID: string,
+    Token: string,
+    StartUrl: string,
+  }
+  const res = await client.post<Data, Res>('/test1', {foo: '1'});
 
   t.deepEqual(res, {
     TranID: '123aZ',
