@@ -1,4 +1,3 @@
-import * as merge from 'deepmerge'
 import Client from '../client'
 import { Constructor } from '../util'
 import {
@@ -27,22 +26,30 @@ export default <T extends Constructor<Client>>(Base: T) =>
     }
 
     public async saveMember(args: SaveMemberArgs): Promise<SaveMemberResult> {
-      const data = merge(this.defaultMemberData(), args)
-      return this.post<SaveMemberArgs, SaveMemberResult>('/payment/SaveMember.idPass', data)
+      return this.post<SaveMemberArgs, SaveMemberResult>('/payment/SaveMember.idPass', {
+        ...this.defaultMemberData(),
+        ...args,
+      })
     }
 
     public async updateMember(args: UpdateMemberArgs): Promise<UpdateMemberResult> {
-      const data = merge(this.defaultMemberData(), args)
-      return this.post<UpdateMemberArgs, UpdateMemberResult>('/payment/UpdateMember.idPass', data)
+      return this.post<UpdateMemberArgs, UpdateMemberResult>('/payment/UpdateMember.idPass', {
+        ...this.defaultMemberData(),
+        ...args,
+      })
     }
 
     public async deleteMember(args: DeleteMemberArgs): Promise<DeleteMemberResult> {
-      const data = merge(this.defaultMemberData(), args)
-      return this.post<DeleteMemberArgs, DeleteMemberResult>('/payment/DeleteMember.idPass', data)
+      return this.post<DeleteMemberArgs, DeleteMemberResult>('/payment/DeleteMember.idPass', {
+        ...this.defaultMemberData(),
+        ...args,
+      })
     }
 
     public async searchMember(args: SearchMemberArgs): Promise<SearchMemberResult | null> {
-      const data = merge(this.defaultMemberData(), args)
-      return this.post<SearchMemberArgs, SearchMemberResult>('/payment/SearchMember.idPass', data)
+      return this.post<SearchMemberArgs, SearchMemberResult>('/payment/SearchMember.idPass', {
+        ...this.defaultMemberData(),
+        ...args,
+      })
     }
   }

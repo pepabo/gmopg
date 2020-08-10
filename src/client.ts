@@ -1,5 +1,4 @@
 import * as qs from 'qs'
-import * as merge from 'deepmerge'
 import fetch, {Response} from 'node-fetch';
 import {BadRequest} from './errors'
 import {IConfig} from './config.interface'
@@ -10,7 +9,11 @@ export default class Client {
   public config: IConfig
 
   constructor(config: IConfig = {}) {
-    this.config = merge(merge(defaults, config), buildByEnv())
+    this.config = {
+      ...defaults,
+      ...config,
+      ...buildByEnv(),
+    }
   }
 
   public async post<T, U>(pathname: string, data: T): Promise<U> {

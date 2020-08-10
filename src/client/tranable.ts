@@ -1,4 +1,3 @@
-import * as merge from 'deepmerge'
 import Client from '../client'
 import { Constructor } from '../util'
 import {
@@ -25,8 +24,10 @@ export default <T extends Constructor<Client>>(Base: T) =>
         JobCd: undefined,
         Amount: undefined,
       }
-      const data = merge(defaultData, args)
-      return this.post<EntryTranArgs, EntryTranResult>('/payment/EntryTran.idPass', data)
+      return this.post<EntryTranArgs, EntryTranResult>('/payment/EntryTran.idPass', {
+        ...defaultData,
+        ...args,
+      })
     }
 
     public async execTran(args: ExecTranArgs): Promise<ExecTranResult> {
@@ -41,8 +42,10 @@ export default <T extends Constructor<Client>>(Base: T) =>
         AccessPass: undefined,
         JobCd: undefined,
       }
-      const data = merge(defaultData, args)
-      return this.post<AlterTranArgs, AlterTranResult>('/payment/AlterTran.idPass', data)
+      return this.post<AlterTranArgs, AlterTranResult>('/payment/AlterTran.idPass', {
+        ...defaultData,
+        ...args,
+      })
     }
 
     public async searchTrade(args: SearchTradeArgs): Promise<SearchTradeResult> {
@@ -51,8 +54,10 @@ export default <T extends Constructor<Client>>(Base: T) =>
         ShopPass: this.config.ShopPass,
         OrderID: undefined,
       }
-      const data = merge(defaultData, args)
-      return this.post<SearchTradeArgs, SearchTradeResult>('/payment/SearchTrade.idPass', data)
+      return this.post<SearchTradeArgs, SearchTradeResult>('/payment/SearchTrade.idPass', {
+        ...defaultData,
+        ...args,
+      })
     }
 
     public async changeTran(args: ChangeTranArgs): Promise<ChangeTranResult> {
@@ -64,7 +69,9 @@ export default <T extends Constructor<Client>>(Base: T) =>
         JobCd: undefined,
         Amount: undefined,
       }
-      const data = merge(defaultData, args)
-      return this.post<ChangeTranArgs, ChangeTranResult>('/payment/ChangeTran.idPass', data)
+      return this.post<ChangeTranArgs, ChangeTranResult>('/payment/ChangeTran.idPass', {
+        ...defaultData,
+        ...args,
+      })
     }
   }

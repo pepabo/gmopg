@@ -1,4 +1,3 @@
-import * as merge from 'deepmerge'
 import Client from '../client'
 import { Constructor } from '../util'
 import { SearchTradeMultiArgs, SearchTradeMultiCardResult, SearchTradeMultiCvsResult } from './multiTranable.interface'
@@ -13,7 +12,9 @@ export default <T extends Constructor<Client>>(Base: T) =>
         OrderID: undefined,
         PayType: undefined,
       }
-      const data = merge(defaultData, args)
-      return this.post<SearchTradeMultiArgs, R>('/payment/SearchTradeMulti.idPass', data)
+      return this.post<SearchTradeMultiArgs, R>('/payment/SearchTradeMulti.idPass', {
+        ...defaultData,
+        ...args,
+      })
     }
   }

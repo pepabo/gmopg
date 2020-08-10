@@ -1,5 +1,4 @@
 import * as encoding from 'encoding-japanese'
-import * as merge from 'deepmerge'
 import Client from '../client'
 import { Constructor } from '../util'
 import { CancelCvsArgs, CancelCvsResult, EntryTranCvsArgs, EntryTranCvsResult, ExecTranCvsArgs, ExecTranCvsResult } from './cvsTranable.interface'
@@ -15,8 +14,10 @@ export default <T extends Constructor<Client>>(Base: T) =>
         Amount: undefined,
         Tax: undefined,
       }
-      const data = merge(defaultData, args)
-      return this.post<EntryTranCvsArgs, EntryTranCvsResult>('/payment/EntryTranCvs.idPass', data)
+      return this.post<EntryTranCvsArgs, EntryTranCvsResult>('/payment/EntryTranCvs.idPass', {
+        ...defaultData,
+        ...args,
+      })
     }
 
     public async execTranCvs(args: ExecTranCvsArgs): Promise<ExecTranCvsResult> {
@@ -29,13 +30,15 @@ export default <T extends Constructor<Client>>(Base: T) =>
 
     public async cancelCvs(args: CancelCvsArgs): Promise<CancelCvsResult> {
       const defaultData = {
-        ShopID: this.config !== undefined ? this.config.ShopID : undefined,
-        ShopPass: this.config !== undefined ? this.config.ShopPass : undefined,
+        ShopID: this.config?.ShopID,
+        ShopPass: this.config?.ShopPass,
         AccessID: undefined,
         AccessPass: undefined,
         OrderID: undefined,
       }
-      const data = merge(defaultData, args)
-      return this.post<CancelCvsArgs, CancelCvsResult>('/payment/CvsCancel.idPass', data)
+      return this.post<CancelCvsArgs, CancelCvsResult>('/payment/CvsCancel.idPass', {
+        ...defaultData,
+        ...args,
+      })
     }
   }
