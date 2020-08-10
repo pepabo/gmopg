@@ -24,16 +24,12 @@ export default <T extends Constructor<Client>>(Base: T) =>
         JobCd: undefined,
         Amount: undefined,
       }
-      const data: EntryTranArgs = merge(defaultData, args)
-      const parsed: any = await this.post('/payment/EntryTran.idPass', data)
-
-      return <EntryTranResult>parsed
+      const data = merge(defaultData, args)
+      return this.post<EntryTranArgs, EntryTranResult>('/payment/EntryTran.idPass', data)
     }
 
     public async execTran(args: ExecTranArgs): Promise<ExecTranResult> {
-      const parsed: any = await this.post('/payment/ExecTran.idPass', args)
-
-      return <ExecTranResult>parsed
+      return this.post<ExecTranArgs, ExecTranResult>('/payment/ExecTran.idPass', args)
     }
 
     public async alterTran(args: AlterTranArgs): Promise<AlterTranResult> {
@@ -44,10 +40,8 @@ export default <T extends Constructor<Client>>(Base: T) =>
         AccessPass: undefined,
         JobCd: undefined,
       }
-      const data: AlterTranArgs = merge(defaultData, args)
-      const parsed: any = await this.post('/payment/AlterTran.idPass', data)
-
-      return <AlterTranResult>parsed
+      const data = merge(defaultData, args)
+      return this.post<AlterTranArgs, AlterTranResult>('/payment/AlterTran.idPass', data)
     }
 
     public async searchTrade(args: SearchTradeArgs): Promise<SearchTradeResult> {
@@ -56,10 +50,8 @@ export default <T extends Constructor<Client>>(Base: T) =>
         ShopPass: this.config.ShopPass,
         OrderID: undefined,
       }
-      const data: SearchTradeArgs = merge(defaultData, args)
-      const parsed: any = await this.post('/payment/SearchTrade.idPass', data)
-
-      return <SearchTradeResult>parsed
+      const data = merge(defaultData, args)
+      return this.post<SearchTradeArgs, SearchTradeResult>('/payment/SearchTrade.idPass', data)
     }
 
     public async changeTran(args: ChangeTranArgs): Promise<ChangeTranResult> {
@@ -71,9 +63,7 @@ export default <T extends Constructor<Client>>(Base: T) =>
         JobCd: undefined,
         Amount: undefined,
       }
-      const data: ChangeTranArgs = merge(defaultData, args)
-      const parsed: any = await this.post('/payment/ChangeTran.idPass', data)
-
-      return <ChangeTranResult>parsed
+      const data = merge(defaultData, args)
+      return this.post<ChangeTranArgs, ChangeTranResult>('/payment/ChangeTran.idPass', data)
     }
   }

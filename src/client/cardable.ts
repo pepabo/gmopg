@@ -1,6 +1,6 @@
-import * as merge from 'deepmerge'
 import Client from '../client'
 import { Constructor } from '../util'
+import { SiteArgs } from '../client.interface'
 import {
   DeleteCardArgs,
   DeleteCardResult,
@@ -14,7 +14,7 @@ import {
 
 export default <T extends Constructor<Client>>(Base: T) =>
   class Cardable extends Base {
-    public defaultCardData(): any {
+    public defaultCardData(): SiteArgs {
       const { SiteID, SitePass } = this.config
 
       return {
@@ -25,22 +25,24 @@ export default <T extends Constructor<Client>>(Base: T) =>
     }
 
     public async saveCard(args: SaveCardArgs): Promise<SaveCardResult> {
-      const data: SaveCardArgs = merge(this.defaultCardData(), args)
-      const parsed: any = await this.post('/payment/SaveCard.idPass', data)
-
-      return <SaveCardResult>parsed
+      return this.post<SaveCardArgs, SaveCardResult>('/payment/SaveCard.idPass', {
+        ...this.defaultCardData(),
+        ...args,
+      })
     }
 
     public async deleteCard(args: DeleteCardArgs): Promise<DeleteCardResult> {
-      const data: DeleteCardArgs = merge(this.defaultCardData(), args)
-      const parsed: any = await this.post('/payment/DeleteCard.idPass', data)
-
-      return <DeleteCardResult>parsed
+      return this.post<DeleteCardArgs, DeleteCardResult>('/payment/DeleteCard.idPass', {
+        ...this.defaultCardData(),
+        ...args,
+      })
     }
 
     public async searchCard(args: SearchCardArgs): Promise<SearchCardResult[]> {
-      const data: SearchCardArgs = merge(this.defaultCardData(), args)
-      const parsed: any = await this.post('/payment/SearchCard.idPass', data)
+      const parsed = await this.post<SearchCardArgs, SearchCardResult>('/payment/SearchCard.idPass', {
+        ...this.defaultCardData(),
+        ...args,
+      })
 
       const cardSeqArry: string[] = parsed.CardSeq.split('|')
       const defaultFlagArry: string[] = parsed.DefaultFlag.split('|')
@@ -64,18 +66,20 @@ export default <T extends Constructor<Client>>(Base: T) =>
     }
 
     public async searchCardDetail(args: SearchCardDetailArgs): Promise<SearchCardDetailResult[]> {
-      const data: SearchCardDetailArgs = merge(this.defaultCardData(), args)
-      const parsed: any = await this.post('/payment/SearchCardDetail.idPass', data)
+      const parsed = await this.post<SearchCardDetailArgs, SearchCardDetailResult>('/payment/SearchCardDetail.idPass', {
+        ...this.defaultCardData(),
+        ...args,
+      })
 
-      const cardNoArry: string[] = parsed.CardNo.split('|')
-      const brandArry: string[] = parsed.Brand.split('|')
-      const domesticFlagArry: string[] = parsed.DomesticFlag.split('|')
-      const issuerCodeArry: string[] = parsed.IssuerCode.split('|')
-      const debitPrepaidFlagArry: string[] = parsed.DebitPrepaidFlag.split('|')
-      const debitPrepaidIssuerNameArry: string[] = parsed.DebitPrepaidIssuerName.split('|')
-      const forwardFianlArry: string[] = parsed.ForwardFinal.split('|')
-      const errCodeArry: string[] = parsed.ErrCode.split('|')
-      const errInfoArry: string[] = parsed.ErrInfo.split('|')
+      const cardNoArry: string[] = parsed.CardNo?.split('|') || []
+      const brandArry: string[] = parsed.Brand?.split('|') || []
+      const domesticFlagArry: string[] = parsed.DomesticFlag?.split('|') || [] 
+      const issuerCodeArry: string[] = parsed.IssuerCode?.split('|') || []
+      const debitPrepaidFlagArry: string[] = parsed.DebitPrepaidFlag?.split('|') || []
+      const debitPrepaidIssuerNameArry: string[] = parsed.DebitPrepaidIssuerName?.split('|') || []
+      const forwardFianlArry: string[] = parsed.ForwardFinal?.split('|') || []
+      const errCodeArry: string[] = parsed.ErrCode?.split('|') || []
+      const errInfoArry: string[] = parsed.ErrInfo?.split('|') || []
 
       return cardNoArry.map(
         (_, index): SearchCardDetailResult => {

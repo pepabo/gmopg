@@ -14,20 +14,16 @@ export default <T extends Constructor<Client>>(Base: T) =>
         Amount: undefined,
         Tax: undefined,
       }
-      const data: EntryTranCvsArgs = merge(defaultData, args)
-      const parsed: any = await this.post('/payment/EntryTranCvs.idPass', data)
-
-      return <EntryTranCvsResult>parsed
+      const data = merge(defaultData, args)
+      return this.post<EntryTranCvsArgs, EntryTranCvsResult>('/payment/EntryTranCvs.idPass', data)
     }
 
     public async execTranCvs(args: ExecTranCvsArgs): Promise<ExecTranCvsResult> {
-      const parsed: any = await this.post('/payment/ExecTranCvs.idPass', {
+      return this.post<ExecTranCvsArgs, ExecTranCvsResult>('/payment/ExecTranCvs.idPass', {
         ...args,
         CustomerName: encoding.urlEncode(encoding.convert(args.CustomerName, 'SJIS')),
         CustomerKana: encoding.urlEncode(encoding.convert(args.CustomerKana, 'SJIS')),
       })
-
-      return <ExecTranCvsResult>parsed
     }
 
     public async cancelCvs(args: CancelCvsArgs): Promise<CancelCvsResult> {
@@ -38,9 +34,7 @@ export default <T extends Constructor<Client>>(Base: T) =>
         AccessPass: undefined,
         OrderID: undefined,
       }
-      const data: CancelCvsArgs = merge(defaultData, args)
-      const parsed: any = await this.post('/payment/CvsCancel.idPass', data)
-
-      return <CancelCvsResult>parsed
+      const data = merge(defaultData, args)
+      return this.post<CancelCvsArgs, CancelCvsResult>('/payment/CvsCancel.idPass', data)
     }
   }

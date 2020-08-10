@@ -12,9 +12,7 @@ export default <T extends Constructor<Client>>(Base: T) =>
         OrderID: undefined,
         PayType: undefined,
       }
-      const data: SearchTradeMultiArgs = merge(defaultData, args)
-      const parsed: any = await this.post('/payment/SearchTradeMulti.idPass', data)
-
-      return <R>parsed
+      const data = merge(defaultData, args)
+      return this.post<SearchTradeMultiArgs, R>('/payment/SearchTradeMulti.idPass', data)
     }
   }

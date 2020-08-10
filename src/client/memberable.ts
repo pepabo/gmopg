@@ -11,10 +11,11 @@ import {
   UpdateMemberArgs,
   UpdateMemberResult,
 } from './memberable.interface'
+import { SiteArgs } from '../client.interface'
 
 export default <T extends Constructor<Client>>(Base: T) =>
   class extends Base {
-    public defaultMemberData(): any {
+    public defaultMemberData(): SiteArgs {
       const { SiteID, SitePass } = this.config
 
       return {
@@ -25,30 +26,22 @@ export default <T extends Constructor<Client>>(Base: T) =>
     }
 
     public async saveMember(args: SaveMemberArgs): Promise<SaveMemberResult> {
-      const data: SaveMemberArgs = merge(this.defaultMemberData(), args)
-      const parsed: any = await this.post('/payment/SaveMember.idPass', data)
-
-      return <SaveMemberResult>parsed
+      const data = merge(this.defaultMemberData(), args)
+      return this.post<SaveMemberArgs, SaveMemberResult>('/payment/SaveMember.idPass', data)
     }
 
     public async updateMember(args: UpdateMemberArgs): Promise<UpdateMemberResult> {
-      const data: UpdateMemberArgs = merge(this.defaultMemberData(), args)
-      const parsed: any = await this.post('/payment/UpdateMember.idPass', data)
-
-      return <UpdateMemberResult>parsed
+      const data = merge(this.defaultMemberData(), args)
+      return this.post<UpdateMemberArgs, UpdateMemberResult>('/payment/UpdateMember.idPass', data)
     }
 
     public async deleteMember(args: DeleteMemberArgs): Promise<DeleteMemberResult> {
-      const data: DeleteMemberArgs = merge(this.defaultMemberData(), args)
-      const parsed: any = await this.post('/payment/DeleteMember.idPass', data)
-
-      return <DeleteMemberResult>parsed
+      const data = merge(this.defaultMemberData(), args)
+      return this.post<DeleteMemberArgs, DeleteMemberResult>('/payment/DeleteMember.idPass', data)
     }
 
     public async searchMember(args: SearchMemberArgs): Promise<SearchMemberResult | null> {
-      const data: SearchMemberArgs = merge(this.defaultMemberData(), args)
-      const parsed: any = await this.post('/payment/SearchMember.idPass', data)
-
-      return <SearchMemberResult>parsed
+      const data = merge(this.defaultMemberData(), args)
+      return this.post<SearchMemberArgs, SearchMemberResult>('/payment/SearchMember.idPass', data)
     }
   }
