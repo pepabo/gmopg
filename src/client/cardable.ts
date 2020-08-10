@@ -74,7 +74,7 @@ export default <T extends Constructor<Client>>(Base: T) =>
 
       const cardNoArry: string[] = parsed.CardNo?.split('|') || []
       const brandArry: string[] = parsed.Brand?.split('|') || []
-      const domesticFlagArry: string[] = parsed.DomesticFlag?.split('|') || [] 
+      const domesticFlagArry: string[] = parsed.DomesticFlag?.split('|') || []
       const issuerCodeArry: string[] = parsed.IssuerCode?.split('|') || []
       const debitPrepaidFlagArry: string[] = parsed.DebitPrepaidFlag?.split('|') || []
       const debitPrepaidIssuerNameArry: string[] = parsed.DebitPrepaidIssuerName?.split('|') || []
