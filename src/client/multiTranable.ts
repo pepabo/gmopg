@@ -5,7 +5,9 @@ import { SearchTradeMultiArgs, SearchTradeMultiCardResult, SearchTradeMultiCvsRe
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default <T extends Constructor<Client>>(Base: T) =>
   class extends Base {
-    public async searchTradeMulti<R extends SearchTradeMultiCardResult | SearchTradeMultiCvsResult>(args: SearchTradeMultiArgs): Promise<R> {
+    public async searchTradeMulti<R extends SearchTradeMultiCardResult | SearchTradeMultiCvsResult>(
+      args: SearchTradeMultiArgs
+    ): Promise<R> {
       const defaultData = {
         ShopID: this.config.ShopID,
         ShopPass: this.config.ShopPass,

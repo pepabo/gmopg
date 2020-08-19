@@ -3,7 +3,13 @@ import sinon = require('sinon')
 import Client from '../client'
 import { SeqMode } from '../client.enum'
 import WithCardable from './cardable'
-import { DeleteCardResult, SaveCardResult, SearchCardResult, SearchCardDetailResult, SearchCardDetailArgs } from './cardable.type'
+import {
+  DeleteCardResult,
+  SaveCardResult,
+  SearchCardResult,
+  SearchCardDetailResult,
+  SearchCardDetailArgs,
+} from './cardable.type'
 
 const Cardable = WithCardable(Client)
 const cardable = new Cardable()
