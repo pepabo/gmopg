@@ -3,7 +3,7 @@ import sinon = require('sinon')
 import Client from '../client'
 import { CvsCode, Status } from '../client.enum'
 import WithCvsTranable from './cvsTranable'
-import { CancelCvsResult, EntryTranCvsResult, ExecTranCvsResult } from './cvsTranable.interface'
+import { CancelCvsResult, EntryTranCvsResult, ExecTranCvsResult } from './cvsTranable.type'
 
 const CvsTranable = WithCvsTranable(Client)
 const cvsTranable = new CvsTranable()

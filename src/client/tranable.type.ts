@@ -1,7 +1,7 @@
 import { JobCd, Method, SeqMode, Status } from '../client.enum'
-import { Result, ShopArgs } from '../client.interface'
+import { Result, ShopArgs } from '../client.type'
 
-export interface EntryTranArgs extends ShopArgs {
+export type EntryTranArgs = ShopArgs & {
   OrderID: string
   JobCd: JobCd
   ItemCode?: string
@@ -11,12 +11,12 @@ export interface EntryTranArgs extends ShopArgs {
   TdTenantName?: string
 }
 
-export interface EntryTranResult extends Result {
+export type EntryTranResult = Result & {
   AccessID: string
   AccessPass: string
 }
 
-export interface ExecTranArgs {
+export type ExecTranArgs = {
   AccessID: string
   AccessPass: string
   OrderID: string
@@ -38,7 +38,7 @@ export interface ExecTranArgs {
   ClientField3?: string
 }
 
-export interface ExecTranResult extends Result {
+export type ExecTranResult = Result & {
   Acs: string
   OrderID: string
   Forward: string
@@ -53,7 +53,7 @@ export interface ExecTranResult extends Result {
   ClientField3: string
 }
 
-export interface AlterTranArgs extends ShopArgs {
+export type AlterTranArgs = ShopArgs & {
   AccessID: string
   AccessPass: string
   JobCd: JobCd
@@ -61,7 +61,7 @@ export interface AlterTranArgs extends ShopArgs {
   Method?: Method
 }
 
-export interface AlterTranResult extends Result {
+export type AlterTranResult = Result & {
   AccessID: string
   AccessPass: string
   Forward: string
@@ -70,11 +70,11 @@ export interface AlterTranResult extends Result {
   TranDate: string
 }
 
-export interface SearchTradeArgs extends ShopArgs {
+export type SearchTradeArgs = ShopArgs & {
   OrderID: string
 }
 
-export interface SearchTradeResult extends Result {
+export type SearchTradeResult = Result & {
   OrderID: string
   Status: Status
   ProcessDate: string
@@ -98,7 +98,7 @@ export interface SearchTradeResult extends Result {
   ClientField3: string
 }
 
-export interface ChangeTranArgs extends ShopArgs {
+export type ChangeTranArgs = ShopArgs & {
   AccessID: string
   AccessPass: string
   JobCd: JobCd
@@ -106,7 +106,7 @@ export interface ChangeTranArgs extends ShopArgs {
   Tax?: string
 }
 
-export interface ChangeTranResult extends Result {
+export type ChangeTranResult = Result & {
   AccessID: string
   AccessPass: string
   Forward: string

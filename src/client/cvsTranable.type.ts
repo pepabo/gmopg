@@ -1,18 +1,18 @@
 import { CvsCode, Status } from '../client.enum'
-import { Result, ShopArgs } from '../client.interface'
+import { Result, ShopArgs } from '../client.type'
 
-export interface EntryTranCvsArgs extends ShopArgs {
+export type EntryTranCvsArgs = ShopArgs & {
   OrderID: string
   Amount: number
   Tax: number
 }
 
-export interface EntryTranCvsResult extends Result {
+export type EntryTranCvsResult = Result & {
   AccessID: string
   AccessPass: string
 }
 
-export interface ExecTranCvsArgs {
+export type ExecTranCvsArgs = {
   AccessID: string
   AccessPass: string
   OrderID: string
@@ -52,7 +52,7 @@ export interface ExecTranCvsArgs {
   ClientFieldFlag?: string
 }
 
-export interface ExecTranCvsResult extends Result {
+export type ExecTranCvsResult = Result & {
   OrderID: string
   Convenience: CvsCode
   ConfNo: string
@@ -65,13 +65,13 @@ export interface ExecTranCvsResult extends Result {
   ClientField3: string
 }
 
-export interface CancelCvsArgs extends ShopArgs {
+export type CancelCvsArgs = ShopArgs & {
   AccessID: string
   AccessPass: string
   OrderID: string
 }
 
-export interface CancelCvsResult extends Result {
+export type CancelCvsResult = Result & {
   OrderID: string
   Status: Status
 }

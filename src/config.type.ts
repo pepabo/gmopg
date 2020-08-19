@@ -1,6 +1,6 @@
 import {RequestInit} from 'node-fetch'
 
-export interface IConfig {
+export type Config = {
   baseUrl?: string
   http?: RequestInit
   SiteID?: string

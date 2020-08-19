@@ -3,7 +3,7 @@ import sinon = require('sinon')
 import Client from '../client'
 import { JobCd, Method, Status } from '../client.enum'
 import WithTranable from './tranable'
-import { AlterTranResult, ChangeTranResult, EntryTranResult, ExecTranResult, SearchTradeResult } from './tranable.interface'
+import { AlterTranResult, ChangeTranResult, EntryTranResult, ExecTranResult, SearchTradeResult } from './tranable.type'
 
 const Tranable = WithTranable(Client)
 const tranable = new Tranable()

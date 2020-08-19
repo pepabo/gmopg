@@ -1,12 +1,12 @@
 import { PayType, Status, CvsCode, JobCd, Method } from '../client.enum'
-import { Result, ShopArgs } from '../client.interface'
+import { Result, ShopArgs } from '../client.type'
 
-export interface SearchTradeMultiArgs extends ShopArgs {
+export type SearchTradeMultiArgs = ShopArgs & {
   OrderID: string
   PayType: PayType
 }
 
-export interface SearchTradeMultiCardResult extends Result {
+export type SearchTradeMultiCardResult = Result & {
   Status: Status
   ProcessDate: string
   JobCd: JobCd
@@ -30,7 +30,7 @@ export interface SearchTradeMultiCardResult extends Result {
   PayType: PayType
 }
 
-export interface SearchTradeMultiCvsResult extends Result {
+export type SearchTradeMultiCvsResult = Result & {
   Status: Status
   ProcessDate: string
   AccessID: string

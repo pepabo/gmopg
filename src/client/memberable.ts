@@ -1,5 +1,6 @@
 import Client from '../client'
 import { Constructor } from '../util'
+import { SiteArgs } from '../client.type'
 import {
   DeleteMemberArgs,
   DeleteMemberResult,
@@ -9,8 +10,7 @@ import {
   SearchMemberResult,
   UpdateMemberArgs,
   UpdateMemberResult,
-} from './memberable.interface'
-import { SiteArgs } from '../client.interface'
+} from './memberable.type'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default <T extends Constructor<Client>>(Base: T) =>

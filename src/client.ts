@@ -1,14 +1,14 @@
 import * as qs from 'qs'
 import fetch, {Response} from 'node-fetch';
 import {BadRequest} from './errors'
-import {IConfig} from './config.interface'
+import {Config} from './config.type'
 import {buildByEnv, defaults} from './config'
-import {UnknownParams} from './client.interface'
+import {UnknownParams} from './client.type'
 
 export default class Client {
-  public config: IConfig
+  public config: Config
 
-  constructor(config: IConfig = {}) {
+  constructor(config: Config = {}) {
     this.config = {
       ...defaults,
       ...config,

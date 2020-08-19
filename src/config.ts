@@ -1,8 +1,8 @@
 import * as process from 'process'
-import {IConfig} from './config.interface'
+import {Config} from './config.type'
 
 
-export const defaults: IConfig = {
+export const defaults: Config = {
   baseUrl: 'https://pt01.mul-pay.jp',
   http: {
     timeout: 1000 * 60 * 3,
@@ -14,8 +14,8 @@ export const defaults: IConfig = {
   }
 }
 
-export function buildByEnv(): IConfig {
-  const c: IConfig = {}
+export function buildByEnv(): Config {
+  const c: Config = {}
 
   if (process.env.GMOPG_ENDPOINT !== undefined) {
     c.baseUrl = process.env.GMOPG_ENDPOINT

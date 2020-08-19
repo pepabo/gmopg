@@ -2,7 +2,7 @@ import test from 'ava'
 import sinon = require('sinon')
 import Client from '../client'
 import WithMemberable from './memberable'
-import { DeleteMemberResult, SaveMemberResult, SearchMemberResult, UpdateMemberResult } from './memberable.interface'
+import { DeleteMemberResult, SaveMemberResult, SearchMemberResult, UpdateMemberResult } from './memberable.type'
 
 const Memberable = WithMemberable(Client)
 const memberable = new Memberable()

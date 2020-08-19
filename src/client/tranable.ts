@@ -11,7 +11,7 @@ import {
   ExecTranResult,
   SearchTradeArgs,
   SearchTradeResult,
-} from './tranable.interface'
+} from './tranable.type'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default <T extends Constructor<Client>>(Base: T) =>

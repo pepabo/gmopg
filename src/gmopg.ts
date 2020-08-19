@@ -15,11 +15,11 @@ export function GENERATE_MEMBER_ID(key: string): string {
 
 export {enums as ENUMS}
 
-export * from './config.interface'
-export * from './client.interface'
+export * from './config.type'
+export * from './client.type'
 export * from './client.enum'
-export * from './client/memberable.interface'
-export * from './client/cardable.interface'
-export * from './client/tranable.interface'
-export * from './client/cvsTranable.interface'
-export * from './client/multiTranable.interface'
+export * from './client/memberable.type'
+export * from './client/cardable.type'
+export * from './client/tranable.type'
+export * from './client/cvsTranable.type'
+export * from './client/multiTranable.type'

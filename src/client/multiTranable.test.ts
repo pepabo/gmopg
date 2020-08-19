@@ -3,7 +3,7 @@ import sinon = require('sinon')
 import Client from '../client'
 import { CvsCode, PayType, Status, Method, JobCd } from '../client.enum'
 import WithMultiTranable from './multiTranable'
-import { SearchTradeMultiCardResult, SearchTradeMultiCvsResult } from './multiTranable.interface'
+import { SearchTradeMultiCardResult, SearchTradeMultiCvsResult } from './multiTranable.type'
 
 const MultiTranable = WithMultiTranable(Client)
 const multiTranable = new MultiTranable()

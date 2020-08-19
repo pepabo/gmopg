@@ -1,6 +1,6 @@
 import Client from '../client'
 import { Constructor } from '../util'
-import { SiteArgs } from '../client.interface'
+import { SiteArgs } from '../client.type'
 import {
   DeleteCardArgs,
   DeleteCardResult,
@@ -10,7 +10,7 @@ import {
   SearchCardResult,
   SearchCardDetailArgs,
   SearchCardDetailResult,
-} from './cardable.interface'
+} from './cardable.type'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default <T extends Constructor<Client>>(Base: T) =>
