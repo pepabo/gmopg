@@ -30,7 +30,7 @@ export default class Client {
         setResponse(res).parseError(parsed)
     }
 
-    return parsed as any as U
+    return parsed as U
   }
 
   public isError(res: UnknownParams): boolean {
