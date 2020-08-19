@@ -23,7 +23,7 @@ export default class Client {
       ...this.config.http,
     })
 
-    const parsed = qs.parse(await res.text(), {decoder: decodeURIComponent})
+    const parsed: any = qs.parse(await res.text(), {decoder: decodeURIComponent})
 
     if (!res.ok || this.isError(parsed)) {
       throw new BadRequest(`Bad Request: ${pathname}`).
