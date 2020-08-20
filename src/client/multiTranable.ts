@@ -1,25 +1,22 @@
-import * as merge from 'deepmerge'
 import Client from '../client'
-import {Constructor} from '../util'
-import {
-  ISearchTradeMultiArgs,
-  ISearchTradeMultiCardResult,
-  ISearchTradeMultiCvsResult,
-} from './multiTranable.interface'
+import { Constructor } from '../util'
+import { SearchTradeMultiArgs, SearchTradeMultiCardResult, SearchTradeMultiCvsResult } from './multiTranable.type'
 
-export default <T extends Constructor<Client>>(Base: T) => class extends Base {
-  public async searchTradeMulti<R extends ISearchTradeMultiCardResult | ISearchTradeMultiCvsResult>
-    (args: ISearchTradeMultiArgs): Promise<R> {
-
-    const defaultData = {
-      ShopID: this.config.ShopID,
-      ShopPass: this.config.ShopPass,
-      OrderID: undefined,
-      PayType: undefined,
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export default <T extends Constructor<Client>>(Base: T) =>
+  class extends Base {
+    public async searchTradeMulti<R extends SearchTradeMultiCardResult | SearchTradeMultiCvsResult>(
+      args: SearchTradeMultiArgs
+    ): Promise<R> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        OrderID: undefined,
+        PayType: undefined,
+      }
+      return this.post<SearchTradeMultiArgs, R>('/payment/SearchTradeMulti.idPass', {
+        ...defaultData,
+        ...args,
+      })
     }
-    const data: ISearchTradeMultiArgs = merge(defaultData, args)
-    const parsed: any = await this.post('/payment/SearchTradeMulti.idPass', data)
-
-    return <R>parsed
   }
-}

@@ -1,53 +1,55 @@
-import * as merge from 'deepmerge'
 import Client from '../client'
-import {Constructor} from '../util'
+import { Constructor } from '../util'
+import { SiteArgs } from '../client.type'
 import {
-  IDeleteMemberArgs,
-  IDeleteMemberResult,
-  ISaveMemberArgs,
-  ISaveMemberResult,
-  ISearchMemberArgs,
-  ISearchMemberResult,
-  IUpdateMemberArgs,
-  IUpdateMemberResult,
-} from './memberable.interface'
+  DeleteMemberArgs,
+  DeleteMemberResult,
+  SaveMemberArgs,
+  SaveMemberResult,
+  SearchMemberArgs,
+  SearchMemberResult,
+  UpdateMemberArgs,
+  UpdateMemberResult,
+} from './memberable.type'
 
-export default <T extends Constructor<Client>>(Base: T) => class extends Base {
-  public defaultMemberData(): any {
-    const {SiteID, SitePass} = this.config
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export default <T extends Constructor<Client>>(Base: T) =>
+  class extends Base {
+    public defaultMemberData(): SiteArgs {
+      const { SiteID, SitePass } = this.config
 
-    return {
-      SiteID,
-      SitePass,
-      MemberID: undefined,
+      return {
+        SiteID,
+        SitePass,
+        MemberID: undefined,
+      }
+    }
+
+    public async saveMember(args: SaveMemberArgs): Promise<SaveMemberResult> {
+      return this.post<SaveMemberArgs, SaveMemberResult>('/payment/SaveMember.idPass', {
+        ...this.defaultMemberData(),
+        ...args,
+      })
+    }
+
+    public async updateMember(args: UpdateMemberArgs): Promise<UpdateMemberResult> {
+      return this.post<UpdateMemberArgs, UpdateMemberResult>('/payment/UpdateMember.idPass', {
+        ...this.defaultMemberData(),
+        ...args,
+      })
+    }
+
+    public async deleteMember(args: DeleteMemberArgs): Promise<DeleteMemberResult> {
+      return this.post<DeleteMemberArgs, DeleteMemberResult>('/payment/DeleteMember.idPass', {
+        ...this.defaultMemberData(),
+        ...args,
+      })
+    }
+
+    public async searchMember(args: SearchMemberArgs): Promise<SearchMemberResult | null> {
+      return this.post<SearchMemberArgs, SearchMemberResult>('/payment/SearchMember.idPass', {
+        ...this.defaultMemberData(),
+        ...args,
+      })
     }
   }
-
-  public async saveMember(args: ISaveMemberArgs): Promise<ISaveMemberResult> {
-    const data: ISaveMemberArgs = merge(this.defaultMemberData(), args)
-    const parsed: any = await this.post('/payment/SaveMember.idPass', data)
-
-    return <ISaveMemberResult>parsed
-  }
-
-  public async updateMember(args: IUpdateMemberArgs): Promise<IUpdateMemberResult> {
-    const data: IUpdateMemberArgs = merge(this.defaultMemberData(), args)
-    const parsed: any = await this.post('/payment/UpdateMember.idPass', data)
-
-    return <IUpdateMemberResult>parsed
-  }
-
-  public async deleteMember(args: IDeleteMemberArgs): Promise<IDeleteMemberResult> {
-    const data: IDeleteMemberArgs = merge(this.defaultMemberData(), args)
-    const parsed: any = await this.post('/payment/DeleteMember.idPass', data)
-
-    return <IDeleteMemberResult>parsed
-  }
-
-  public async searchMember(args: ISearchMemberArgs): Promise<ISearchMemberResult | null> {
-    const data: ISearchMemberArgs = merge(this.defaultMemberData(), args)
-    const parsed: any = await this.post('/payment/SearchMember.idPass', data)
-
-    return <ISearchMemberResult>parsed
-  }
-}

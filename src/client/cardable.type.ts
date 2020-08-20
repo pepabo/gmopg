@@ -1,7 +1,7 @@
-import {SeqMode} from '../client.enum'
-import {IResult, ISiteArgs, IShopArgs} from '../client.interface'
+import { SeqMode } from '../client.enum'
+import { Result, SiteArgs, ShopArgs } from '../client.type'
 
-export interface ISaveCardArgs extends ISiteArgs {
+export type SaveCardArgs = SiteArgs & {
   SeqMode?: SeqMode
   CardSeq?: number
   DefaultFlag?: string
@@ -13,7 +13,7 @@ export interface ISaveCardArgs extends ISiteArgs {
   Token?: string
 }
 
-export interface ISaveCardResult extends IResult {
+export type SaveCardResult = Result & {
   CardSeq: string
   CardNo: string
   Forward: string
@@ -25,21 +25,21 @@ export interface ISaveCardResult extends IResult {
   ForwardFinal?: string
 }
 
-export interface IDeleteCardArgs extends ISiteArgs {
+export type DeleteCardArgs = SiteArgs & {
   SeqMode?: SeqMode
   CardSeq: string
 }
 
-export interface IDeleteCardResult extends IResult {
+export type DeleteCardResult = Result & {
   CardSeq: string
 }
 
-export interface ISearchCardArgs extends ISiteArgs {
+export type SearchCardArgs = SiteArgs & {
   SeqMode: SeqMode
   CardSeq?: string
 }
 
-export interface ISearchCardResult extends IResult {
+export type SearchCardResult = Result & {
   CardSeq: string
   DefaultFlag: string
   CardName: string
@@ -55,16 +55,17 @@ export interface ISearchCardResult extends IResult {
   ForwardFinal?: string
 }
 
-export interface ISearchCardDetailArgs extends IShopArgs, ISiteArgs {
-  Token?: string
-  SearchType?: string
-  CardNo?: string
-  OrderID?: string
-  SeqMode?: SeqMode
-  CardSeq?: string
-}
+export type SearchCardDetailArgs = ShopArgs &
+  SiteArgs & {
+    Token?: string
+    SearchType?: string
+    CardNo?: string
+    OrderID?: string
+    SeqMode?: SeqMode
+    CardSeq?: string
+  }
 
-export interface ISearchCardDetailResult extends IResult {
+export type SearchCardDetailResult = Result & {
   CardNo?: string
   Brand?: string
   DomesticFlag?: string

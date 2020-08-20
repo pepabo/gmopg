@@ -2,23 +2,18 @@ import test from 'ava'
 import sinon = require('sinon')
 import Client from '../client'
 import WithMemberable from './memberable'
-import {
-  IDeleteMemberResult,
-  ISaveMemberResult,
-  ISearchMemberResult,
-  IUpdateMemberResult
-} from './memberable.interface'
+import { DeleteMemberResult, SaveMemberResult, SearchMemberResult, UpdateMemberResult } from './memberable.type'
 
 const Memberable = WithMemberable(Client)
 const memberable = new Memberable()
 
 test.afterEach(() => {
-  sinon.restore();
+  sinon.restore()
 })
 
-test('.saveMember calls API and returns response', async (t) => {
-  const expect: ISaveMemberResult = {
-    MemberID: 'memberid'
+test('.saveMember calls API and returns response', async t => {
+  const expect: SaveMemberResult = {
+    MemberID: 'memberid',
   }
 
   sinon.stub(memberable, 'post').resolves(expect)
@@ -27,16 +22,16 @@ test('.saveMember calls API and returns response', async (t) => {
     SiteID: 'siteid',
     SitePass: 'sitepass',
     MemberID: 'memberid',
-    MemberName: 'membername'
+    MemberName: 'membername',
   }
   const res = await memberable.saveMember(args)
 
   t.deepEqual(res, expect)
 })
 
-test('.updateMember calls API and returns response', async (t) => {
-  const expect: IUpdateMemberResult = {
-    MemberID: 'memberid'
+test('.updateMember calls API and returns response', async t => {
+  const expect: UpdateMemberResult = {
+    MemberID: 'memberid',
   }
 
   sinon.stub(memberable, 'post').resolves(expect)
@@ -45,16 +40,16 @@ test('.updateMember calls API and returns response', async (t) => {
     SiteID: 'siteid',
     SitePass: 'sitepass',
     MemberID: 'memberid',
-    MemberName: 'membername'
+    MemberName: 'membername',
   }
   const res = await memberable.updateMember(args)
 
   t.deepEqual(res, expect)
 })
 
-test('.deleteMember calls API and returns response', async (t) => {
-  const expect: IDeleteMemberResult = {
-    MemberID: 'memberid'
+test('.deleteMember calls API and returns response', async t => {
+  const expect: DeleteMemberResult = {
+    MemberID: 'memberid',
   }
 
   sinon.stub(memberable, 'post').resolves(expect)
@@ -62,18 +57,18 @@ test('.deleteMember calls API and returns response', async (t) => {
   const args = {
     SiteID: 'siteid',
     SitePass: 'sitepass',
-    MemberID: 'memberid'
+    MemberID: 'memberid',
   }
   const res = await memberable.deleteMember(args)
 
   t.deepEqual(res, expect)
 })
 
-test('.searchMember calls API and returns response', async (t) => {
-  const expect: ISearchMemberResult = {
+test('.searchMember calls API and returns response', async t => {
+  const expect: SearchMemberResult = {
     MemberID: 'memberid',
     MemberName: 'membername',
-    DeleteFlag: '1'
+    DeleteFlag: '1',
   }
 
   sinon.stub(memberable, 'post').resolves(expect)
@@ -81,7 +76,7 @@ test('.searchMember calls API and returns response', async (t) => {
   const args = {
     SiteID: 'siteid',
     SitePass: 'sitepass',
-    MemberID: 'memberid'
+    MemberID: 'memberid',
   }
   const res = await memberable.searchMember(args)
 

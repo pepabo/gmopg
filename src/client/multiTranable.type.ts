@@ -1,12 +1,12 @@
-import {PayType, Status, CvsCode, JobCd, Method} from '../client.enum'
-import {IResult, IShopArgs} from '../client.interface'
+import { PayType, Status, CvsCode, JobCd, Method } from '../client.enum'
+import { Result, ShopArgs } from '../client.type'
 
-export interface ISearchTradeMultiArgs extends IShopArgs {
+export type SearchTradeMultiArgs = ShopArgs & {
   OrderID: string
   PayType: PayType
 }
 
-export interface ISearchTradeMultiCardResult extends IResult {
+export type SearchTradeMultiCardResult = Result & {
   Status: Status
   ProcessDate: string
   JobCd: JobCd
@@ -30,7 +30,7 @@ export interface ISearchTradeMultiCardResult extends IResult {
   PayType: PayType
 }
 
-export interface ISearchTradeMultiCvsResult extends IResult {
+export type SearchTradeMultiCvsResult = Result & {
   Status: Status
   ProcessDate: string
   AccessID: string

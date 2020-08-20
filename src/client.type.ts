@@ -1,15 +1,19 @@
-export interface ISiteArgs {
+export type SiteArgs = {
   SiteID?: string
   SitePass?: string
   MemberID?: string
 }
 
-export interface IShopArgs {
+export type ShopArgs = {
   ShopID?: string
   ShopPass?: string
 }
 
-export interface IResult {
+export type Result = {
   ErrCode?: string
   ErrInfo?: string
+}
+
+export type UnknownParams = {
+  [key: string]: qs.UnknownFacade
 }

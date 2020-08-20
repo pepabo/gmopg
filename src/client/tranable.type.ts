@@ -1,7 +1,7 @@
-import {JobCd, Method, SeqMode, Status} from '../client.enum'
-import {IResult, IShopArgs} from '../client.interface'
+import { JobCd, Method, SeqMode, Status } from '../client.enum'
+import { Result, ShopArgs } from '../client.type'
 
-export interface IEntryTranArgs extends IShopArgs {
+export type EntryTranArgs = ShopArgs & {
   OrderID: string
   JobCd: JobCd
   ItemCode?: string
@@ -11,12 +11,12 @@ export interface IEntryTranArgs extends IShopArgs {
   TdTenantName?: string
 }
 
-export interface IEntryTranResult extends IResult {
+export type EntryTranResult = Result & {
   AccessID: string
   AccessPass: string
 }
 
-export interface IExecTranArgs {
+export type ExecTranArgs = {
   AccessID: string
   AccessPass: string
   OrderID: string
@@ -38,7 +38,7 @@ export interface IExecTranArgs {
   ClientField3?: string
 }
 
-export interface IExecTranResult extends IResult {
+export type ExecTranResult = Result & {
   Acs: string
   OrderID: string
   Forward: string
@@ -53,7 +53,7 @@ export interface IExecTranResult extends IResult {
   ClientField3: string
 }
 
-export interface IAlterTranArgs extends IShopArgs {
+export type AlterTranArgs = ShopArgs & {
   AccessID: string
   AccessPass: string
   JobCd: JobCd
@@ -61,7 +61,7 @@ export interface IAlterTranArgs extends IShopArgs {
   Method?: Method
 }
 
-export interface IAlterTranResult extends IResult {
+export type AlterTranResult = Result & {
   AccessID: string
   AccessPass: string
   Forward: string
@@ -70,11 +70,11 @@ export interface IAlterTranResult extends IResult {
   TranDate: string
 }
 
-export interface ISearchTradeArgs extends IShopArgs {
+export type SearchTradeArgs = ShopArgs & {
   OrderID: string
 }
 
-export interface ISearchTradeResult extends IResult {
+export type SearchTradeResult = Result & {
   OrderID: string
   Status: Status
   ProcessDate: string
@@ -98,7 +98,7 @@ export interface ISearchTradeResult extends IResult {
   ClientField3: string
 }
 
-export interface IChangeTranArgs extends IShopArgs {
+export type ChangeTranArgs = ShopArgs & {
   AccessID: string
   AccessPass: string
   JobCd: JobCd
@@ -106,7 +106,7 @@ export interface IChangeTranArgs extends IShopArgs {
   Tax?: string
 }
 
-export interface IChangeTranResult extends IResult {
+export type ChangeTranResult = Result & {
   AccessID: string
   AccessPass: string
   Forward: string
