@@ -26,14 +26,14 @@ export default <T extends Constructor<Client>>(Base: T) =>
     }
 
     public async saveCard(args: SaveCardArgs): Promise<SaveCardResult> {
-      return await this.post<SaveCardArgs, SaveCardResult>('/payment/SaveCard.idPass', {
+      return this.post<SaveCardArgs, SaveCardResult>('/payment/SaveCard.idPass', {
         ...this.defaultCardData(),
         ...args,
       })
     }
 
     public async deleteCard(args: DeleteCardArgs): Promise<DeleteCardResult> {
-      return await this.post<DeleteCardArgs, DeleteCardResult>('/payment/DeleteCard.idPass', {
+      return this.post<DeleteCardArgs, DeleteCardResult>('/payment/DeleteCard.idPass', {
         ...this.defaultCardData(),
         ...args,
       })
