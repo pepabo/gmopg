@@ -4,16 +4,13 @@ import {BadRequest} from './errors'
 import {Config} from './config.type'
 import {buildByEnv, defaults} from './config'
 import {UnknownParams} from './client.type'
+import * as merge from 'deepmerge'
 
 export default class Client {
   public config: Config
 
   constructor(config: Config = {}) {
-    this.config = {
-      ...defaults,
-      ...config,
-      ...buildByEnv(),
-    }
+    this.config = merge(merge(defaults, config), buildByEnv())
   }
 
   public async post<T, U>(pathname: string, data: T): Promise<U> {

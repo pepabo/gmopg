@@ -25,11 +25,13 @@
     "src": "./src"
   },
   "dependencies": {
+    "deepmerge": "^4.1.0",
     "encoding-japanese": "^1.0.30",
     "node-fetch": "^2.6.0",
     "qs": "^6.9.0"
   },
   "devDependencies": {
+    "@types/deepmerge": "^2.2.0",
     "@types/encoding-japanese": "^1.0.15",
     "@types/nock": "^11.1.0",
     "@types/node": "^12.7.11",
