@@ -88,3 +88,24 @@ test('.post should not decode "+" chars', async (t) => {
     StartUrl: 'https://x.y/z',
   })
 })
+
+test('client instance has deep merged config', async (t) => {
+  const c = new Client({
+    baseUrl: 'http://localhost',
+    http: {
+      timeout: 1,
+    }
+  })
+
+  t.deepEqual(c.config, {
+    baseUrl: 'http://localhost',
+    http: {
+      timeout: 1,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json, text/plain, */*',
+        'User-Agent': 'GMO PG Client: Unofficial'
+      },
+    }
+  })
+})

@@ -13,6 +13,11 @@ export default class Client {
       ...defaults,
       ...config,
       ...buildByEnv(),
+      http: {
+        ...defaults.http,
+        ...config.http,
+        ...buildByEnv().http
+      }
     }
   }
 
