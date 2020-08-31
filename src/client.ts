@@ -9,7 +9,6 @@ export default class Client {
   public config: Config
 
   constructor(config: Config = {}) {
-
     this.config = {
       ...defaults,
       ...config,
