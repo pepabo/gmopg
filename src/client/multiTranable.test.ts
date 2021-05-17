@@ -29,6 +29,7 @@ test('.searchTradeMulti calls API and returns response - CVS', async t => {
     CvsConfNo: 'cvsconfno',
     CvsReceiptNo: 'cvsreceiptno',
     PaymentTerm: 'paymentterm',
+    FinishDate: 'finishdate',
   }
 
   sinon.stub(multiTranable, 'post').resolves(expect)
