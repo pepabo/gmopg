@@ -82,20 +82,18 @@ export default <T extends Constructor<Client>>(Base: T) =>
       const errCodeArry: string[] = parsed.ErrCode?.split('|') || []
       const errInfoArry: string[] = parsed.ErrInfo?.split('|') || []
 
-      return cardNoArry.map(
-        (_, index): SearchCardDetailResult => {
-          return {
-            CardNo: cardNoArry[index],
-            Brand: brandArry[index],
-            DomesticFlag: domesticFlagArry[index],
-            IssuerCode: issuerCodeArry[index],
-            DebitPrepaidFlag: debitPrepaidFlagArry[index],
-            DebitPrepaidIssuerName: debitPrepaidIssuerNameArry[index],
-            ForwardFinal: forwardFianlArry[index],
-            ErrCode: errCodeArry[index],
-            ErrInfo: errInfoArry[index],
-          }
+      return cardNoArry.map((_, index): SearchCardDetailResult => {
+        return {
+          CardNo: cardNoArry[index],
+          Brand: brandArry[index],
+          DomesticFlag: domesticFlagArry[index],
+          IssuerCode: issuerCodeArry[index],
+          DebitPrepaidFlag: debitPrepaidFlagArry[index],
+          DebitPrepaidIssuerName: debitPrepaidIssuerNameArry[index],
+          ForwardFinal: forwardFianlArry[index],
+          ErrCode: errCodeArry[index],
+          ErrInfo: errInfoArry[index],
         }
-      )
+      })
     }
   }
