@@ -46,4 +46,5 @@ export type SearchTradeMultiCvsResult = Result & {
   CvsConfNo: string
   CvsReceiptNo: string
   PaymentTerm: string
+  FinishDate: string
 }
