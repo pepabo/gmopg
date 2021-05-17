@@ -30,15 +30,15 @@ export default <T extends Constructor<Client>>(Base: T) =>
     public async execTranCvs(args: ExecTranCvsArgs): Promise<ExecTranCvsResult> {
       return this.post<ExecTranCvsArgs, ExecTranCvsResult>('/payment/ExecTranCvs.idPass', {
         ...args,
-        CustomerName: encoding.urlEncode(encoding.convert(args.CustomerName, 'SJIS')),
-        CustomerKana: encoding.urlEncode(encoding.convert(args.CustomerKana, 'SJIS')),
+        CustomerName: encoding.urlEncode(encoding.convert(args.CustomerName, { to: 'SJIS', type: 'array' })),
+        CustomerKana: encoding.urlEncode(encoding.convert(args.CustomerKana, { to: 'SJIS', type: 'array' })),
       })
     }
 
     public async cancelCvs(args: CancelCvsArgs): Promise<CancelCvsResult> {
       const defaultData = {
-        ShopID: this.config?.ShopID,
-        ShopPass: this.config?.ShopPass,
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
         AccessID: undefined,
         AccessPass: undefined,
         OrderID: undefined,
