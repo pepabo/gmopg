@@ -30,7 +30,7 @@
     "qs": "^6.9.0"
   },
   "devDependencies": {
-    "@types/encoding-japanese": "^1.0.15",
+    "@types/encoding-japanese": "^1.0.17",
     "@types/nock": "^11.1.0",
     "@types/node": "^12.7.11",
     "@types/node-fetch": "^2.5.2",

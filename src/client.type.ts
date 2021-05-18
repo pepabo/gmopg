@@ -15,5 +15,5 @@ export type Result = {
 }
 
 export type UnknownParams = {
-  [key: string]: qs.UnknownFacade
+  [key: string]: unknown
 }
