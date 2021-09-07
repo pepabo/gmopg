@@ -54,7 +54,8 @@ test('exports JobCd as enum', (t) => {
     Void: 'VOID',
     Return: 'RETURN',
     Returnx: 'RETURNX',
-    Sauth: 'SAUTH'
+    Sauth: 'SAUTH',
+    Cancel: 'CANCEL'
   }
   t.deepEqual(client.JobCd, expect)
 })

@@ -42,6 +42,7 @@ export enum JobCd {
   Return = 'RETURN',
   Returnx = 'RETURNX',
   Sauth = 'SAUTH',
+  Cancel = 'CANCEL',
 }
 
 export enum SeqMode {
