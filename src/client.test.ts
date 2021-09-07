@@ -1,34 +1,34 @@
 import test from 'ava'
-import nock = require('nock');
-import {PayType} from './client.enum'
+import nock = require('nock')
+import { PayType } from './client.enum'
 import Client from './client'
 
-const baseUrl = 'https://x.y';
+const baseUrl = 'https://x.y'
 
-const client = new Client({baseUrl})
+const client = new Client({ baseUrl })
 
 type ExampleData = {
-  Foo: string,
-  Bar: number,
-  Baz: boolean,
-  Ja: string,
-  Type: PayType,
+  Foo: string
+  Bar: number
+  Baz: boolean
+  Ja: string
+  Type: PayType
 }
 
 type ExampleRes = {
-  AccessID: string,
-  AccessPass: string,
+  AccessID: string
+  AccessPass: string
 }
 
-test('.post is function', (t) => {
+test('.post is function', t => {
   t.is(typeof client.post, 'function')
 })
 
-test('.post requests body correctly and send correct content-type header', async (t) => {
+test('.post requests body correctly and send correct content-type header', async t => {
   nock(baseUrl, {
     reqheaders: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
   })
     .post(/.*/, 'Foo=aaa&Bar=0&Baz=true&Ja=日本語&Type=0')
     .reply(200, 'AccessID=accessid&AccessPass=accesspass')
@@ -38,19 +38,17 @@ test('.post requests body correctly and send correct content-type header', async
     Bar: 0,
     Baz: true,
     Ja: '日本語',
-    Type: PayType.Credit
+    Type: PayType.Credit,
   })
 
   t.deepEqual(res, {
     AccessID: 'accessid',
-    AccessPass: 'accesspass'
+    AccessPass: 'accesspass',
   })
 })
 
-test('.post returns errors correctly', async (t) => {
-  nock(baseUrl)
-    .post(/.*/, 'Foo=aaa&Bar=0&Baz=true&Ja=日本語&Type=0')
-    .reply(200, 'ErrCode=E01&ErrInfo=E01190001')
+test('.post returns errors correctly', async t => {
+  nock(baseUrl).post(/.*/, 'Foo=aaa&Bar=0&Baz=true&Ja=日本語&Type=0').reply(200, 'ErrCode=E01&ErrInfo=E01190001')
 
   try {
     await client.post<ExampleData, unknown>('/test2', {
@@ -58,29 +56,27 @@ test('.post returns errors correctly', async (t) => {
       Bar: 0,
       Baz: true,
       Ja: '日本語',
-      Type: PayType.Credit
+      Type: PayType.Credit,
     })
     t.fail()
   } catch (err) {
-    t.deepEqual(err.errInfo, ["E01190001"])
+    t.deepEqual(err.errInfo, ['E01190001'])
   }
 })
 
-test('.post should not decode "+" chars', async (t) => {
-  nock(baseUrl)
-    .post(/.*/)
-    .reply(200, 'TranID=123aZ&Token=abc123/+-_&StartUrl=https://x.y/z')
+test('.post should not decode "+" chars', async t => {
+  nock(baseUrl).post(/.*/).reply(200, 'TranID=123aZ&Token=abc123/+-_&StartUrl=https://x.y/z')
 
   type Data = {
-    foo: string,
+    foo: string
   }
-    
+
   type Res = {
-    TranID: string,
-    Token: string,
-    StartUrl: string,
+    TranID: string
+    Token: string
+    StartUrl: string
   }
-  const res = await client.post<Data, Res>('/test1', {foo: '1'});
+  const res = await client.post<Data, Res>('/test1', { foo: '1' })
 
   t.deepEqual(res, {
     TranID: '123aZ',
@@ -89,12 +85,12 @@ test('.post should not decode "+" chars', async (t) => {
   })
 })
 
-test('client instance has deep merged config', async (t) => {
+test('client instance has deep merged config', async t => {
   const c = new Client({
     baseUrl: 'http://localhost',
     http: {
       timeout: 1,
-    }
+    },
   })
 
   t.deepEqual(c.config, {
@@ -103,9 +99,9 @@ test('client instance has deep merged config', async (t) => {
       timeout: 1,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json, text/plain, */*',
-        'User-Agent': 'GMO PG Client: Unofficial'
+        Accept: 'application/json, text/plain, */*',
+        'User-Agent': 'GMO PG Client: Unofficial',
       },
-    }
+    },
   })
 })

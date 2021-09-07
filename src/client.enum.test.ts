@@ -1,7 +1,7 @@
 import test from 'ava'
 import * as client from './client.enum'
 
-test('exports PayType as enum', (t) => {
+test('exports PayType as enum', t => {
   const expect = {
     Cash: 'Z',
     Credit: '0',
@@ -13,18 +13,18 @@ test('exports PayType as enum', (t) => {
   t.deepEqual(client.PayType, expect)
 })
 
-test('exports Method as enum', (t) => {
+test('exports Method as enum', t => {
   const expect = {
     Lump: '1',
     Installment: '2',
     BonusLump: '3',
     Revolving: '4',
-    BonusInstallment: '5'
+    BonusInstallment: '5',
   }
   t.deepEqual(client.Method, expect)
 })
 
-test('exports Status as enum', (t) => {
+test('exports Status as enum', t => {
   const expect = {
     Unprocessed: 'UNPROCESSED',
     Authenticated: 'AUTHENTICATED',
@@ -40,12 +40,12 @@ test('exports Status as enum', (t) => {
     Paysuccess: 'PAYSUCCESS',
     Payfail: 'PAYFAIL',
     Expired: 'EXPIRED',
-    Cancel: 'CANCEL'
+    Cancel: 'CANCEL',
   }
   t.deepEqual(client.Status, expect)
 })
 
-test('exports JobCd as enum', (t) => {
+test('exports JobCd as enum', t => {
   const expect = {
     Check: 'CHECK',
     Capture: 'CAPTURE',
@@ -55,28 +55,28 @@ test('exports JobCd as enum', (t) => {
     Return: 'RETURN',
     Returnx: 'RETURNX',
     Sauth: 'SAUTH',
-    Cancel: 'CANCEL'
+    Cancel: 'CANCEL',
   }
   t.deepEqual(client.JobCd, expect)
 })
 
-test('exports SeqMode as enum', (t) => {
+test('exports SeqMode as enum', t => {
   const expect = {
     Logic: '0',
-    Physics: '1'
+    Physics: '1',
   }
   t.deepEqual(client.SeqMode, expect)
 })
 
-test('exports DefaultFlag as enum', (t) => {
+test('exports DefaultFlag as enum', t => {
   const expect = {
     BillingObject: '0',
-    NotSubjectToCharge: '1'
+    NotSubjectToCharge: '1',
   }
   t.deepEqual(client.DefaultFlag, expect)
 })
 
-test('exports CvsCode as enum', (t) => {
+test('exports CvsCode as enum', t => {
   const expect = {
     _Lawson: '00001',
     _FamilyMart: '00002',
@@ -91,7 +91,7 @@ test('exports CvsCode as enum', (t) => {
     CircleK: '10004',
     MiniStop: '10005',
     SevenEleven: '00007',
-    SeicoMart: '10008'
+    SeicoMart: '10008',
   }
   t.deepEqual(client.CvsCode, expect)
 })

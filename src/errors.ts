@@ -1,4 +1,5 @@
-const errorDefinition: {[key: string]: string} = require('../error-codes.json');
+import * as fs from 'fs'
+const errorDefinition: { [key: string]: string } = JSON.parse(fs.readFileSync('./error-codes.json', 'utf-8'))
 
 export class BadRequest extends Error {
   public errors: string[]
@@ -19,7 +20,7 @@ export class BadRequest extends Error {
 
   public parseError(obj: any): BadRequest {
     this.errInfo = [...new Set<string>(obj.ErrInfo.split('|'))]
-    this.errors = this.errInfo.map((code) => errorDefinition[code])
+    this.errors = this.errInfo.map(code => errorDefinition[code])
     return this
   }
 
