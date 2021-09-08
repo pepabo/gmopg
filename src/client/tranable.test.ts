@@ -49,6 +49,9 @@ test('.execTran calls API and returns response', async t => {
     ClientField1: 'clientfield1',
     ClientField2: 'clientfield2',
     ClientField3: 'clientfield3',
+    AcsUrl: 'acsurl',
+    PaReq: 'pareq',
+    MD: 'md',
   }
 
   sinon.stub(tranable, 'post').resolves(expect)

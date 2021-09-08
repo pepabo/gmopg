@@ -51,6 +51,9 @@ export type ExecTranResult = Result & {
   ClientField1: string
   ClientField2: string
   ClientField3: string
+  AcsUrl?: string
+  PaReq?: string
+  MD?: string
 }
 
 export type AlterTranArgs = ShopArgs & {
