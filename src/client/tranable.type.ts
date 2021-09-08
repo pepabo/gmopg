@@ -39,7 +39,7 @@ export type ExecTranArgs = {
 }
 
 export type ExecTranResult = Result & {
-  Acs: string
+  ACS: string
   OrderID: string
   Forward: string
   Method: Method
@@ -51,7 +51,7 @@ export type ExecTranResult = Result & {
   ClientField1: string
   ClientField2: string
   ClientField3: string
-  AcsUrl?: string
+  ACSUrl?: string
   PaReq?: string
   MD?: string
 }

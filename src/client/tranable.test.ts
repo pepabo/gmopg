@@ -37,7 +37,7 @@ test('.entryTran calls API and returns response', async t => {
 
 test('.execTran calls API and returns response', async t => {
   const expect: ExecTranResult = {
-    Acs: 'acs',
+    ACS: 'acs',
     OrderID: 'orderid',
     Forward: 'forward',
     Method: Method.Lump,
@@ -49,7 +49,7 @@ test('.execTran calls API and returns response', async t => {
     ClientField1: 'clientfield1',
     ClientField2: 'clientfield2',
     ClientField3: 'clientfield3',
-    AcsUrl: 'acsurl',
+    ACSUrl: 'acsurl',
     PaReq: 'pareq',
     MD: 'md',
   }
