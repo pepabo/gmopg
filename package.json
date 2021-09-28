@@ -1,7 +1,7 @@
 {
   "name": "gmopg",
   "description": "GMO PaymentGateway API client",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "author": "Futahei",
   "license": "MIT",
   "repository": "cynack/gmopg",
