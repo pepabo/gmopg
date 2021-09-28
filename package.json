@@ -27,13 +27,13 @@
   "dependencies": {
     "encoding-japanese": "^1.0.30",
     "fs": "0.0.1-security",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.5",
     "qs": "^6.9.0"
   },
   "devDependencies": {
     "@types/encoding-japanese": "^1.0.17",
     "@types/nock": "^11.1.0",
-    "@types/node": "^12.7.11",
+    "@types/node": "^12.20.27",
     "@types/node-fetch": "^2.5.2",
     "@types/qs": "^6.5.1",
     "@types/sinon": "^7.5.0",
@@ -51,7 +51,7 @@
     "eslint-plugin-unicorn": "^21.0.0",
     "nock": "^11.4.0",
     "nyc": "^14.1.1",
-    "prettier": "^2.0.5",
+    "prettier": "^2.4.1",
     "sinon": "^7.5.0",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.3"
