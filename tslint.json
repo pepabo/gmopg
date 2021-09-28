@@ -21,10 +21,7 @@
     "export-name": false,
     "import-name": false,
     "interface-over-type-literal": true,
-    "linebreak-style": [
-      "LF",
-      true
-    ],
+    "linebreak-style": [true, "LF"],
     "no-any": false,
     "no-default-export": false,
     "no-internal-module": true,
