@@ -2,16 +2,18 @@
   "name": "gmopg",
   "description": "GMO PaymentGateway API client",
   "version": "6.0.0",
-  "author": "linyows",
+  "author": "Futahei",
   "license": "MIT",
-  "repository": "pepabo/gmopg",
-  "homepage": "https://github.com/pepabo/gmopg",
+  "repository": "cynack/gmopg",
+  "private": true,
+  "homepage": "https://github.com/cynack/gmopg",
   "keywords": [
     "api",
     "client",
-    "payment"
+    "payment",
+    "gmo"
   ],
-  "bugs": "https://github.com/pepabo/gmopg/issues",
+  "bugs": "https://github.com/cynack/gmopg/issues",
   "main": "./lib/gmopg.js",
   "types": "./lib/gmopg.d.ts",
   "files": [
