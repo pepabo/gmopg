@@ -4,8 +4,13 @@
   "version": "6.2.0",
   "author": "Futahei",
   "license": "MIT",
-  "repository": "cynack/gmopg",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cynack/gmopg.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "homepage": "https://github.com/cynack/gmopg",
   "keywords": [
     "api",

@@ -12,9 +12,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+        registry-url: 'https://npm.pkg.github.com'
     - name: npm install and lint
       run: |
         npm run ci
+        npm run build
+        npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload coverage
       uses: codecov/codecov-action@v1
       with:
