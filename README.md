@@ -3,6 +3,8 @@ GMO Payment Gateway API Client: Unofficial
 
 Simple Nodejs wrapper for [GMO Payment Gateway][gmopg] API.
 
+This library is based on [pepabo/gmopg](https://github.com/cynack/gmopg/). Plase star original repository.
+
 <a href="https://www.npmjs.com/package/gmopg" title="npm"><img src="http://img.shields.io/npm/v/gmopg.svg?style=for-the-badge"></a>
 <a href="https://github.com/cynack/gmopg/actions" title="actions"><img src="https://img.shields.io/github/workflow/status/cynack/gmopg/Build?style=for-the-badge"></a>
 <a href="https://codecov.io/gh/cynack/gmopg" title="codecov.io"><img src="https://img.shields.io/codecov/c/gh/cynack/gmopg.svg?style=for-the-badge"></a>
@@ -14,7 +16,7 @@ Installation
 ------------
 
 ```sh
-npm install gmopg
+npm install @cynack/gmopg
 ```
 
 Usage
@@ -120,14 +122,12 @@ ShopPass     | PG shop pass        | GMOPG_SHOPPASS | undefined
 Contribution
 ------------
 
-1. Fork (<https://github.com/cynack/gmopg/fork>)
 1. Create a feature branch
 1. Commit your changes
-1. Rebase your local changes against the master branch
 1. Run test suite with the `npm run ci` command and confirm that it passes
 1. Create a new Pull Request
 
 Author
 ------
 
-[linyows](https://github.com/linyows)
+[Futahei](https://github.com/Futahei)
