@@ -1,4 +1,3 @@
-import { type } from 'os'
 import { JobCd, Status } from '../client.enum'
 import { Result, ShopArgs } from '../client.type'
 
