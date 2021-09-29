@@ -1,0 +1,52 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-microsoft-contrib/recommended_ruleset"
+  ],
+  "jsRules": {},
+  "rules": {
+    "quotemark": [true, "single"],
+    "semicolon": [true, "never"],
+    "completed-docs": false,
+    "missing-jsdoc": false,
+    "no-empty-interface": false,
+    "ordered-imports": false,
+    "arrow-parens": [
+      true
+    ],
+    "arrow-return-shorthand": [
+      true
+    ],
+    "curly": true,
+    "export-name": false,
+    "import-name": false,
+    "interface-over-type-literal": true,
+    "linebreak-style": [true, "LF"],
+    "no-any": false,
+    "no-default-export": false,
+    "no-internal-module": true,
+    "no-magic-numbers": true,
+    "no-misused-new": true,
+    "no-relative-imports": false,
+    "no-unnecessary-initializer": true,
+    "no-unsafe-any": false,
+    "prefer-function-over-method": true,
+    "prefer-method-signature": true,
+    "trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
+    "typedef": [
+      true,
+      "parameter",
+      "property-declaration",
+      "member-variable-declaration"
+    ],
+    "variable-name": [true, "allow-pascal-case"]
+  },
+  "linterOptions": {
+    "exclude": [
+      "**/*.test.ts"
+    ]
+  },
+  "rulesDirectory": [
+    "node_modules/tslint-microsoft-contrib"
+  ]
+}

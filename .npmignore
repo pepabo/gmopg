@@ -1,0 +1,11 @@
+.git*
+**/*.test.js
+**/*.test.ts
+**/*.test.d.ts
+**/*.ts
+.npmrc
+.env*
+npm-debug.log*
+test/**/*.*
+!**/*.d.ts
+/node_modules
