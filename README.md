@@ -4,7 +4,8 @@ Simple Nodejs wrapper for [GMO Payment Gateway][gmopg] API.
 
 This library is based on [pepabo/gmopg](https://github.com/cynack/gmopg/). Plase star original repository.
 
-<a href="https://www.npmjs.com/package/gmopg" title="npm"><img src="http://img.shields.io/npm/v/gmopg.svg?style=for-the-badge"></a>
+<a href="https://www.npmjs.com/package/gmopg" title="npm">
+<img src="http://img.shields.io/npm/v/gmopg.svg?style=for-the-badge"></a>
 <a href="https://github.com/cynack/gmopg/actions" title="actions"><img src="https://img.shields.io/github/workflow/status/cynack/gmopg/Build?style=for-the-badge"></a>
 <a href="https://codecov.io/gh/cynack/gmopg" title="codecov.io"><img src="https://img.shields.io/codecov/c/gh/cynack/gmopg.svg?style=for-the-badge"></a>
 <a href="https://github.com/cynack/gmopg/blob/master/MIT-LICENSE" title="MIT License"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge"></a>
