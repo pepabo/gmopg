@@ -119,3 +119,32 @@ test('exports CvsCode as enum', t => {
   }
   t.deepEqual(client.CvsCode, expect)
 })
+
+test('exports AccountType as enum', t => {
+  const expect = {
+    Savings: '1',
+    Checking: '2',
+  }
+  t.deepEqual(client.AccountType, expect)
+})
+
+test('exports AccountStatus as enum', t => {
+  const expect = {
+    Unused: 'UNUSED',
+    Trading: 'TRADING',
+    Transferred: 'TRANSFERRED',
+    Expired: 'EXPIRED',
+    Assigned: 'ASSIGNED',
+  }
+  t.deepEqual(client.AccountStatus, expect)
+})
+
+test('exports TransferStatus as enum', t => {
+  const expect = {
+    RelatedOnetime: 'RELATED_ONETIME',
+    RelatedAssign: 'RELATED_ASSIGN',
+    RelatedForce: 'RELATED_FORCE',
+    Return: 'RETURN',
+  }
+  t.deepEqual(client.TransferStatus, expect)
+})

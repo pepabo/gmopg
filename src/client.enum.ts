@@ -95,3 +95,23 @@ export enum CvsCode {
   SevenEleven = '00007',
   SeicoMart = '10008',
 }
+
+export enum AccountType {
+  Savings = '1',
+  Checking = '2',
+}
+
+export enum AccountStatus {
+  Unused = 'UNUSED',
+  Trading = 'TRADING',
+  Transferred = 'TRANSFERRED',
+  Expired = 'EXPIRED',
+  Assigned = 'ASSIGNED',
+}
+
+export enum TransferStatus {
+  RelatedOnetime = 'RELATED_ONETIME',
+  RelatedAssign = 'RELATED_ASSIGN',
+  RelatedForce = 'RELATED_FORCE',
+  Return = 'RETURN',
+}
