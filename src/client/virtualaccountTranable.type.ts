@@ -39,3 +39,22 @@ export type ExecTranVirtualaccountResult = Result & {
   AvailableDate: string
   TradeCode: string
 }
+
+export type AssignVirtualaccountArgs = ShopArgs & {
+  Version?: string
+  ReserveID: string
+  BankCode?: string
+  BranchCode?: string
+  AccountType?: AccountType
+  AccountNumber?: string
+}
+
+export type AssignVirtualaccountResult = Result & {
+  ReserveID: string
+  BankCode: string
+  BankName: string
+  BranchCode: string
+  BranchName: string
+  AccountType: AccountType
+  AccountNumber: string
+}

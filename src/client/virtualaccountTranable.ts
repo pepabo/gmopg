@@ -1,6 +1,8 @@
 import Client from '../client'
 import { Constructor } from '../util'
 import {
+  AssignVirtualaccountArgs,
+  AssignVirtualaccountResult,
   EntryTranVirtualaccountArgs,
   EntryTranVirtualaccountResult,
   ExecTranVirtualaccountArgs,
@@ -42,5 +44,17 @@ export default <T extends Constructor<Client>>(Base: T) =>
           ...args,
         }
       )
+    }
+
+    public async assignVirtualaccount(args: AssignVirtualaccountArgs): Promise<AssignVirtualaccountResult> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        ReserveID: undefined,
+      }
+      return this.post<AssignVirtualaccountArgs, AssignVirtualaccountResult>('/payment/AssignVirtualaccount.idPass', {
+        ...defaultData,
+        ...args,
+      })
     }
   }
