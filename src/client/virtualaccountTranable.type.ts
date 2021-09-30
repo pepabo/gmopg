@@ -58,3 +58,18 @@ export type AssignVirtualaccountResult = Result & {
   AccountType: AccountType
   AccountNumber: string
 }
+
+export type FreeVirtualaccountArgs = ShopArgs & {
+  Version?: string
+  ReserveID: string
+}
+
+export type FreeVirtualaccountResult = Result & {
+  ReserveID: string
+  BankCode: string
+  BankName: string
+  BranchCode: string
+  BranchName: string
+  AccountType: AccountType
+  AccountNumber: string
+}

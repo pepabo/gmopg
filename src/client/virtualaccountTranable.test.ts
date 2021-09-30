@@ -7,6 +7,7 @@ import {
   AssignVirtualaccountResult,
   EntryTranVirtualaccountResult,
   ExecTranVirtualaccountResult,
+  FreeVirtualaccountResult,
 } from './virtualaccountTranable.type'
 
 const VirtualaccountTranable = WithVirtualaccountTranable(Client)
@@ -83,6 +84,29 @@ test('.assignVirtualaccount calls API and returns response', async t => {
     ReserveID: 'reserveid',
   }
   const res = await virtualaccountTranable.assignVirtualaccount(args)
+
+  t.deepEqual(res, expect)
+})
+
+test('.freeVirtualaccount calls API and returns response', async t => {
+  const expect: FreeVirtualaccountResult = {
+    ReserveID: 'reserveid',
+    BankCode: 'bankcode',
+    BankName: 'bankname',
+    BranchCode: 'branchcode',
+    BranchName: 'branchname',
+    AccountType: AccountType.Savings,
+    AccountNumber: 'accountnumber',
+  }
+
+  sinon.stub(virtualaccountTranable, 'post').resolves(expect)
+
+  const args = {
+    ShopID: 'shopid',
+    ShopPass: 'shoppass',
+    ReserveID: 'reserveid',
+  }
+  const res = await virtualaccountTranable.freeVirtualaccount(args)
 
   t.deepEqual(res, expect)
 })

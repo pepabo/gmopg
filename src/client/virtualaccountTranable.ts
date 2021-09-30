@@ -7,6 +7,8 @@ import {
   EntryTranVirtualaccountResult,
   ExecTranVirtualaccountArgs,
   ExecTranVirtualaccountResult,
+  FreeVirtualaccountArgs,
+  FreeVirtualaccountResult,
 } from './virtualaccountTranable.type'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -53,6 +55,18 @@ export default <T extends Constructor<Client>>(Base: T) =>
         ReserveID: undefined,
       }
       return this.post<AssignVirtualaccountArgs, AssignVirtualaccountResult>('/payment/AssignVirtualaccount.idPass', {
+        ...defaultData,
+        ...args,
+      })
+    }
+
+    public async freeVirtualaccount(args: FreeVirtualaccountArgs): Promise<FreeVirtualaccountResult> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        ReserveID: undefined,
+      }
+      return this.post<FreeVirtualaccountArgs, FreeVirtualaccountResult>('/payment/FreeVirtualaccount.idPass', {
         ...defaultData,
         ...args,
       })
