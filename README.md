@@ -1,5 +1,4 @@
-GMO Payment Gateway API Client: Unofficial
-==========================================
+# GMO Payment Gateway API Client: Unofficial
 
 Simple Nodejs wrapper for [GMO Payment Gateway][gmopg] API.
 
@@ -12,17 +11,15 @@ This library is based on [pepabo/gmopg](https://github.com/cynack/gmopg/). Plase
 
 [gmopg]: https://www.gmo-pg.com/
 
-Installation
-------------
+## Installation
 
 ```sh
 npm install @cynack/gmopg
 ```
 
-Usage
------
+## Usage
 
-Purchase example
+Purchase example below
 
 ### Node.js
 
@@ -106,8 +103,7 @@ const alterRes = await gmopg.alterTran({
 })
 ```
 
-Config
-------
+## Config
 
 name         | description         | environ        | default
 ---          | ---                 | ---            | ---
@@ -119,15 +115,9 @@ SitePass     | PG site pass        | GMOPG_SITEPASS | undefined
 ShopID       | PG shop id          | GMOPG_SHOPID   | undefined
 ShopPass     | PG shop pass        | GMOPG_SHOPPASS | undefined
 
-Contribution
-------------
+## Contribution
 
 1. Create a feature branch
 1. Commit your changes
 1. Run test suite with the `npm run ci` command and confirm that it passes
 1. Create a new Pull Request
-
-Author
-------
-
-[Futahei](https://github.com/Futahei)
