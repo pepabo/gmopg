@@ -22,6 +22,7 @@ test('.ENUMS returns enum object', t => {
     'CvsCode',
     'AccountType',
     'AccountStatus',
+    'TransferStatus',
   ])
 })
 

@@ -108,3 +108,10 @@ export enum AccountStatus {
   Expired = 'EXPIRED',
   Assigned = 'ASSIGNED',
 }
+
+export enum TransferStatus {
+  RelatedOnetime = 'RELATED_ONETIME',
+  RelatedAssign = 'RELATED_ASSIGN',
+  RelatedForce = 'RELATED_FORCE',
+  Return = 'RETURN',
+}

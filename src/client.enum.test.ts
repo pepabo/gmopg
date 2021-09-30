@@ -138,3 +138,13 @@ test('exports AccountStatus as enum', t => {
   }
   t.deepEqual(client.AccountStatus, expect)
 })
+
+test('exports TransferStatus as enum', t => {
+  const expect = {
+    RelatedOnetime: 'RELATED_ONETIME',
+    RelatedAssign: 'RELATED_ASSIGN',
+    RelatedForce: 'RELATED_FORCE',
+    Return: 'RETURN',
+  }
+  t.deepEqual(client.TransferStatus, expect)
+})

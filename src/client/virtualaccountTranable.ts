@@ -9,6 +9,8 @@ import {
   ExecTranVirtualaccountResult,
   FreeVirtualaccountArgs,
   FreeVirtualaccountResult,
+  InquiryVirtualaccountTransferArgs,
+  InquiryVirtualaccountTransferResult,
   ListVirtualaccountArgs,
   ListVirtualaccountResult,
 } from './virtualaccountTranable.type'
@@ -74,14 +76,30 @@ export default <T extends Constructor<Client>>(Base: T) =>
       })
     }
 
-    public async listVirtualaccount(args: ListVirtualaccountArgs): Promise<ListVirtualaccountResult> {
+    public async listVirtualaccount(args: ListVirtualaccountArgs): Promise<ListVirtualaccountResult[]> {
       const defaultData = {
         ShopID: this.config.ShopID,
         ShopPass: this.config.ShopPass,
       }
-      return this.post<ListVirtualaccountArgs, ListVirtualaccountResult>('/payment/ListVirtualaccount.idPass', {
+      return this.post<ListVirtualaccountArgs, ListVirtualaccountResult[]>('/payment/ListVirtualaccount.idPass', {
         ...defaultData,
         ...args,
       })
+    }
+
+    public async inquiryVirtualaccountTransfer(
+      args: InquiryVirtualaccountTransferArgs
+    ): Promise<InquiryVirtualaccountTransferResult[]> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+      }
+      return this.post<InquiryVirtualaccountTransferArgs, InquiryVirtualaccountTransferResult[]>(
+        '/payment/InquiryVirtualaccountTransfer.idPass',
+        {
+          ...defaultData,
+          ...args,
+        }
+      )
     }
   }

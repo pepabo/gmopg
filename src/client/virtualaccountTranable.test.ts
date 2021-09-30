@@ -1,13 +1,14 @@
 import test from 'ava'
 import sinon = require('sinon')
 import Client from '../client'
-import { AccountStatus, AccountType } from '../client.enum'
+import { AccountStatus, AccountType, TransferStatus } from '../client.enum'
 import WithVirtualaccountTranable from './virtualaccountTranable'
 import {
   AssignVirtualaccountResult,
   EntryTranVirtualaccountResult,
   ExecTranVirtualaccountResult,
   FreeVirtualaccountResult,
+  InquiryVirtualaccountTransferResult,
   ListVirtualaccountResult,
 } from './virtualaccountTranable.type'
 
@@ -113,14 +114,16 @@ test('.freeVirtualaccount calls API and returns response', async t => {
 })
 
 test('.listVirtualaccount calls API and returns response', async t => {
-  const expect: ListVirtualaccountResult = {
-    ReserveID: 'reserveid',
-    BankCode: 'bankcode',
-    BranchCode: 'branchcode',
-    AccountType: AccountType.Savings,
-    AccountNumber: 'accountnumber',
-    AccountStatus: AccountStatus.Assigned,
-  }
+  const expect: ListVirtualaccountResult[] = [
+    {
+      ReserveID: 'reserveid',
+      BankCode: 'bankcode',
+      BranchCode: 'branchcode',
+      AccountType: AccountType.Savings,
+      AccountNumber: 'accountnumber',
+      AccountStatus: AccountStatus.Assigned,
+    },
+  ]
 
   sinon.stub(virtualaccountTranable, 'post').resolves(expect)
 
@@ -129,6 +132,29 @@ test('.listVirtualaccount calls API and returns response', async t => {
     ShopPass: 'shoppass',
   }
   const res = await virtualaccountTranable.listVirtualaccount(args)
+
+  t.deepEqual(res, expect)
+})
+
+test('.inquiryVirtualaccountTransfer calls API and returns response', async t => {
+  const expect: InquiryVirtualaccountTransferResult[] = [
+    {
+      InquiryNumber: 'inquerynumber',
+      SettlementDate: 'yyyyMMdd',
+      SettlementAmount: 1234,
+      TradeClientName: 'tradeclientname',
+      TradeSummary: 'tradesummary',
+      TransferStatus: TransferStatus.RelatedAssign,
+    },
+  ]
+
+  sinon.stub(virtualaccountTranable, 'post').resolves(expect)
+
+  const args = {
+    ShopID: 'shopid',
+    ShopPass: 'shoppass',
+  }
+  const res = await virtualaccountTranable.inquiryVirtualaccountTransfer(args)
 
   t.deepEqual(res, expect)
 })

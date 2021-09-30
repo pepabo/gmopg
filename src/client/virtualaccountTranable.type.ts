@@ -1,4 +1,4 @@
-import { AccountStatus, AccountType } from '../client.enum'
+import { AccountStatus, AccountType, TransferStatus } from '../client.enum'
 import { Result, ShopArgs } from '../client.type'
 
 export type EntryTranVirtualaccountArgs = ShopArgs & {
@@ -85,4 +85,22 @@ export type ListVirtualaccountResult = Result & {
   AccountType?: AccountType
   AccountNumber?: string
   AccountStatus?: AccountStatus
+}
+
+export type InquiryVirtualaccountTransferArgs = ShopArgs & {
+  Version?: string
+  ReserveID?: string
+  BankCode?: string
+  BranchCode?: string
+  AccountType?: AccountType
+  AccountNumber?: string
+}
+
+export type InquiryVirtualaccountTransferResult = Result & {
+  InquiryNumber?: string
+  SettlementDate?: string
+  SettlementAmount?: number
+  TradeClientName?: string
+  TradeSummary?: string
+  TransferStatus?: TransferStatus
 }
