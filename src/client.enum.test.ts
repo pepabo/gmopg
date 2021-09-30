@@ -119,3 +119,11 @@ test('exports CvsCode as enum', t => {
   }
   t.deepEqual(client.CvsCode, expect)
 })
+
+test('exports AccountType as enum', t => {
+  const expect = {
+    Savings: '1',
+    Checking: '2',
+  }
+  t.deepEqual(client.AccountType, expect)
+})

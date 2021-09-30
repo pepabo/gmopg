@@ -1,6 +1,11 @@
 import Client from '../client'
 import { Constructor } from '../util'
-import { EntryTranVirtualaccountArgs, EntryTranVirtualaccountResult } from './virtualaccountTranable.type'
+import {
+  EntryTranVirtualaccountArgs,
+  EntryTranVirtualaccountResult,
+  ExecTranVirtualaccountArgs,
+  ExecTranVirtualaccountResult,
+} from './virtualaccountTranable.type'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default <T extends Constructor<Client>>(Base: T) =>
@@ -14,6 +19,24 @@ export default <T extends Constructor<Client>>(Base: T) =>
       }
       return this.post<EntryTranVirtualaccountArgs, EntryTranVirtualaccountResult>(
         '/payment/EntryTranVirtualaccount.idPass',
+        {
+          ...defaultData,
+          ...args,
+        }
+      )
+    }
+
+    public async execTranVirtualaccount(args: ExecTranVirtualaccountArgs): Promise<ExecTranVirtualaccountResult> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        AccessID: undefined,
+        AccessPass: undefined,
+        OrderID: undefined,
+        TradeDays: undefined,
+      }
+      return this.post<ExecTranVirtualaccountArgs, ExecTranVirtualaccountResult>(
+        '/payment/ExecTranVirtualaccount.idPass',
         {
           ...defaultData,
           ...args,

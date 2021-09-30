@@ -12,7 +12,16 @@ test('new returns GMOPG instance', t => {
 })
 
 test('.ENUMS returns enum object', t => {
-  t.deepEqual(Object.keys(ENUMS), ['PayType', 'Method', 'Status', 'JobCd', 'SeqMode', 'DefaultFlag', 'CvsCode'])
+  t.deepEqual(Object.keys(ENUMS), [
+    'PayType',
+    'Method',
+    'Status',
+    'JobCd',
+    'SeqMode',
+    'DefaultFlag',
+    'CvsCode',
+    'AccountType',
+  ])
 })
 
 test('.GENERATE_MEMBER_ID returns generated memberID', t => {
