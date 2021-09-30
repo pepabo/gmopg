@@ -1,5 +1,11 @@
-name: Build
-on: [push, pull_request]
+name: Create release
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - release
+
 jobs:
   build:
     runs-on: ubuntu-latest

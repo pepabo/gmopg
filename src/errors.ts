@@ -23,8 +23,4 @@ export class BadRequest extends Error {
     this.errors = this.errInfo.map(code => errorDefinition[code])
     return this
   }
-
-  public toString(): string {
-    return `${this.name}: ${this.message}`
-  }
 }

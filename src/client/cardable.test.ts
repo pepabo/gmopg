@@ -110,3 +110,20 @@ test('.searchCardDetail calls API and returns response', async t => {
 
   t.deepEqual(res, expect)
 })
+
+test('.searchCardDetail calls API and returns no response', async t => {
+  const result: SearchCardDetailResult = {}
+
+  sinon.stub(cardable, 'post').resolves(result)
+
+  const expect: SearchCardDetailResult[] = []
+
+  const args: SearchCardDetailArgs = {
+    ShopID: 'shopid',
+    ShopPass: 'shoppass',
+    Token: 'token',
+  }
+  const res = await cardable.searchCardDetail(args)
+
+  t.deepEqual(res, expect)
+})
