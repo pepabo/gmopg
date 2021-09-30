@@ -127,3 +127,14 @@ test('exports AccountType as enum', t => {
   }
   t.deepEqual(client.AccountType, expect)
 })
+
+test('exports AccountStatus as enum', t => {
+  const expect = {
+    Unused: 'UNUSED',
+    Trading: 'TRADING',
+    Transferred: 'TRANSFERRED',
+    Expired: 'EXPIRED',
+    Assigned: 'ASSIGNED',
+  }
+  t.deepEqual(client.AccountStatus, expect)
+})

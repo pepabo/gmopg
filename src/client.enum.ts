@@ -100,3 +100,11 @@ export enum AccountType {
   Savings = '1',
   Checking = '2',
 }
+
+export enum AccountStatus {
+  Unused = 'UNUSED',
+  Trading = 'TRADING',
+  Transferred = 'TRANSFERRED',
+  Expired = 'EXPIRED',
+  Assigned = 'ASSIGNED',
+}

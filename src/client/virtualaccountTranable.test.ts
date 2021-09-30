@@ -1,13 +1,14 @@
 import test from 'ava'
 import sinon = require('sinon')
 import Client from '../client'
-import { AccountType } from '../client.enum'
+import { AccountStatus, AccountType } from '../client.enum'
 import WithVirtualaccountTranable from './virtualaccountTranable'
 import {
   AssignVirtualaccountResult,
   EntryTranVirtualaccountResult,
   ExecTranVirtualaccountResult,
   FreeVirtualaccountResult,
+  ListVirtualaccountResult,
 } from './virtualaccountTranable.type'
 
 const VirtualaccountTranable = WithVirtualaccountTranable(Client)
@@ -107,6 +108,27 @@ test('.freeVirtualaccount calls API and returns response', async t => {
     ReserveID: 'reserveid',
   }
   const res = await virtualaccountTranable.freeVirtualaccount(args)
+
+  t.deepEqual(res, expect)
+})
+
+test('.listVirtualaccount calls API and returns response', async t => {
+  const expect: ListVirtualaccountResult = {
+    ReserveID: 'reserveid',
+    BankCode: 'bankcode',
+    BranchCode: 'branchcode',
+    AccountType: AccountType.Savings,
+    AccountNumber: 'accountnumber',
+    AccountStatus: AccountStatus.Assigned,
+  }
+
+  sinon.stub(virtualaccountTranable, 'post').resolves(expect)
+
+  const args = {
+    ShopID: 'shopid',
+    ShopPass: 'shoppass',
+  }
+  const res = await virtualaccountTranable.listVirtualaccount(args)
 
   t.deepEqual(res, expect)
 })
