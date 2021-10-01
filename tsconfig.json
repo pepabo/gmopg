@@ -41,6 +41,6 @@
     "watch": false
   },
   "include": [
-    "./src/**/*", "./error-codes.json"
+    "./src/**/*"
   ]
 }
