@@ -4,10 +4,14 @@ import WithCardable from './client/cardable'
 import WithTranable from './client/tranable'
 import WithCvsTranable from './client/cvsTranable'
 import WithMultiTranable from './client/multiTranable'
+import WithPaypayTranable from './client/paypayTranable'
+import WithVirtualaccountTranable from './client/virtualaccountTranable'
 import { generateID } from './util'
 import Client from './client'
 
-export default WithCardable(WithCvsTranable(WithMemberable(WithMultiTranable(WithTranable(Client)))))
+export default WithVirtualaccountTranable(
+  WithPaypayTranable(WithCardable(WithCvsTranable(WithMemberable(WithMultiTranable(WithTranable(Client))))))
+)
 
 export function GENERATE_MEMBER_ID(key: string): string {
   return generateID(key).substring(0, 60)
@@ -23,3 +27,5 @@ export * from './client/cardable.type'
 export * from './client/tranable.type'
 export * from './client/cvsTranable.type'
 export * from './client/multiTranable.type'
+export * from './client/paypayTranable.type'
+export * from './client/virtualaccountTranable.type'
