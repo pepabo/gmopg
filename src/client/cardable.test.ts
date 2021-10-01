@@ -66,6 +66,45 @@ test('.searchCard calls API and returns response', async t => {
     Expire: 'expire',
     HolderName: 'holdername',
     DeleteFlag: '0',
+    Brand: undefined,
+    DomesticFlag: undefined,
+    IssuerCode: undefined,
+    DebitPrepaidFlag: undefined,
+    DebitPrepaidIssuerName: undefined,
+    ForwardFinal: undefined,
+  }
+
+  sinon.stub(cardable, 'post').resolves(result)
+
+  const expect = [result]
+
+  const args = {
+    SiteID: 'siteid',
+    SitePass: 'sitepass',
+    MemberID: 'memberid',
+    SeqMode: SeqMode.Logic,
+    CardSeq: 'cardseq',
+  }
+  const res = await cardable.searchCard(args)
+
+  t.deepEqual(res, expect)
+})
+
+test('.searchCard calls API and returns response with detail', async t => {
+  const result: SearchCardResult = {
+    CardSeq: 'cardseq',
+    DefaultFlag: '1',
+    CardName: 'cardname',
+    CardNo: 'cardno',
+    Expire: 'expire',
+    HolderName: 'holdername',
+    DeleteFlag: '0',
+    Brand: 'brand',
+    DomesticFlag: 'domesticflag',
+    IssuerCode: 'issuercode',
+    DebitPrepaidFlag: 'debitprepaidflag',
+    DebitPrepaidIssuerName: 'debitprepaidissuername',
+    ForwardFinal: 'forwardfinal',
   }
 
   sinon.stub(cardable, 'post').resolves(result)
@@ -93,8 +132,11 @@ test('.searchCardDetail calls API and returns response', async t => {
     DebitPrepaidFlag: '1',
     DebitPrepaidIssuerName: 'debitPrepaidIssuerName',
     ForwardFinal: '1234567',
-    ErrCode: '',
-    ErrInfo: '',
+    Info1: undefined,
+    Info2: undefined,
+    Info3: undefined,
+    Info4: undefined,
+    Info5: undefined,
   }
 
   sinon.stub(cardable, 'post').resolves(result)
@@ -111,12 +153,25 @@ test('.searchCardDetail calls API and returns response', async t => {
   t.deepEqual(res, expect)
 })
 
-test('.searchCardDetail calls API and returns no response', async t => {
-  const result: SearchCardDetailResult = {}
+test('.searchCardDetail calls API and returns response with info', async t => {
+  const result: SearchCardDetailResult = {
+    CardNo: 'cardno',
+    Brand: 'brand',
+    DomesticFlag: '1',
+    IssuerCode: '1234567',
+    DebitPrepaidFlag: '1',
+    DebitPrepaidIssuerName: 'debitPrepaidIssuerName',
+    ForwardFinal: '1234567',
+    Info1: 'info1',
+    Info2: 'info1',
+    Info3: 'info1',
+    Info4: 'info1',
+    Info5: 'info1',
+  }
 
   sinon.stub(cardable, 'post').resolves(result)
 
-  const expect: SearchCardDetailResult[] = []
+  const expect: SearchCardDetailResult[] = [result]
 
   const args: SearchCardDetailArgs = {
     ShopID: 'shopid',

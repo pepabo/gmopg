@@ -48,9 +48,9 @@ export type ExecTranResult = Result & {
   TranID: string
   TranDate: string
   CheckString: string
-  ClientField1: string
-  ClientField2: string
-  ClientField3: string
+  ClientField1?: string
+  ClientField2?: string
+  ClientField3?: string
   ACSUrl?: string
   PaReq?: string
   MD?: string

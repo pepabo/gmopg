@@ -66,11 +66,16 @@ export type SearchCardDetailArgs = ShopArgs &
   }
 
 export type SearchCardDetailResult = Result & {
-  CardNo?: string
-  Brand?: string
-  DomesticFlag?: string
-  IssuerCode?: string
-  DebitPrepaidFlag?: string
-  DebitPrepaidIssuerName?: string
-  ForwardFinal?: string
+  CardNo: string
+  Brand: string
+  DomesticFlag: string
+  IssuerCode: string
+  DebitPrepaidFlag: string
+  DebitPrepaidIssuerName: string
+  ForwardFinal: string
+  Info1?: string
+  Info2?: string
+  Info3?: string
+  Info4?: string
+  Info5?: string
 }
