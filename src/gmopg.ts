@@ -9,8 +9,10 @@ import WithVirtualaccountTranable from './client/virtualaccountTranable'
 import { generateID } from './util'
 import Client from './client'
 
-export default WithVirtualaccountTranable(
-  WithPaypayTranable(WithCardable(WithCvsTranable(WithMemberable(WithMultiTranable(WithTranable(Client))))))
+export default WithCardable(
+  WithVirtualaccountTranable(
+    WithPaypayTranable(WithCvsTranable(WithMemberable(WithMultiTranable(WithTranable(Client)))))
+  )
 )
 
 export function GENERATE_MEMBER_ID(key: string): string {

@@ -115,6 +115,46 @@ test('.searchTradeMulti is function', t => {
   t.is(typeof gmopg.searchTradeMulti, 'function')
 })
 
+test('.entryTranPaypay is function', t => {
+  t.is(typeof gmopg.entryTranPaypay, 'function')
+})
+
+test('.execTranPaypay is function', t => {
+  t.is(typeof gmopg.execTranPaypay, 'function')
+})
+
+test('.paypaySales is function', t => {
+  t.is(typeof gmopg.paypaySales, 'function')
+})
+
+test('.paypayCancelReturn is function', t => {
+  t.is(typeof gmopg.paypayCancelReturn, 'function')
+})
+
+test('.entryTranVirtualaccount is function', t => {
+  t.is(typeof gmopg.entryTranVirtualaccount, 'function')
+})
+
+test('.execTranVirtualaccount is function', t => {
+  t.is(typeof gmopg.execTranVirtualaccount, 'function')
+})
+
+test('.assignVirtualaccount is function', t => {
+  t.is(typeof gmopg.assignVirtualaccount, 'function')
+})
+
+test('.freeVirtualaccount is function', t => {
+  t.is(typeof gmopg.freeVirtualaccount, 'function')
+})
+
+test('.listVirtualaccount is function', t => {
+  t.is(typeof gmopg.listVirtualaccount, 'function')
+})
+
+test('.inquiryVirtualaccountTransfer is function', t => {
+  t.is(typeof gmopg.inquiryVirtualaccountTransfer, 'function')
+})
+
 test('.post is function', t => {
   t.is(typeof gmopg.post, 'function')
 })
