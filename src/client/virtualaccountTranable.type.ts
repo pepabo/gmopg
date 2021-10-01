@@ -9,9 +9,9 @@ export type EntryTranVirtualaccountArgs = ShopArgs & {
 }
 
 export type EntryTranVirtualaccountResult = Result & {
-  OrderID?: string
-  AccessID?: string
-  AccessPass?: string
+  OrderID: string
+  AccessID: string
+  AccessPass: string
 }
 
 export type ExecTranVirtualaccountArgs = ShopArgs & {

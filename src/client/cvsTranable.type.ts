@@ -60,9 +60,9 @@ export type ExecTranCvsResult = Result & {
   PaymentTerm: string
   TranDate: string
   CheckString: string
-  ClientField1: string
-  ClientField2: string
-  ClientField3: string
+  ClientField1?: string
+  ClientField2?: string
+  ClientField3?: string
 }
 
 export type CancelCvsArgs = ShopArgs & {
