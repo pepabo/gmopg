@@ -1,5 +1,5 @@
-import errorDefinitionJson from '../error-codes.json'
-const errorDefinition: { [key: string]: string } = errorDefinitionJson
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const errorDefinition: { [key: string]: string } = require('../error-codes.json')
 
 export class BadRequest extends Error {
   public errors: string[]
