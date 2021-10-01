@@ -3,6 +3,8 @@
     "target": "es2018",
     "module": "commonjs",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "charset": "utf8",
@@ -39,6 +41,6 @@
     "watch": false
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*", "./error-codes.json"
   ]
 }

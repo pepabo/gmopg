@@ -1,5 +1,5 @@
-import * as fs from 'fs'
-const errorDefinition: { [key: string]: string } = JSON.parse(fs.readFileSync('./error-codes.json', 'utf-8'))
+import errorDefinitionJson from '../error-codes.json'
+const errorDefinition: { [key: string]: string } = errorDefinitionJson
 
 export class BadRequest extends Error {
   public errors: string[]
