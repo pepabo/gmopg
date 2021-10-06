@@ -67,6 +67,36 @@ test('.execTranVirtualaccount calls API and returns response', async t => {
   t.deepEqual(res, expect)
 })
 
+test('.execTranVirtualaccount calls API and returns response with trade data', async t => {
+  const expect: ExecTranVirtualaccountResult = {
+    AccessID: 'accessid',
+    BankCode: 'bankcode',
+    BankName: 'bankname',
+    BranchCode: 'branchcode',
+    BranchName: 'branchname',
+    AccountType: AccountType.Savings,
+    AccountNumber: 'accountnumber',
+    AvailableDate: 'yyyyMMdd',
+    TradeCode: 'tradecode',
+  }
+
+  sinon.stub(virtualaccountTranable, 'post').resolves(expect)
+
+  const args = {
+    ShopID: 'shopid',
+    ShopPass: 'shoppass',
+    AccessID: 'accessid',
+    AccessPass: 'accesspass',
+    OrderID: 'orderid',
+    TradeDays: 5,
+    TradeReason: 'tradeReason',
+    TradeClientName: 'tradeClientName',
+  }
+  const res = await virtualaccountTranable.execTranVirtualaccount(args)
+
+  t.deepEqual(res, expect)
+})
+
 test('.assignVirtualaccount calls API and returns response', async t => {
   const expect: AssignVirtualaccountResult = {
     ReserveID: 'reserveid',

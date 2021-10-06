@@ -1,3 +1,4 @@
+import * as encoding from 'encoding-japanese'
 import Client from '../client'
 import { Constructor } from '../util'
 import {
@@ -42,6 +43,12 @@ export default <T extends Constructor<Client>>(Base: T) =>
         AccessPass: undefined,
         OrderID: undefined,
         TradeDays: undefined,
+      }
+      if (args.TradeReason) {
+        args.TradeReason = encoding.urlEncode(encoding.convert(args.TradeReason, { to: 'SJIS', type: 'array' }))
+      }
+      if (args.TradeClientName) {
+        args.TradeClientName = encoding.urlEncode(encoding.convert(args.TradeClientName, { to: 'SJIS', type: 'array' }))
       }
       return this.post<ExecTranVirtualaccountArgs, ExecTranVirtualaccountResult>(
         '/payment/ExecTranVirtualaccount.idPass',
