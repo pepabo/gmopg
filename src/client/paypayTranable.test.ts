@@ -4,6 +4,7 @@ import Client from '../client'
 import { JobCd, Status } from '../client.enum'
 import WithPaypayTranable from './paypayTranable'
 import {
+  EntryTranPaypayAcceptResult,
   EntryTranPaypayResult,
   ExecTranPaypayResult,
   PaypayCancelReturnResult,
@@ -26,9 +27,6 @@ test('.entryTranPaypay calls API and returns response', async t => {
   sinon.stub(paypayTranable, 'post').resolves(expect)
 
   const args = {
-    SiteID: 'siteid',
-    SitePass: 'sitepass',
-    MemberID: 'memberid',
     ShopID: 'shopid',
     ShopPass: 'shoppass',
     OrderID: 'orderid',
@@ -101,6 +99,24 @@ test('.paypayCancelReturn calls API and returns response', async t => {
     CancelTax: 123,
   }
   const res = await paypayTranable.paypayCancelReturn(args)
+
+  t.deepEqual(res, expect)
+})
+
+test('.entryTranPaypayAccept calls API and returns response', async t => {
+  const expect: EntryTranPaypayAcceptResult = {
+    AccessID: 'accessid',
+    AccessPass: 'accesspass',
+  }
+
+  sinon.stub(paypayTranable, 'post').resolves(expect)
+
+  const args = {
+    ShopID: 'shopid',
+    ShopPass: 'shoppass',
+    OrderID: 'orderid',
+  }
+  const res = await paypayTranable.entryTranPaypayAccept(args)
 
   t.deepEqual(res, expect)
 })
