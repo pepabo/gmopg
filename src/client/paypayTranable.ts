@@ -1,6 +1,8 @@
 import Client from '../client'
 import { Constructor } from '../util'
 import {
+  EntryTranPaypayAcceptArgs,
+  EntryTranPaypayAcceptResult,
   EntryTranPaypayArgs,
   EntryTranPaypayResult,
   ExecTranPaypayArgs,
@@ -72,5 +74,21 @@ export default <T extends Constructor<Client>>(Base: T) =>
         ...defaultData,
         ...args,
       })
+    }
+
+    public async entryTranPaypayAccept(args: EntryTranPaypayAcceptArgs): Promise<EntryTranPaypayAcceptResult> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        AccessID: undefined,
+        AccessPass: undefined,
+      }
+      return this.post<EntryTranPaypayAcceptArgs, EntryTranPaypayAcceptResult>(
+        '/payment/EntryTranPaypayAccept.idPass',
+        {
+          ...defaultData,
+          ...args,
+        }
+      )
     }
   }

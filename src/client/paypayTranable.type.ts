@@ -74,3 +74,12 @@ export type PaypayCancelReturnResult = Result & {
   CancelAmount: number
   CancelTax: number
 }
+
+export type EntryTranPaypayAcceptArgs = ShopArgs & {
+  OrderID: string
+}
+
+export type EntryTranPaypayAcceptResult = Result & {
+  AccessID: string
+  AccessPass: string
+}
