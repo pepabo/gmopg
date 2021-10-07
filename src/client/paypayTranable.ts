@@ -11,6 +11,8 @@ import {
   ExecTranPaypayResult,
   PaypayAcceptEndArgs,
   PaypayAcceptEndResult,
+  PaypayAcceptPushArgs,
+  PaypayAcceptPushResult,
   PaypayCancelReturnArgs,
   PaypayCancelReturnResult,
   PaypaySalesArgs,
@@ -121,6 +123,21 @@ export default <T extends Constructor<Client>>(Base: T) =>
         PaypayAcceptCode: undefined,
       }
       return this.post<PaypayAcceptEndArgs, PaypayAcceptEndResult>('/payment/PaypayAcceptEnd.idPass', {
+        ...defaultData,
+        ...args,
+      })
+    }
+
+    public async paypayAcceptPush(args: PaypayAcceptPushArgs): Promise<PaypayAcceptPushResult> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        AccessID: undefined,
+        AccessPass: undefined,
+        OrderID: undefined,
+        PaypayAcceptCode: undefined,
+      }
+      return this.post<PaypayAcceptPushArgs, PaypayAcceptPushResult>('/payment/PaypayAcceptPush.idPass', {
         ...defaultData,
         ...args,
       })
