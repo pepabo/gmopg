@@ -1,4 +1,4 @@
-import { JobCd, Status } from '../client.enum'
+import { JobCd, PaymentType, Status } from '../client.enum'
 import { Result, ShopArgs } from '../client.type'
 
 export type EntryTranPaypayArgs = ShopArgs & {
@@ -6,6 +6,7 @@ export type EntryTranPaypayArgs = ShopArgs & {
   JobCd: JobCd
   Amount: number
   Tax?: number
+  PaymentType?: PaymentType
 }
 
 export type EntryTranPaypayResult = Result & {
@@ -20,15 +21,21 @@ export type ExecTranPaypayArgs = ShopArgs & {
   ClientField1?: string
   ClientField2?: string
   ClientField3?: string
-  RetURL: string
+  RetURL?: string
   PaymentTermSec?: number
+  PaypayAcceptCode?: string
 }
 
 export type ExecTranPaypayResult = Result & {
-  AccessID: string
-  Token: string
-  StartURL: string
-  StartLimitDate: string
+  AccessID?: string
+  OrderID?: string
+  Status?: Status
+  Token?: string
+  StartURL?: string
+  StartLimitDate?: string
+  TranDate?: string
+  PaypayTrackingID?: string
+  CheckString?: string
 }
 
 export type PaypayStartArgs = {

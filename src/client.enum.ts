@@ -122,3 +122,7 @@ export enum TransferStatus {
   RelatedForce = 'RELATED_FORCE',
   Return = 'RETURN',
 }
+
+export enum PaymentType {
+  Accept = 1,
+}

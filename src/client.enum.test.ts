@@ -155,3 +155,10 @@ test('exports TransferStatus as enum', t => {
   }
   t.deepEqual(client.TransferStatus, expect)
 })
+
+test('exports PaymentType as enum', t => {
+  const expect = {
+    Accept: 1,
+  }
+  t.deepEqual(client.PaymentType, expect)
+})
