@@ -1,10 +1,20 @@
 import Client from '../client'
 import { Constructor } from '../util'
 import {
+  EntryTranPaypayAcceptArgs,
+  EntryTranPaypayAcceptResult,
   EntryTranPaypayArgs,
   EntryTranPaypayResult,
+  ExecTranPaypayAcceptArgs,
+  ExecTranPaypayAcceptResult,
   ExecTranPaypayArgs,
   ExecTranPaypayResult,
+  PaypayAcceptEndArgs,
+  PaypayAcceptEndResult,
+  PaypayAcceptPushArgs,
+  PaypayAcceptPushCancelArgs,
+  PaypayAcceptPushCancelResult,
+  PaypayAcceptPushResult,
   PaypayCancelReturnArgs,
   PaypayCancelReturnResult,
   PaypaySalesArgs,
@@ -72,5 +82,83 @@ export default <T extends Constructor<Client>>(Base: T) =>
         ...defaultData,
         ...args,
       })
+    }
+
+    public async entryTranPaypayAccept(args: EntryTranPaypayAcceptArgs): Promise<EntryTranPaypayAcceptResult> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        AccessID: undefined,
+        AccessPass: undefined,
+      }
+      return this.post<EntryTranPaypayAcceptArgs, EntryTranPaypayAcceptResult>(
+        '/payment/EntryTranPaypayAccept.idPass',
+        {
+          ...defaultData,
+          ...args,
+        }
+      )
+    }
+
+    public async execTranPaypayAccept(args: ExecTranPaypayAcceptArgs): Promise<ExecTranPaypayAcceptResult> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        AccessID: undefined,
+        AccessPass: undefined,
+        OrderID: undefined,
+        RetURL: undefined,
+      }
+      return this.post<ExecTranPaypayAcceptArgs, ExecTranPaypayAcceptResult>('/payment/ExecTranPaypayAccept.idPass', {
+        ...defaultData,
+        ...args,
+      })
+    }
+
+    public async paypayAcceptEnd(args: PaypayAcceptEndArgs): Promise<PaypayAcceptEndResult> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        AccessID: undefined,
+        AccessPass: undefined,
+        OrderID: undefined,
+        PaypayAcceptCode: undefined,
+      }
+      return this.post<PaypayAcceptEndArgs, PaypayAcceptEndResult>('/payment/PaypayAcceptEnd.idPass', {
+        ...defaultData,
+        ...args,
+      })
+    }
+
+    public async paypayAcceptPush(args: PaypayAcceptPushArgs): Promise<PaypayAcceptPushResult> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        AccessID: undefined,
+        AccessPass: undefined,
+        OrderID: undefined,
+        PaypayAcceptCode: undefined,
+      }
+      return this.post<PaypayAcceptPushArgs, PaypayAcceptPushResult>('/payment/PaypayAcceptPush.idPass', {
+        ...defaultData,
+        ...args,
+      })
+    }
+
+    public async paypayAcceptPushCancel(args: PaypayAcceptPushCancelArgs): Promise<PaypayAcceptPushCancelResult> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        AccessID: undefined,
+        AccessPass: undefined,
+        OrderID: undefined,
+      }
+      return this.post<PaypayAcceptPushCancelArgs, PaypayAcceptPushCancelResult>(
+        '/payment/PaypayAcceptPushCancel.idPass',
+        {
+          ...defaultData,
+          ...args,
+        }
+      )
     }
   }

@@ -55,6 +55,13 @@ export enum Status {
   Payfail = 'PAYFAIL',
   Expired = 'EXPIRED',
   Cancel = 'CANCEL',
+  Authprocess = 'AUTHPROCESS',
+  Reqsales = 'REQSALES',
+  Reqpush = 'REQPUSH',
+  Pushcancel = 'PUSHCANCEL',
+  Pushexpired = 'PUSHEXPIRED',
+  End = 'END',
+  Register = 'REGISTER',
 }
 
 export enum JobCd {
@@ -114,4 +121,8 @@ export enum TransferStatus {
   RelatedAssign = 'RELATED_ASSIGN',
   RelatedForce = 'RELATED_FORCE',
   Return = 'RETURN',
+}
+
+export enum PaymentType {
+  Accept = '1',
 }

@@ -65,6 +65,13 @@ test('exports Status as enum', t => {
     Payfail: 'PAYFAIL',
     Expired: 'EXPIRED',
     Cancel: 'CANCEL',
+    Authprocess: 'AUTHPROCESS',
+    Reqsales: 'REQSALES',
+    Reqpush: 'REQPUSH',
+    Pushcancel: 'PUSHCANCEL',
+    Pushexpired: 'PUSHEXPIRED',
+    End: 'END',
+    Register: 'REGISTER',
   }
   t.deepEqual(client.Status, expect)
 })
@@ -147,4 +154,11 @@ test('exports TransferStatus as enum', t => {
     Return: 'RETURN',
   }
   t.deepEqual(client.TransferStatus, expect)
+})
+
+test('exports PaymentType as enum', t => {
+  const expect = {
+    Accept: '1',
+  }
+  t.deepEqual(client.PaymentType, expect)
 })
