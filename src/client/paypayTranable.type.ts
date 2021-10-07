@@ -101,3 +101,17 @@ export type ExecTranPaypayAcceptResult = Result & {
   StartURL: string
   StartLimitDate: string
 }
+
+export type PaypayAcceptStartArgs = {
+  AccessID: string
+  Token: string
+}
+
+export type PaypayAcceptStartResult = Result & {
+  ShopID: string
+  OrderID: string
+  Status: Status
+  TranDate: string
+  PaypayAcceptCode: string
+  CheckString: string
+}

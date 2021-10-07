@@ -65,6 +65,13 @@ test('exports Status as enum', t => {
     Payfail: 'PAYFAIL',
     Expired: 'EXPIRED',
     Cancel: 'CANCEL',
+    Authprocess: 'AUTHPROCESS',
+    Reqsales: 'REQSALES',
+    Reqpush: 'REQPUSH',
+    Pushcancel: 'PUSHCANCEL',
+    Pushexpired: 'PUSHEXPIRED',
+    End: 'END',
+    Register: 'REGISTER',
   }
   t.deepEqual(client.Status, expect)
 })

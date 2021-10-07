@@ -55,6 +55,13 @@ export enum Status {
   Payfail = 'PAYFAIL',
   Expired = 'EXPIRED',
   Cancel = 'CANCEL',
+  Authprocess = 'AUTHPROCESS',
+  Reqsales = 'REQSALES',
+  Reqpush = 'REQPUSH',
+  Pushcancel = 'PUSHCANCEL',
+  Pushexpired = 'PUSHEXPIRED',
+  End = 'END',
+  Register = 'REGISTER',
 }
 
 export enum JobCd {
