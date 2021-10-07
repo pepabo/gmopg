@@ -149,3 +149,14 @@ export type PaypayAcceptPushResult = Result & {
   TranDate: string
   PushTrackingID: string
 }
+
+export type PaypayAcceptPushCancelArgs = ShopArgs & {
+  AccessID: string
+  AccessPass: string
+  OrderID: string
+}
+
+export type PaypayAcceptPushCancelResult = Result & {
+  OrderID: string
+  Status: Status
+}
