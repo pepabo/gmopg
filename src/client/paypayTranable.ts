@@ -5,6 +5,8 @@ import {
   EntryTranPaypayAcceptResult,
   EntryTranPaypayArgs,
   EntryTranPaypayResult,
+  ExecTranPaypayAcceptArgs,
+  ExecTranPaypayAcceptResult,
   ExecTranPaypayArgs,
   ExecTranPaypayResult,
   PaypayCancelReturnArgs,
@@ -90,5 +92,20 @@ export default <T extends Constructor<Client>>(Base: T) =>
           ...args,
         }
       )
+    }
+
+    public async execTranPaypayAccept(args: ExecTranPaypayAcceptArgs): Promise<ExecTranPaypayAcceptResult> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        AccessID: undefined,
+        AccessPass: undefined,
+        OrderID: undefined,
+        RetURL: undefined,
+      }
+      return this.post<ExecTranPaypayAcceptArgs, ExecTranPaypayAcceptResult>('/payment/ExecTranPaypayAccept.idPass', {
+        ...defaultData,
+        ...args,
+      })
     }
   }
