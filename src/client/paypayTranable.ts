@@ -1,5 +1,4 @@
 import Client from '../client'
-import { PaymentType } from '../client.enum'
 import { Constructor } from '../util'
 import {
   EntryTranPaypayAcceptArgs,

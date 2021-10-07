@@ -124,5 +124,5 @@ export enum TransferStatus {
 }
 
 export enum PaymentType {
-  Accept = 1,
+  Accept = '1',
 }
