@@ -64,4 +64,6 @@ export type SearchTradeMultiPaypayResult = Result & {
   PayPayCancelAmount: number
   PayPayCancelTax: number
   PayPayTrackingID?: string
+  PayPayAcceptCode?: string
+  ProcessLastDate?: string
 }

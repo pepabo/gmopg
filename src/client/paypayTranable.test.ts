@@ -8,6 +8,7 @@ import {
   EntryTranPaypayResult,
   ExecTranPaypayAcceptResult,
   ExecTranPaypayResult,
+  PaypayAcceptEndResult,
   PaypayCancelReturnResult,
   PaypaySalesResult,
 } from './paypayTranable.type'
@@ -139,6 +140,25 @@ test('.execTranPaypayAccept calls API and returns response', async t => {
     RetURL: 'returl',
   }
   const res = await paypayTranable.execTranPaypayAccept(args)
+
+  t.deepEqual(res, expect)
+})
+
+test('.paypayAcceptEnd calls API and returns response', async t => {
+  const expect: PaypayAcceptEndResult = {
+    OrderID: 'orderid',
+    Status: Status.End,
+  }
+
+  sinon.stub(paypayTranable, 'post').resolves(expect)
+
+  const args = {
+    AccessID: 'accessid',
+    AccessPass: 'accesspass',
+    OrderID: 'orderid',
+    PaypayAcceptCode: 'paypayacceptcode',
+  }
+  const res = await paypayTranable.paypayAcceptEnd(args)
 
   t.deepEqual(res, expect)
 })

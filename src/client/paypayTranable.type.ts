@@ -115,3 +115,15 @@ export type PaypayAcceptStartResult = Result & {
   PaypayAcceptCode: string
   CheckString: string
 }
+
+export type PaypayAcceptEndArgs = ShopArgs & {
+  AccessID: string
+  AccessPass: string
+  OrderID: string
+  PaypayAcceptCode: string
+}
+
+export type PaypayAcceptEndResult = Result & {
+  OrderID: string
+  Status: Status
+}

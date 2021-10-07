@@ -9,6 +9,8 @@ import {
   ExecTranPaypayAcceptResult,
   ExecTranPaypayArgs,
   ExecTranPaypayResult,
+  PaypayAcceptEndArgs,
+  PaypayAcceptEndResult,
   PaypayCancelReturnArgs,
   PaypayCancelReturnResult,
   PaypaySalesArgs,
@@ -104,6 +106,21 @@ export default <T extends Constructor<Client>>(Base: T) =>
         RetURL: undefined,
       }
       return this.post<ExecTranPaypayAcceptArgs, ExecTranPaypayAcceptResult>('/payment/ExecTranPaypayAccept.idPass', {
+        ...defaultData,
+        ...args,
+      })
+    }
+
+    public async paypayAcceptEnd(args: PaypayAcceptEndArgs): Promise<PaypayAcceptEndResult> {
+      const defaultData = {
+        ShopID: this.config.ShopID,
+        ShopPass: this.config.ShopPass,
+        AccessID: undefined,
+        AccessPass: undefined,
+        OrderID: undefined,
+        PaypayAcceptCode: undefined,
+      }
+      return this.post<PaypayAcceptEndArgs, PaypayAcceptEndResult>('/payment/PaypayAcceptEnd.idPass', {
         ...defaultData,
         ...args,
       })
