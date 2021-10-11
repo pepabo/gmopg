@@ -1,7 +1,7 @@
 {
   "name": "@cynack/gmopg",
   "description": "GMO PaymentGateway API client",
-  "version": "6.4.0",
+  "version": "6.4.1",
   "author": "Futahei",
   "license": "MIT",
   "repository": {
@@ -40,7 +40,7 @@
   "devDependencies": {
     "@types/encoding-japanese": "^1.0.17",
     "@types/nock": "^11.1.0",
-    "@types/node": "^12.20.27",
+    "@types/node": "^12.20.28",
     "@types/node-fetch": "^2.5.2",
     "@types/qs": "^6.5.1",
     "@types/sinon": "^7.5.0",
@@ -57,7 +57,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-unicorn": "^21.0.0",
     "nock": "^11.4.0",
-    "nyc": "^14.1.1",
+    "nyc": "^15.1.0",
     "prettier": "^2.4.1",
     "sinon": "^7.5.0",
     "ts-node": "^8.4.1",
