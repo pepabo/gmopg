@@ -1,5 +1,5 @@
 TN:
-SF:F:/Documents/gmopg/src/client.enum.ts
+SF:src\client.enum.ts
 FN:1,(anonymous_0)
 FN:34,(anonymous_1)
 FN:42,(anonymous_2)
@@ -159,7 +159,7 @@ BRF:22
 BRH:22
 end_of_record
 TN:
-SF:F:/Documents/gmopg/src/client.ts
+SF:src\client.ts
 FN:11,(anonymous_7)
 FN:24,(anonymous_8)
 FN:40,(anonymous_9)
@@ -193,7 +193,7 @@ BRF:7
 BRH:7
 end_of_record
 TN:
-SF:F:/Documents/gmopg/src/config.ts
+SF:src\config.ts
 FN:16,buildByEnv
 FNF:1
 FNH:1
@@ -233,7 +233,7 @@ BRF:12
 BRH:12
 end_of_record
 TN:
-SF:F:/Documents/gmopg/src/errors.ts
+SF:src\errors.ts
 FN:9,(anonymous_0)
 FN:16,(anonymous_1)
 FN:21,(anonymous_2)
@@ -260,7 +260,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:F:/Documents/gmopg/src/gmopg.ts
+SF:src\gmopg.ts
 FN:18,GENERATE_MEMBER_ID
 FNF:1
 FNH:1
@@ -295,7 +295,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:F:/Documents/gmopg/src/util.ts
+SF:src\util.ts
 FN:3,generateID
 FNF:1
 FNH:1
@@ -309,7 +309,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:F:/Documents/gmopg/src/client/cardable.ts
+SF:src\client\cardable.ts
 FN:16,(anonymous_0)
 FN:18,(anonymous_1)
 FN:28,(anonymous_2)
@@ -459,7 +459,7 @@ BRF:88
 BRH:88
 end_of_record
 TN:
-SF:F:/Documents/gmopg/src/client/cvsTranable.ts
+SF:src\client\cvsTranable.ts
 FN:14,(anonymous_6)
 FN:16,(anonymous_7)
 FN:30,(anonymous_8)
@@ -484,7 +484,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:F:/Documents/gmopg/src/client/memberable.ts
+SF:src\client\memberable.ts
 FN:16,(anonymous_0)
 FN:18,(anonymous_1)
 FN:28,(anonymous_2)
@@ -513,7 +513,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:F:/Documents/gmopg/src/client/multiTranable.ts
+SF:src\client\multiTranable.ts
 FN:11,(anonymous_0)
 FN:13,(anonymous_1)
 FNF:2
@@ -530,7 +530,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:F:/Documents/gmopg/src/client/paypayTranable.ts
+SF:src\client\paypayTranable.ts
 FN:25,(anonymous_0)
 FN:27,(anonymous_1)
 FN:41,(anonymous_2)
@@ -579,7 +579,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:F:/Documents/gmopg/src/client/tranable.ts
+SF:src\client\tranable.ts
 FN:17,(anonymous_0)
 FN:19,(anonymous_1)
 FN:33,(anonymous_2)
@@ -611,7 +611,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:F:/Documents/gmopg/src/client/virtualaccountTranable.ts
+SF:src\client\virtualaccountTranable.ts
 FN:20,(anonymous_6)
 FN:22,(anonymous_7)
 FN:38,(anonymous_8)

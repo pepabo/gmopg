@@ -35,8 +35,8 @@ export enum Method {
   Lump = '1',
   Installment = '2',
   BonusLump = '3',
-  Revolving = '4',
-  BonusInstallment = '5',
+  BonusInstallment = '4',
+  Revolving = '5',
 }
 
 export enum Status {
