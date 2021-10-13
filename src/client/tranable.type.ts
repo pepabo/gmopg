@@ -106,7 +106,7 @@ export type ChangeTranArgs = ShopArgs & {
   AccessPass: string
   JobCd: JobCd
   Amount: number
-  Tax?: string
+  Tax?: number
 }
 
 export type ChangeTranResult = Result & {
