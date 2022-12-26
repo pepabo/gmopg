@@ -10,6 +10,7 @@ export type SaveCardArgs = SiteArgs & {
   CardPass?: string
   Expire?: string
   HolderName?: string
+  SecurityCode?: string
   Token?: string
 }
 
