@@ -38,6 +38,11 @@
     "suppressImplicitAnyIndexErrors": false,
     "watch": false
   },
+  "ts-node": {
+    "compilerOptions": {
+      "noImplicitAny": false
+    }
+  },
   "include": [
     "./src/**/*"
   ]
