@@ -4,9 +4,9 @@ GMO Payment Gateway API Client: Unofficial
 Simple Nodejs wrapper for [GMO Payment Gateway][gmopg] API.
 
 <a href="https://www.npmjs.com/package/gmopg" title="npm"><img src="http://img.shields.io/npm/v/gmopg.svg?style=for-the-badge"></a>
-<a href="https://github.com/pepabo/gmopg/actions" title="actions"><img src="https://img.shields.io/github/workflow/status/pepabo/gmopg/Build?style=for-the-badge"></a>
+<a href="https://github.com/pepabo/gmopg/actions" title="actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/pepabo/gmopg/build.yml?branch=main&label=Test&style=for-the-badge"></a>
 <a href="https://codecov.io/gh/pepabo/gmopg" title="codecov.io"><img src="https://img.shields.io/codecov/c/gh/pepabo/gmopg.svg?style=for-the-badge"></a>
-<a href="https://github.com/pepabo/gmopg/blob/master/MIT-LICENSE" title="MIT License"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge"></a>
+<a href="https://github.com/pepabo/gmopg/blob/main/MIT-LICENSE" title="MIT License"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge"></a>
 
 [gmopg]: https://www.gmo-pg.com/
 
@@ -123,7 +123,7 @@ Contribution
 1. Fork (https://github.com/pepabo/gmopg/fork)
 1. Create a feature branch
 1. Commit your changes
-1. Rebase your local changes against the master branch
+1. Rebase your local changes against the main branch
 1. Run test suite with the `npm ci` command and confirm that it passes
 1. Create a new Pull Request
 
